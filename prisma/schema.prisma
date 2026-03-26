@@ -1,0 +1,409 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  phone         String?   @unique
+  name          String?
+  emailVerified DateTime?
+  image         String?
+  role          UserRole  @default(BUYER)
+  locationLat   Float?
+  locationLng   Float?
+  neighborhood  String?
+  zip           String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts           Account[]
+  sessions           Session[]
+  sellerProfile      SellerProfile?
+  employeeRoles      Employee[]
+  buyerOrders        Order[]          @relation("BuyerOrders")
+  subscriptions      Subscription[]
+  reviews            Review[]
+  articles           Article[]        @relation("AuthorArticles")
+  creditBalance      CreditBalance?
+  buyerSubscriptions Subscriber[]
+  favoriteStores     FavoriteSeller[]
+}
+
+enum UserRole {
+  BUYER
+  SELLER
+  EMPLOYEE
+  ADMIN
+}
+
+model SellerProfile {
+  id                  String       @id @default(cuid())
+  userId              String       @unique
+  storeSlug           String       @unique
+  storeName           String
+  bio                 String?      @db.Text
+  story               String?      @db.Text
+  cuisineType         String?
+  kitchenPhotos       String[]
+  permitDocumentUrl   String?
+  permitStatus        PermitStatus @default(PENDING)
+  deliveryEnabled     Boolean      @default(false)
+  deliveryRadiusMiles Float?
+  deliveryFee         Float?
+  pickupEnabled       Boolean      @default(true)
+  pickupWindows       Json?
+  whatsappGroupId     String?
+  whatsappGroupLink   String?
+  socialLinks         Json?
+  ratingAvg           Float?
+  reviewCount         Int          @default(0)
+  isActive            Boolean      @default(false)
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  menuItems   MenuItem[]
+  comboItems  ComboItem[]
+  weeklyMenus WeeklyMenu[]
+  orders      Order[]          @relation("SellerOrders")
+  employees   Employee[]
+  reviews     Review[]
+  articles    Article[]
+  subscribers Subscriber[]
+  favoritedBy FavoriteSeller[]
+}
+
+enum PermitStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Employee {
+  id          String         @id @default(cuid())
+  sellerId    String
+  userId      String
+  role        EmployeeRole   @default(ORDER_MANAGER)
+  invitedAt   DateTime       @default(now())
+  status      EmployeeStatus @default(PENDING)
+  inviteEmail String?
+
+  seller SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  user   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum EmployeeRole {
+  ORDER_MANAGER
+}
+
+enum EmployeeStatus {
+  PENDING
+  ACTIVE
+  REMOVED
+}
+
+model MenuItem {
+  id                Int      @id @default(autoincrement())
+  sellerId          String
+  name              String
+  description       String?  @db.Text
+  price             Float
+  salePrice         Float?
+  photoUrl          String?
+  dietaryTags       String[]
+  allergenTags      String[]
+  cuisineTags       String[]
+  availableQuantity Int      @default(100)
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  seller             SellerProfile        @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  comboMenuItems     ComboMenuItem[]
+  weeklyMenuDayItems WeeklyMenuDayItem[]
+  orderItems         OrderItem[]
+}
+
+model ComboItem {
+  id          String   @id @default(cuid())
+  sellerId    String
+  name        String
+  description String?  @db.Text
+  comboPrice  Float
+  photoUrl    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  seller                  SellerProfile            @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  menuItems               ComboMenuItem[]
+  weeklyMenuDayComboItems WeeklyMenuDayComboItem[]
+  orderItems              OrderItem[]
+}
+
+model ComboMenuItem {
+  id          String @id @default(cuid())
+  comboItemId String
+  menuItemId  Int
+  quantity    Int    @default(1)
+
+  combo    ComboItem @relation(fields: [comboItemId], references: [id], onDelete: Cascade)
+  menuItem MenuItem  @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+}
+
+model WeeklyMenu {
+  id            String           @id @default(cuid())
+  sellerId      String
+  weekStartDate DateTime
+  status        WeeklyMenuStatus @default(DRAFT)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  seller         SellerProfile   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  days           WeeklyMenuDay[]
+  subscriptions  Subscription[]
+  ingredientList IngredientList?
+}
+
+enum WeeklyMenuStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model WeeklyMenuDay {
+  id           String   @id @default(cuid())
+  weeklyMenuId String
+  date         DateTime
+  dayOfWeek    String
+
+  weeklyMenu WeeklyMenu               @relation(fields: [weeklyMenuId], references: [id], onDelete: Cascade)
+  menuItems  WeeklyMenuDayItem[]
+  comboItems WeeklyMenuDayComboItem[]
+}
+
+model WeeklyMenuDayItem {
+  id              String @id @default(cuid())
+  weeklyMenuDayId String
+  menuItemId      Int
+  quantity        Int    @default(100)
+
+  weeklyMenuDay WeeklyMenuDay @relation(fields: [weeklyMenuDayId], references: [id], onDelete: Cascade)
+  menuItem      MenuItem      @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+}
+
+model WeeklyMenuDayComboItem {
+  id              String @id @default(cuid())
+  weeklyMenuDayId String
+  comboItemId     String
+  quantity        Int    @default(50)
+
+  weeklyMenuDay WeeklyMenuDay @relation(fields: [weeklyMenuDayId], references: [id], onDelete: Cascade)
+  comboItem     ComboItem     @relation(fields: [comboItemId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id                    String          @id @default(cuid())
+  buyerId               String
+  sellerId              String
+  status                OrderStatus     @default(PENDING)
+  fulfillmentType       FulfillmentType
+  subtotal              Float
+  deliveryFee           Float           @default(0)
+  total                 Float
+  stripePaymentIntentId String?
+  scheduledDate         DateTime
+  pickupWindow          String?
+  deliveryAddress       String?
+  subscriptionId        String?
+  notes                 String?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  buyer        User          @relation("BuyerOrders", fields: [buyerId], references: [id])
+  seller       SellerProfile @relation("SellerOrders", fields: [sellerId], references: [id])
+  items        OrderItem[]
+  review       Review?
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  READY
+  DELIVERED
+  PICKED_UP
+  CANCELLED
+}
+
+enum FulfillmentType {
+  PICKUP
+  DELIVERY
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  menuItemId  Int?
+  comboItemId String?
+  quantity    Int
+  unitPrice   Float
+  itemType    ItemType
+  itemName    String
+
+  order     Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItem  MenuItem?  @relation(fields: [menuItemId], references: [id])
+  comboItem ComboItem? @relation(fields: [comboItemId], references: [id])
+}
+
+enum ItemType {
+  ITEM
+  COMBO
+}
+
+model Subscription {
+  id                     String             @id @default(cuid())
+  buyerId                String
+  sellerId               String
+  weeklyMenuId           String
+  status                 SubscriptionStatus @default(ACTIVE)
+  fulfillmentPreferences Json?
+  stripePaymentIntentId  String?
+  totalAmount            Float
+  skippedDays            Json?
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+
+  buyer      User          @relation(fields: [buyerId], references: [id])
+  seller     SellerProfile @relation(fields: [sellerId], references: [id])
+  weeklyMenu WeeklyMenu    @relation(fields: [weeklyMenuId], references: [id])
+  orders     Order[]
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+}
+
+model IngredientList {
+  id           String   @id @default(cuid())
+  sellerId     String
+  weeklyMenuId String   @unique
+  items        Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  weeklyMenu WeeklyMenu @relation(fields: [weeklyMenuId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  buyerId   String
+  sellerId  String
+  orderId   String   @unique
+  rating    Int
+  comment   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  buyer  User          @relation(fields: [buyerId], references: [id])
+  seller SellerProfile @relation(fields: [sellerId], references: [id])
+  order  Order         @relation(fields: [orderId], references: [id])
+}
+
+model Article {
+  id               String   @id @default(cuid())
+  sellerId         String
+  authorId         String
+  title            String
+  body             String   @db.Text
+  imageUrl         String?
+  sharedToWhatsapp Boolean  @default(false)
+  sharedToSocial   Boolean  @default(false)
+  isPublished      Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  seller SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  author User          @relation("AuthorArticles", fields: [authorId], references: [id])
+}
+
+model Subscriber {
+  id           String           @id @default(cuid())
+  buyerId      String?
+  sellerId     String
+  channels     String[]
+  email        String?
+  phone        String?
+  subscribedAt DateTime         @default(now())
+  status       SubscriberStatus @default(ACTIVE)
+
+  buyer  User?         @relation(fields: [buyerId], references: [id])
+  seller SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+}
+
+enum SubscriberStatus {
+  ACTIVE
+  UNSUBSCRIBED
+}
+
+model CreditBalance {
+  id           String   @id @default(cuid())
+  buyerId      String   @unique
+  balance      Float    @default(0)
+  transactions Json?
+  updatedAt    DateTime @updatedAt
+
+  buyer User @relation(fields: [buyerId], references: [id])
+}
+
+model FavoriteSeller {
+  id        String   @id @default(cuid())
+  buyerId   String
+  sellerId  String
+  createdAt DateTime @default(now())
+
+  buyer  User          @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  seller SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  @@unique([buyerId, sellerId])
+}

@@ -3,7 +3,8 @@
     "allow": [
       "Read(//Users/manojaya/Downloads/**)",
       "Bash(python3 -c \":*)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
