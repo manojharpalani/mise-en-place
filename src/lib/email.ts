@@ -1,6 +1,11 @@
 import sgMail from '@sendgrid/mail'
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '')
+function getSgMail() {
+  if (process.env.SENDGRID_API_KEY) {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  }
+  return sgMail
+}
 
 const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || 'noreply@withmetta.com'
 
@@ -17,7 +22,7 @@ export async function sendEmail({
 }) {
   try {
     const toArray = Array.isArray(to) ? to : [to]
-    await sgMail.sendMultiple({
+    await getSgMail().sendMultiple({
       to: toArray,
       from: FROM_EMAIL,
       subject,
@@ -49,7 +54,7 @@ export async function sendNewsletter({
     let sent = 0
     for (let i = 0; i < recipients.length; i += batchSize) {
       const batch = recipients.slice(i, i + batchSize)
-      await sgMail.sendMultiple({
+      await getSgMail().sendMultiple({
         to: batch,
         from: { email: FROM_EMAIL, name: storeName },
         subject,

@@ -1,23 +1,122 @@
-import twilio from 'twilio'
+// Meta WhatsApp Business Cloud API
+// Per-seller credentials (waPhoneNumberId + waAccessToken) are preferred.
+// Falls back to platform-level env vars (WA_PHONE_NUMBER_ID + WA_ACCESS_TOKEN).
 
-const client = twilio(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-)
+const GRAPH_API = 'https://graph.facebook.com/v19.0'
 
-const FROM = process.env.TWILIO_WHATSAPP_FROM || 'whatsapp:+14155238886'
+interface WASendOptions {
+  phoneNumberId?: string | null
+  accessToken?: string | null
+}
 
-export async function sendWhatsAppMessage(to: string, body: string) {
+async function sendWAMessage(
+  to: string,
+  body: string,
+  opts: WASendOptions = {}
+): Promise<{ success: boolean; messageId?: string; error?: unknown }> {
+  const phoneNumberId = opts.phoneNumberId || process.env.WA_PHONE_NUMBER_ID
+  const accessToken = opts.accessToken || process.env.WA_ACCESS_TOKEN
+
+  if (!phoneNumberId || !accessToken) {
+    console.warn('WhatsApp Business not configured — missing phoneNumberId or accessToken')
+    return { success: false, error: 'WhatsApp Business not configured' }
+  }
+
+  // Normalise number: remove non-digits then prefix with +
+  const normalised = to.replace(/\D/g, '')
+  const recipient = normalised.startsWith('+') ? normalised : `+${normalised}`
+
   try {
-    const toNumber = to.startsWith('whatsapp:') ? to : `whatsapp:${to}`
-    const message = await client.messages.create({
-      from: FROM,
-      to: toNumber,
-      body,
+    const res = await fetch(`${GRAPH_API}/${phoneNumberId}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        messaging_product: 'whatsapp',
+        to: recipient,
+        type: 'text',
+        text: { body, preview_url: false },
+      }),
     })
-    return { success: true, sid: message.sid }
+
+    if (!res.ok) {
+      const err = await res.json()
+      console.error('WhatsApp send error:', err)
+      return { success: false, error: err }
+    }
+
+    const data = await res.json()
+    return { success: true, messageId: data.messages?.[0]?.id }
   } catch (error) {
     console.error('WhatsApp send error:', error)
+    return { success: false, error }
+  }
+}
+
+export async function sendWhatsAppMessage(
+  to: string,
+  body: string,
+  opts: WASendOptions = {}
+) {
+  return sendWAMessage(to, body, opts)
+}
+
+// Send a pre-approved WhatsApp Business template message.
+// `params` are the positional body parameter values — {{1}}, {{2}}, etc.
+export async function sendWhatsAppTemplate(
+  to: string,
+  templateName: string,
+  params: string[],
+  opts: WASendOptions & { language?: string } = {}
+): Promise<{ success: boolean; messageId?: string; error?: unknown }> {
+  const phoneNumberId = opts.phoneNumberId || process.env.WA_PHONE_NUMBER_ID
+  const accessToken = opts.accessToken || process.env.WA_ACCESS_TOKEN
+  const language = opts.language || 'en_US'
+
+  if (!phoneNumberId || !accessToken) {
+    console.warn('WhatsApp Business not configured')
+    return { success: false, error: 'WhatsApp Business not configured' }
+  }
+
+  const normalised = to.replace(/\D/g, '')
+  const recipient = normalised.startsWith('+') ? normalised : `+${normalised}`
+
+  try {
+    const res = await fetch(`${GRAPH_API}/${phoneNumberId}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        messaging_product: 'whatsapp',
+        to: recipient,
+        type: 'template',
+        template: {
+          name: templateName,
+          language: { code: language },
+          components: params.length > 0
+            ? [{
+                type: 'body',
+                parameters: params.map(text => ({ type: 'text', text })),
+              }]
+            : undefined,
+        },
+      }),
+    })
+
+    if (!res.ok) {
+      const err = await res.json()
+      console.error('WhatsApp template send error:', err)
+      return { success: false, error: err }
+    }
+
+    const data = await res.json()
+    return { success: true, messageId: data.messages?.[0]?.id }
+  } catch (error) {
+    console.error('WhatsApp template send error:', error)
     return { success: false, error }
   }
 }
@@ -27,7 +126,8 @@ export async function sendDailyMenu(
   storeName: string,
   dayLabel: string,
   items: Array<{ name: string; price: number; salePrice?: number | null; description?: string | null }>,
-  storefrontUrl: string
+  storefrontUrl: string,
+  opts: WASendOptions = {}
 ) {
   const itemLines = items
     .map((item) => {
@@ -41,7 +141,7 @@ export async function sendDailyMenu(
     .join('\n')
 
   const body = `🍽️ *${storeName} - Today's Menu*\n📅 ${dayLabel}\n\n${itemLines}\n\nOrder here: ${storefrontUrl}`
-  return sendWhatsAppMessage(to, body)
+  return sendWAMessage(to, body, opts)
 }
 
 export async function sendOrderConfirmation(
@@ -53,7 +153,8 @@ export async function sendOrderConfirmation(
     fulfillmentType: string
     scheduledDate: string
     pickupWindow?: string | null
-  }
+  },
+  opts: WASendOptions = {}
 ) {
   const fulfillmentLine =
     orderDetails.fulfillmentType === 'PICKUP'
@@ -69,5 +170,5 @@ export async function sendOrderConfirmation(
     `Scheduled: ${orderDetails.scheduledDate}\n\n` +
     `Thank you for your order! 🙏`
 
-  return sendWhatsAppMessage(to, body)
+  return sendWAMessage(to, body, opts)
 }

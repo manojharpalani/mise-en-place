@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WithMetta — Local Community Commerce Platform
 
-## Getting Started
+A web-based platform connecting independent licensed home chefs, meal planners, and local buyers. Sellers get branded storefronts; planners get a private meal-planning tool with optional public profiles; WhatsApp is the primary engagement channel.
 
-First, run the development server:
+## Quick Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env          # Fill in your credentials
+npx prisma migrate dev        # Apply migrations to your PostgreSQL DB
+npx tsx prisma/seed.ts        # Seed test accounts (optional)
+npm run dev                   # Start dev server at localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+See `.env.example` for all required environment variables (Stripe, Twilio, SendGrid, AWS S3, PostgreSQL, Anthropic).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## App Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/s/[slug]` — Public seller storefronts
+- `/seller/*` — Seller dashboard (menu, orders, marketing, content)
+- `/buyer/*` — Buyer account (orders, subscriptions, favorites)
+- `/planner/*` — Meal planner dashboard (weekly menus, grocery list, public profile)
+- `/admin/*` — Admin panel (approvals, moderation, metrics)
+- `/api/*` — REST API routes
 
-## Learn More
+## Database Migrations
 
-To learn more about Next.js, take a look at the following resources:
+Schema changes are tracked via Prisma Migrate:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx prisma migrate dev --name describe_your_change   # Create + apply a migration
+npx prisma migrate status                            # Check migration state
+npx prisma generate                                  # Regenerate Prisma Client after schema changes
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Migration history lives in `prisma/migrations/`. **Never use `prisma db push` in production** — it bypasses the migration history.
 
-## Deploy on Vercel
+## Product Spec
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [`PRODUCT.md`](./PRODUCT.md) for the full feature history, data model, API index, and known constraints. Update it when shipping new features.

@@ -1,20 +1,13 @@
 import NextAuth from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import Credentials from 'next-auth/providers/credentials'
-import Email from 'next-auth/providers/nodemailer'
 import { prisma } from './prisma'
 import { z } from 'zod'
+import { authConfig } from './auth.config'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: 'jwt',
-  },
-  secret: process.env.AUTH_SECRET,
-  pages: {
-    signIn: '/auth/signin',
-    verifyRequest: '/auth/verify',
-  },
   providers: [
     Credentials({
       name: 'OTP',
@@ -58,11 +51,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           })
         }
 
-        return user
+        return { ...user, role: user.role }
       },
     }),
   ],
   callbacks: {
+    ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
