@@ -35,6 +35,10 @@ export const authConfig: NextAuthConfig = {
       if (pathname.startsWith('/buyer/')) {
         if (!session) return Response.redirect(new URL(`/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`, nextUrl))
       }
+      if (pathname.startsWith('/planner/')) {
+        if (!session) return Response.redirect(new URL(`/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`, nextUrl))
+        if (role !== 'PLANNER' && role !== 'ADMIN') return Response.redirect(new URL('/', nextUrl))
+      }
       if (pathname.startsWith('/admin/')) {
         if (!session || role !== 'ADMIN') return Response.redirect(new URL('/', nextUrl))
       }
