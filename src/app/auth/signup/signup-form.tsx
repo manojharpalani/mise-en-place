@@ -11,26 +11,37 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Heart, Loader2, ShoppingBag, ChefHat } from 'lucide-react'
+import { Heart, Loader2, ShoppingBag, ChefHat, CalendarDays } from 'lucide-react'
 import { toast } from 'sonner'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
-  role: z.enum(['BUYER', 'SELLER']),
+  role: z.enum(['BUYER', 'SELLER', 'PLANNER']),
 })
 
 type FormData = z.infer<typeof schema>
 
+function callbackForRole(role: string) {
+  if (role === 'SELLER') return '/seller/onboarding'
+  if (role === 'PLANNER') return '/planner/onboarding'
+  return '/'
+}
+
 export function SignUpForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const defaultRole = searchParams.get('role') === 'seller' ? 'SELLER' : 'BUYER'
+  const defaultRole =
+    searchParams.get('role') === 'seller'
+      ? 'SELLER'
+      : searchParams.get('role') === 'planner'
+      ? 'PLANNER'
+      : 'BUYER'
   const [loading, setLoading] = useState(false)
 
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { role: defaultRole },
+    defaultValues: { role: defaultRole as FormData['role'] },
   })
 
   const selectedRole = watch('role')
@@ -49,13 +60,36 @@ export function SignUpForm() {
         throw new Error(err.error || 'Failed to create account')
       }
 
-      router.push(`/auth/verify?email=${encodeURIComponent(data.email)}&callbackUrl=${encodeURIComponent(data.role === 'SELLER' ? '/seller/onboarding' : '/')}`)
+      router.push(
+        `/auth/verify?email=${encodeURIComponent(data.email)}&callbackUrl=${encodeURIComponent(callbackForRole(data.role))}`
+      )
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to create account')
     } finally {
       setLoading(false)
     }
   }
+
+  const roles: { value: FormData['role']; icon: React.ReactNode; label: string; description: string }[] = [
+    {
+      value: 'BUYER',
+      icon: <ShoppingBag className={`w-8 h-8 ${selectedRole === 'BUYER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      label: 'Buy Food',
+      description: 'Order from local chefs',
+    },
+    {
+      value: 'SELLER',
+      icon: <ChefHat className={`w-8 h-8 ${selectedRole === 'SELLER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      label: 'Sell Food',
+      description: 'Start your home kitchen',
+    },
+    {
+      value: 'PLANNER',
+      icon: <CalendarDays className={`w-8 h-8 ${selectedRole === 'PLANNER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      label: 'Plan Meals',
+      description: 'Weekly meal planner',
+    },
+  ]
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fdf0ee] to-white px-4 py-10">
@@ -78,29 +112,24 @@ export function SignUpForm() {
                 <Label>I want to...</Label>
                 <RadioGroup
                   value={selectedRole}
-                  onValueChange={(v) => setValue('role', v as 'BUYER' | 'SELLER')}
-                  className="grid grid-cols-2 gap-3"
+                  onValueChange={(v) => setValue('role', v as FormData['role'])}
+                  className="grid grid-cols-3 gap-3"
                 >
-                  <label
-                    className={`flex flex-col items-center gap-2 border-2 rounded-xl p-4 cursor-pointer transition-colors ${
-                      selectedRole === 'BUYER' ? 'border-[#e28a93] bg-[#fdf0ee]' : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <RadioGroupItem value="BUYER" className="sr-only" />
-                    <ShoppingBag className={`w-8 h-8 ${selectedRole === 'BUYER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />
-                    <span className="font-medium text-sm">Buy Food</span>
-                    <span className="text-xs text-gray-500 text-center">Order from local chefs</span>
-                  </label>
-                  <label
-                    className={`flex flex-col items-center gap-2 border-2 rounded-xl p-4 cursor-pointer transition-colors ${
-                      selectedRole === 'SELLER' ? 'border-[#e28a93] bg-[#fdf0ee]' : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <RadioGroupItem value="SELLER" className="sr-only" />
-                    <ChefHat className={`w-8 h-8 ${selectedRole === 'SELLER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />
-                    <span className="font-medium text-sm">Sell Food</span>
-                    <span className="text-xs text-gray-500 text-center">Start your home kitchen</span>
-                  </label>
+                  {roles.map(({ value, icon, label, description }) => (
+                    <label
+                      key={value}
+                      className={`flex flex-col items-center gap-2 border-2 rounded-xl p-4 cursor-pointer transition-colors ${
+                        selectedRole === value
+                          ? 'border-[#e28a93] bg-[#fdf0ee]'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <RadioGroupItem value={value} className="sr-only" />
+                      {icon}
+                      <span className="font-medium text-sm">{label}</span>
+                      <span className="text-xs text-gray-500 text-center">{description}</span>
+                    </label>
+                  ))}
                 </RadioGroup>
               </div>
 
