@@ -8,12 +8,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { PlannerFlyerCanvas } from './planner-flyer-canvas'
 import { toast } from 'sonner'
 import {
   Plus, Trash2, Loader2, X, Pencil, Wand2,
-  ChevronLeft, ChevronRight, CalendarDays,
+  CalendarDays, Share2, Globe, GlobeOff, Download, MessageCircle,
 } from 'lucide-react'
 import { addDays, format, startOfWeek } from 'date-fns'
+import { toPng } from 'html-to-image'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -50,9 +52,12 @@ interface PlannerWeeklyMenu {
 
 interface PlannerProfile {
   id: string
+  slug: string
   displayName: string
   householdSize: number
   cuisinePrefs: string[]
+  bio?: string | null
+  isPublic: boolean
 }
 
 interface Props {
@@ -118,6 +123,13 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
   const [aiGenerating, setAiGenerating] = useState(false)
   const [aiImage, setAiImage] = useState<{ base64: string; mime: string } | null>(null)
   const aiImageRef = useRef<HTMLInputElement>(null)
+
+  // Flyer / share
+  const flyerRef = useRef<HTMLDivElement>(null)
+  const [showFlyer, setShowFlyer] = useState(false)
+  const [generatingFlyer, setGeneratingFlyer] = useState(false)
+  const [flyerDataUrl, setFlyerDataUrl] = useState<string | null>(null)
+  const [publishing, setPublishing] = useState(false)
 
   const activeMenu = weeklyMenus[activeMenuIdx] ?? null
 
@@ -289,6 +301,62 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
     toast.success('Week deleted')
   }
 
+  // ── Publish / share ───────────────────────────────────────────────────────
+
+  async function togglePublish() {
+    if (!activeMenu) return
+    const next = !activeMenu.isPublished
+    setPublishing(true)
+    try {
+      const res = await fetch(`/api/planner/menu/${activeMenu.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isPublished: next }),
+      })
+      if (!res.ok) throw new Error()
+      const updated = await res.json()
+      setWeeklyMenus((prev) => prev.map((m) => (m.id !== activeMenu.id ? m : updated)))
+      toast.success(next ? 'Plan published to your public profile' : 'Plan unpublished')
+    } catch {
+      toast.error('Failed to update')
+    } finally {
+      setPublishing(false)
+    }
+  }
+
+  async function generateFlyer() {
+    if (!flyerRef.current) return
+    setGeneratingFlyer(true)
+    try {
+      const dataUrl = await toPng(flyerRef.current, { pixelRatio: 2 })
+      setFlyerDataUrl(dataUrl)
+      setShowFlyer(true)
+    } catch {
+      toast.error('Failed to generate flyer')
+    } finally {
+      setGeneratingFlyer(false)
+    }
+  }
+
+  function shareWhatsApp() {
+    if (!activeMenu) return
+    const label = menuLabel(activeMenu)
+    const days = activeMenu.days.filter((d) => d.menuItems.length > 0)
+    const lines = days.map((d) => {
+      const name = dayNameFromDate(d.date, d.dayOfWeek)
+      const dishes = d.menuItems.map((di) => di.menuItem.name).join(', ')
+      return `*${name}*: ${dishes}`
+    })
+    const text = [
+      `🍽️ *${planner.displayName}'s Meal Plan — ${label}*`,
+      '',
+      ...lines,
+      '',
+      `Follow: withmetta.com/u/${planner.slug}`,
+    ].join('\n')
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
+  }
+
   // ── Image resize helper ────────────────────────────────────────────────────
 
   function resizeImage(file: File): Promise<{ base64: string; mime: string }> {
@@ -353,13 +421,37 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
         {activeMenu && (
           <>
             <Button size="sm" variant="outline" onClick={() => setShowAiPlan(true)}>
-              <Wand2 className="w-4 h-4 mr-1" /> AI Plan Week
+              <Wand2 className="w-4 h-4 mr-1" /> AI Plan
+            </Button>
+            {planner.isPublic && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={togglePublish}
+                disabled={publishing}
+                className={activeMenu.isPublished ? 'text-green-700 border-green-300' : ''}
+              >
+                {publishing
+                  ? <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                  : activeMenu.isPublished
+                    ? <Globe className="w-4 h-4 mr-1" />
+                    : <GlobeOff className="w-4 h-4 mr-1" />
+                }
+                {activeMenu.isPublished ? 'Published' : 'Publish'}
+              </Button>
+            )}
+            <Button size="sm" variant="outline" onClick={shareWhatsApp}>
+              <MessageCircle className="w-4 h-4 mr-1" /> Share
+            </Button>
+            <Button size="sm" variant="outline" onClick={generateFlyer} disabled={generatingFlyer}>
+              {generatingFlyer ? <Loader2 className="w-4 h-4 animate-spin mr-1" /> : <Share2 className="w-4 h-4 mr-1" />}
+              Flyer
             </Button>
             <Button size="sm" variant="outline" onClick={clearWeek}>
-              <Trash2 className="w-4 h-4 mr-1" /> Clear Week
+              <Trash2 className="w-4 h-4 mr-1" /> Clear
             </Button>
             <Button size="sm" variant="outline" className="text-red-600 hover:text-red-700" onClick={deleteWeek}>
-              Delete Week
+              Delete
             </Button>
           </>
         )}
@@ -367,6 +459,28 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           <CalendarDays className="w-4 h-4 mr-1" /> New Week
         </Button>
       </div>
+
+      {/* ── Hidden flyer canvas ── */}
+      {activeMenu && (
+        <div style={{ position: 'absolute', left: -9999, top: 0, pointerEvents: 'none' }}>
+          <PlannerFlyerCanvas
+            ref={flyerRef}
+            displayName={planner.displayName}
+            profileUrl={`withmetta.com/u/${planner.slug}`}
+            cuisinePrefs={planner.cuisinePrefs}
+            bio={planner.bio}
+            weekLabel={menuLabel(activeMenu)}
+            householdSize={planner.householdSize}
+            days={activeMenu.days.map((d) => ({
+              dayOfWeek: dayNameFromDate(d.date, d.dayOfWeek),
+              dishes: d.menuItems.map((di) => ({
+                name: di.menuItem.name,
+                servings: di.servings,
+              })),
+            }))}
+          />
+        </div>
+      )}
 
       {/* ── Week tabs ── */}
       {weeklyMenus.length > 0 ? (
@@ -644,6 +758,44 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               </Button>
             </div>
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* ── Flyer Dialog ── */}
+      <Dialog open={showFlyer} onOpenChange={setShowFlyer}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader><DialogTitle>Weekly Meal Plan Flyer</DialogTitle></DialogHeader>
+          {flyerDataUrl && (
+            <div className="space-y-4">
+              <img src={flyerDataUrl} alt="Flyer preview" className="w-full rounded-xl border" />
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => {
+                    const a = document.createElement('a')
+                    a.href = flyerDataUrl
+                    a.download = `meal-plan-${menuLabel(activeMenu!).replace(/\s/g, '-')}.png`
+                    a.click()
+                  }}
+                >
+                  <Download className="w-4 h-4 mr-1" /> Download
+                </Button>
+                <Button
+                  size="sm"
+                  className="flex-1 bg-[#25d366] hover:bg-[#1fb955] text-white"
+                  onClick={() => {
+                    if (!activeMenu) return
+                    const text = `Check out my meal plan for ${menuLabel(activeMenu)}! withmetta.com/u/${planner.slug}`
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
+                  }}
+                >
+                  <MessageCircle className="w-4 h-4 mr-1" /> Share on WhatsApp
+                </Button>
+              </div>
+            </div>
+          )}
         </DialogContent>
       </Dialog>
     </div>

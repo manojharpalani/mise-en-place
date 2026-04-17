@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { CalendarDays, ShoppingBasket, ChefHat, ArrowRight } from 'lucide-react'
+import { CalendarDays, ShoppingBasket, ChefHat, ArrowRight, Globe } from 'lucide-react'
 
 export default async function PlannerDashboardPage() {
   const session = await auth()
@@ -39,7 +39,8 @@ export default async function PlannerDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="flex items-start justify-between">
+        <div>
         <h1 className="text-2xl font-bold text-gray-900">
           Welcome back, {profile.displayName.split(' ')[0]}
         </h1>
@@ -48,6 +49,14 @@ export default async function PlannerDashboardPage() {
             ? `You have ${daysPlanned} day${daysPlanned !== 1 ? 's' : ''} planned this week`
             : "You haven't started this week's meal plan yet"}
         </p>
+        </div>
+        {profile.isPublic && (
+          <Button asChild size="sm" variant="outline">
+            <Link href={`/u/${profile.slug}`}>
+              <Globe className="w-3.5 h-3.5 mr-1" /> Public Profile
+            </Link>
+          </Button>
+        )}
       </div>
 
       {/* Stats row */}

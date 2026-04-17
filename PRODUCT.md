@@ -485,6 +485,12 @@ Features are listed in the order they were built, grouped by area.
 | `/admin/buyers` | Buyer list |
 | `/admin/orders` | Order monitoring |
 | `/admin/content` | Content moderation |
+| `/planner/dashboard` | Planner home — stats, quick actions, public profile link |
+| `/planner/menu` | Weekly meal planner (PlannerWeeklyPlanner) |
+| `/planner/grocery` | Grocery list scaled by household size |
+| `/planner/profile` | Edit planner settings |
+| `/planner/onboarding` | Planner setup wizard |
+| `/u/[slug]` | Public planner profile — bio, published menus, follow button, Inspired By |
 
 ---
 
@@ -535,6 +541,17 @@ Features are listed in the order they were built, grouped by area.
 | GET | `/api/storefront/[slug]` | Public storefront data |
 | GET | `/api/og/[slug]` | OG image |
 | POST | `/api/cron/daily-menu` | Cron: daily WA menu post |
+| GET/POST/PATCH | `/api/planner/profile` | Planner profile CRUD |
+| GET/POST | `/api/planner/menu-items` | Planner dish library |
+| PATCH/DELETE | `/api/planner/menu-items/[id]` | Update/soft-delete dish |
+| GET/POST | `/api/planner/menu` | List/create planner weekly menus |
+| DELETE/PATCH | `/api/planner/menu/[id]` | Delete / update dates / toggle publish |
+| POST/PATCH/DELETE | `/api/planner/menu/[id]/days/[dayId]/items` | Add/update/remove day items |
+| DELETE | `/api/planner/menu/[id]/clear` | Clear all items from week |
+| POST | `/api/planner/menu/[id]/ai-plan` | AI meal plan (text + vision) |
+| GET | `/api/planner/ingredients` | Grocery list for planner menu |
+| POST/DELETE | `/api/planner/[slug]/subscribe` | Follow/unfollow planner |
+| GET | `/api/planner/inspired-by` | Fuzzy-match dishes to local seller items |
 
 ---
 
@@ -559,14 +576,18 @@ Features are listed in the order they were built, grouped by area.
 - Scale grocery list quantities by `householdSize`
 - Create `/planner` dashboard
 
-**Roadmap — Sprint 2:**
-- Public profile `/u/[slug]`
-- Follow/subscribe flow
-- Share to WhatsApp / planner-mode flyer
+**Sprint 2 — Public profiles & social sharing (shipped 2026-04-16):**
+- `/u/[slug]` — public planner profile page: bio, cuisine prefs, published weekly menus with dish pills, follower count
+- `POST/DELETE /api/planner/[slug]/subscribe` — follow/unfollow; logged-in users follow instantly, guests enter email
+- `PlannerFollowButton` — follow/unfollow button with email dialog for guests
+- Publish toggle on planner toolbar — marks `isPublished: true`, visible on public profile
+- Planner flyer canvas (`PlannerFlyerCanvas`) — pastel gradient, servings labels, "Planned with metta" footer
+- Share to WhatsApp — deeplink with week summary text + profile URL
+- Flyer dialog — download PNG + WhatsApp share
 
-**Roadmap — Sprint 3:**
-- "Inspired by" cross-sell: fuzzy name-match PlannerMenuItem → local SellerProfile MenuItem catalog
-- CTAs to order from matched sellers
+**Sprint 3 — "Inspired by" cross-sell (shipped 2026-04-16):**
+- `GET /api/planner/inspired-by?names=...` — fuzzy-matches planner dish names against active seller `MenuItem` catalog; returns top 3 seller matches per dish with price, location-weighted score
+- `InspiredBy` component — rendered on public profile page below published menus; fetches matches client-side, shows seller cards with name/price/cuisine linking to storefront
 
 ---
 
