@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ItemCard } from './item-card'
 import { ComboCard } from './combo-card'
@@ -96,11 +96,17 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
     }
   }
 
-  const todayMenu = seller.weeklyMenus[0]?.days.find((d) => {
-    const today = new Date()
-    const dayDate = new Date(d.date)
-    return dayDate.toDateString() === today.toDateString()
-  })
+  // todayStr must be set client-side only — computing new Date() during SSR and again
+  // during hydration gives different timestamps, causing a tree mismatch warning.
+  const [todayStr, setTodayStr] = useState<string | null>(null)
+  useEffect(() => { setTodayStr(new Date().toDateString()) }, [])
+
+  const todayMenu = useMemo(() => {
+    if (!todayStr) return undefined
+    return seller.weeklyMenus[0]?.days.find(
+      (d) => new Date(d.date).toDateString() === todayStr
+    )
+  }, [seller.weeklyMenus, todayStr])
 
   const ratingStars = (rating: number) =>
     Array.from({ length: 5 }).map((_, i) => (

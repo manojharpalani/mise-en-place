@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/store/cart'
 import { Navbar } from '@/components/layout/navbar'
@@ -24,6 +24,9 @@ export default function CheckoutPage() {
   const [notes, setNotes] = useState('')
   const [scheduledDate, setScheduledDate] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const [todayStr, setTodayStr] = useState('')
+  useEffect(() => { setTodayStr(new Date().toISOString().split('T')[0]) }, [])
 
   const sellerId = items[0]?.sellerId
   const subtotal = getTotal()
@@ -143,7 +146,7 @@ export default function CheckoutPage() {
                     type="date"
                     value={scheduledDate}
                     onChange={(e) => setScheduledDate(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
+                    min={todayStr}
                   />
                 </div>
 

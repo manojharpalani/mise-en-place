@@ -213,9 +213,9 @@ async function main() {
   // ── Orders ─────────────────────────────────────────────────────
   // Skip if orders already exist for this seller
   const existingOrderCount = await prisma.order.count({ where: { sellerId: seller.id } })
-  if (existingOrderCount > 0) {
+  const skipOrders = existingOrderCount > 0
+  if (skipOrders) {
     console.log(`~ ${existingOrderCount} orders already exist, skipping order/review seed`)
-    return
   }
 
   const orderTemplates: Array<{
@@ -310,67 +310,182 @@ async function main() {
     },
   ]
 
-  for (const t of orderTemplates) {
-    const createdAt = subHours(subDays(now, t.daysAgo), t.hoursAgo ?? 0)
-    const subtotal = t.items.reduce((s, { item, qty }) => s + item.price * qty, 0)
-    const deliveryFee = t.fulfillment === 'DELIVERY' ? 3 : 0
-    const total = subtotal + deliveryFee
+  if (!skipOrders) {
+    for (const t of orderTemplates) {
+      const createdAt = subHours(subDays(now, t.daysAgo), t.hoursAgo ?? 0)
+      const subtotal = t.items.reduce((s, { item, qty }) => s + item.price * qty, 0)
+      const deliveryFee = t.fulfillment === 'DELIVERY' ? 3 : 0
+      const total = subtotal + deliveryFee
 
-    const order = await prisma.order.create({
+      const order = await prisma.order.create({
+        data: {
+          buyerId: t.buyer.id,
+          sellerId: seller.id,
+          status: t.status,
+          fulfillmentType: t.fulfillment,
+          subtotal,
+          deliveryFee,
+          total,
+          scheduledDate: addDays(createdAt, 1),
+          pickupWindow: t.fulfillment === 'PICKUP' ? '5:00 PM – 6:00 PM' : null,
+          deliveryAddress: t.fulfillment === 'DELIVERY' ? `${Math.floor(Math.random() * 900) + 100} Valencia St, San Francisco CA` : null,
+          createdAt,
+          updatedAt: createdAt,
+          items: {
+            create: t.items.map(({ item, qty }) => ({
+              menuItemId: item.id,
+              quantity: qty,
+              unitPrice: item.price,
+              itemType: 'ITEM',
+              itemName: item.name,
+            })),
+          },
+        },
+      })
+
+      if (t.review && ['DELIVERED', 'PICKED_UP'].includes(t.status)) {
+        await prisma.review.create({
+          data: {
+            orderId: order.id,
+            buyerId: t.buyer.id,
+            sellerId: seller.id,
+            rating: t.review.rating,
+            comment: t.review.comment,
+            createdAt: addDays(createdAt, 1),
+          },
+        })
+      }
+    }
+
+    // Recompute ratingAvg and reviewCount from actual reviews
+    const allReviews = await prisma.review.findMany({ where: { sellerId: seller.id } })
+    const avg = allReviews.reduce((s, r) => s + r.rating, 0) / allReviews.length
+    await prisma.sellerProfile.update({
+      where: { id: seller.id },
+      data: { ratingAvg: Math.round(avg * 10) / 10, reviewCount: allReviews.length },
+    })
+
+    console.log(`✓ ${orderTemplates.length} orders, ${allReviews.length} reviews (avg: ${avg.toFixed(1)})`)
+  }
+
+  // ── Planner ────────────────────────────────────────────────────
+  const plannerUser = await prisma.user.upsert({
+    where: { email: 'planner@example.com' },
+    update: {},
+    create: {
+      email: 'planner@example.com',
+      name: 'The Sharma Family',
+      role: 'PLANNER',
+      emailVerified: now,
+      neighborhood: 'Sunnyvale',
+      zip: '94086',
+    },
+  })
+
+  const plannerProfile = await prisma.plannerProfile.upsert({
+    where: { userId: plannerUser.id },
+    update: {},
+    create: {
+      userId: plannerUser.id,
+      displayName: 'The Sharma Family',
+      slug: 'sharma-family',
+      bio: 'A family of four planning healthy, home-cooked meals every week. South Indian roots with a love for fusion.',
+      cuisinePrefs: ['South Indian', 'Mediterranean', 'Mexican'],
+      householdSize: 4,
+      isPublic: true,
+    },
+  })
+
+  // Planner dish library
+  const plannerDishes = await Promise.all([
+    prisma.plannerMenuItem.upsert({
+      where: { id: 1 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Masala Dosa', description: 'Crispy rice crepe with spiced potato filling', cuisineTags: ['South Indian'], dietaryTags: ['vegetarian'] },
+    }),
+    prisma.plannerMenuItem.upsert({
+      where: { id: 2 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Chicken Biryani', description: 'Fragrant basmati rice with spiced chicken', cuisineTags: ['South Indian'], dietaryTags: [] },
+    }),
+    prisma.plannerMenuItem.upsert({
+      where: { id: 3 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Greek Salad', description: 'Fresh cucumber, tomato, olives and feta', cuisineTags: ['Mediterranean'], dietaryTags: ['vegetarian', 'gluten-free'] },
+    }),
+    prisma.plannerMenuItem.upsert({
+      where: { id: 4 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Paneer Tikka', description: 'Marinated and grilled cottage cheese', cuisineTags: ['North Indian'], dietaryTags: ['vegetarian'] },
+    }),
+    prisma.plannerMenuItem.upsert({
+      where: { id: 5 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Tacos al Pastor', description: 'Marinated pork tacos with pineapple', cuisineTags: ['Mexican'], dietaryTags: [] },
+    }),
+    prisma.plannerMenuItem.upsert({
+      where: { id: 6 },
+      update: {},
+      create: { plannerId: plannerProfile.id, name: 'Idli Sambar', description: 'Steamed rice cakes with lentil soup', cuisineTags: ['South Indian'], dietaryTags: ['vegetarian', 'gluten-free'] },
+    }),
+  ])
+
+  // Published weekly menu — this week (Mon–Sat)
+  const plannerMonday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - now.getUTCDay() + 1, 12))
+  const plannerSaturday = new Date(Date.UTC(plannerMonday.getUTCFullYear(), plannerMonday.getUTCMonth(), plannerMonday.getUTCDate() + 5, 12))
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+  const plannerExistingMenu = await prisma.plannerWeeklyMenu.findFirst({
+    where: { plannerId: plannerProfile.id },
+  })
+
+  if (!plannerExistingMenu) {
+    const weekMenu = await prisma.plannerWeeklyMenu.create({
       data: {
-        buyerId: t.buyer.id,
-        sellerId: seller.id,
-        status: t.status,
-        fulfillmentType: t.fulfillment,
-        subtotal,
-        deliveryFee,
-        total,
-        scheduledDate: addDays(createdAt, 1),
-        pickupWindow: t.fulfillment === 'PICKUP' ? '5:00 PM – 6:00 PM' : null,
-        deliveryAddress: t.fulfillment === 'DELIVERY' ? `${Math.floor(Math.random() * 900) + 100} Valencia St, San Francisco CA` : null,
-        createdAt,
-        updatedAt: createdAt,
-        items: {
-          create: t.items.map(({ item, qty }) => ({
-            menuItemId: item.id,
-            quantity: qty,
-            unitPrice: item.price,
-            itemType: 'ITEM',
-            itemName: item.name,
+        plannerId: plannerProfile.id,
+        weekStartDate: plannerMonday,
+        weekEndDate: plannerSaturday,
+        isPublished: true,
+        days: {
+          create: Array.from({ length: 6 }, (_, i) => ({
+            date: new Date(Date.UTC(plannerMonday.getUTCFullYear(), plannerMonday.getUTCMonth(), plannerMonday.getUTCDate() + i, 12)),
+            dayOfWeek: dayNames[new Date(Date.UTC(plannerMonday.getUTCFullYear(), plannerMonday.getUTCMonth(), plannerMonday.getUTCDate() + i, 12)).getUTCDay()],
           })),
         },
       },
+      include: { days: { orderBy: { date: 'asc' } } },
     })
 
-    if (t.review && ['DELIVERED', 'PICKED_UP'].includes(t.status)) {
-      await prisma.review.create({
-        data: {
-          orderId: order.id,
-          buyerId: t.buyer.id,
-          sellerId: seller.id,
-          rating: t.review.rating,
-          comment: t.review.comment,
-          createdAt: addDays(createdAt, 1),
-        },
-      })
+    // Assign dishes: 2 dishes per day cycling through the library
+    const assignments = [
+      [plannerDishes[0], plannerDishes[2]], // Mon: Masala Dosa, Greek Salad
+      [plannerDishes[1], plannerDishes[3]], // Tue: Chicken Biryani, Paneer Tikka
+      [plannerDishes[4], plannerDishes[2]], // Wed: Tacos, Greek Salad
+      [plannerDishes[5], plannerDishes[3]], // Thu: Idli Sambar, Paneer Tikka
+      [plannerDishes[0], plannerDishes[1]], // Fri: Masala Dosa, Chicken Biryani
+      [plannerDishes[4], plannerDishes[5]], // Sat: Tacos, Idli Sambar
+    ]
+
+    for (let i = 0; i < weekMenu.days.length; i++) {
+      const day = weekMenu.days[i]
+      for (const dish of assignments[i]) {
+        await prisma.plannerWeeklyMenuDayItem.create({
+          data: { weeklyMenuDayId: day.id, menuItemId: dish.id, servings: 4 },
+        })
+      }
     }
+    console.log('✓ Planner weekly menu created and published')
   }
 
-  // Recompute ratingAvg and reviewCount from actual reviews
-  const allReviews = await prisma.review.findMany({ where: { sellerId: seller.id } })
-  const avg = allReviews.reduce((s, r) => s + r.rating, 0) / allReviews.length
-  await prisma.sellerProfile.update({
-    where: { id: seller.id },
-    data: { ratingAvg: Math.round(avg * 10) / 10, reviewCount: allReviews.length },
-  })
-
-  console.log(`✓ ${orderTemplates.length} orders, ${allReviews.length} reviews (avg: ${avg.toFixed(1)})`)
+  console.log('✓ Planner:', plannerUser.email)
 
   console.log('\n🎉 Seed complete!')
-  console.log('   Admin:  admin@withmetta.com')
-  console.log('   Seller: chef@example.com  → /seller/dashboard')
-  console.log('   Buyer:  buyer@example.com → /buyer/orders')
-  console.log('   Store:  http://localhost:3000/s/chef-maya')
+  console.log('   Admin:   admin@withmetta.com')
+  console.log('   Seller:  chef@example.com      → /seller/dashboard')
+  console.log('   Buyer:   buyer@example.com     → /buyer/orders')
+  console.log('   Planner: planner@example.com   → /planner/dashboard')
+  console.log('   Store:   http://localhost:3000/s/chef-maya')
+  console.log('   Profile: http://localhost:3000/u/sharma-family')
 }
 
 main()
