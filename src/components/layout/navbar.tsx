@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { ChefHat, ShoppingBag, LayoutDashboard, Shield, LogOut, User } from 'lucide-react'
+import { ChefHat, ShoppingBag, LayoutDashboard, Shield, LogOut, User, CalendarDays } from 'lucide-react'
 
 export function Navbar() {
   const { data: session } = useSession()
@@ -48,6 +48,11 @@ export function Navbar() {
           {role === 'BUYER' && (
             <Link href="/buyer/orders" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
               <ShoppingBag className="w-4 h-4" /> My Orders
+            </Link>
+          )}
+          {role === 'PLANNER' && (
+            <Link href="/planner/dashboard" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
+              <CalendarDays className="w-4 h-4" /> Meal Planner
             </Link>
           )}
           {role === 'ADMIN' && (
@@ -92,6 +97,16 @@ export function Navbar() {
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => router.push('/buyer/profile')} className="flex items-center gap-2 cursor-pointer">
                       <User className="w-4 h-4" /> Profile
+                    </DropdownMenuItem>
+                  </>
+                )}
+                {role === 'PLANNER' && (
+                  <>
+                    <DropdownMenuItem onClick={() => router.push('/planner/dashboard')} className="flex items-center gap-2 cursor-pointer">
+                      <CalendarDays className="w-4 h-4" /> Meal Planner
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => router.push('/planner/profile')} className="flex items-center gap-2 cursor-pointer">
+                      <User className="w-4 h-4" /> Planner Profile
                     </DropdownMenuItem>
                   </>
                 )}

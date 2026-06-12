@@ -3,11 +3,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { LayoutDashboard, CalendarDays, ShoppingBasket, User, Heart } from 'lucide-react'
+import { LayoutDashboard, CalendarDays, ShoppingBasket, User, Heart, UtensilsCrossed } from 'lucide-react'
 
 const navItems = [
   { href: '/planner/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/planner/menu', label: 'Meal Plan', icon: CalendarDays },
+  { href: '/planner/dishes', label: 'Dish Library', icon: UtensilsCrossed },
   { href: '/planner/grocery', label: 'Grocery List', icon: ShoppingBasket },
   { href: '/planner/profile', label: 'Profile', icon: User },
 ]
