@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
@@ -15,10 +15,20 @@ export function VerifyForm() {
   const searchParams = useSearchParams()
   const email = searchParams.get('email') || ''
   const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const devOtp = searchParams.get('devOtp') || ''
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const [loading, setLoading] = useState(false)
   const [resending, setResending] = useState(false)
   const inputs = useRef<(HTMLInputElement | null)[]>([])
+
+  // In dev: auto-fill the OTP from the URL and show a banner
+  useEffect(() => {
+    if (devOtp && devOtp.length === 6) {
+      setOtp(devOtp.split(''))
+      toast.info(`Dev mode — OTP auto-filled: ${devOtp}`, { duration: 8000 })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return
@@ -74,9 +84,15 @@ export function VerifyForm() {
         body: JSON.stringify({ email }),
       })
       if (!res.ok) throw new Error('Failed to resend')
-      toast.success('New code sent!')
-      setOtp(['', '', '', '', '', ''])
-      inputs.current[0]?.focus()
+      const json = await res.json()
+      if (json.devOtp) {
+        setOtp(json.devOtp.split(''))
+        toast.info(`Dev mode — new OTP: ${json.devOtp}`, { duration: 8000 })
+      } else {
+        toast.success('New code sent!')
+        setOtp(['', '', '', '', '', ''])
+        inputs.current[0]?.focus()
+      }
     } catch {
       toast.error('Failed to resend code')
     } finally {

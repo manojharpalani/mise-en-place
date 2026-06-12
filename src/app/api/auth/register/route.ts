@@ -35,7 +35,17 @@ export async function POST(req: NextRequest) {
       data: { identifier: email, token: otp, expires },
     })
 
-    await sendOTPEmail(email, otp)
+    const emailResult = await sendOTPEmail(email, otp)
+
+    if (!emailResult.success) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[DEV] OTP for ${email}: ${otp}`)
+        return NextResponse.json({ success: true, devOtp: otp })
+      } else {
+        console.error('Failed to send OTP email:', emailResult.error)
+        return NextResponse.json({ error: 'Failed to send OTP email' }, { status: 500 })
+      }
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {

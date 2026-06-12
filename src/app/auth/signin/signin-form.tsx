@@ -43,7 +43,12 @@ export function SignInForm() {
         throw new Error(err.error || 'Failed to send OTP')
       }
 
-      router.push(`/auth/verify?email=${encodeURIComponent(data.email)}&callbackUrl=${encodeURIComponent(callbackUrl)}`)
+      const json = await res.json()
+      const verifyUrl = new URL('/auth/verify', window.location.origin)
+      verifyUrl.searchParams.set('email', data.email)
+      verifyUrl.searchParams.set('callbackUrl', callbackUrl)
+      if (json.devOtp) verifyUrl.searchParams.set('devOtp', json.devOtp)
+      router.push(verifyUrl.pathname + verifyUrl.search)
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Failed to send code')
     } finally {
