@@ -161,8 +161,8 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
 
       {/* Thumbnail preview */}
       {thumbnail && (
-        <div className="flex items-start gap-3 p-3 bg-stone-50 rounded-lg border">
-          <div className="relative w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-stone-100">
+        <div className="flex items-start gap-3 p-3 bg-muted rounded-lg border">
+          <div className="relative w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-muted">
             <Image
               src={thumbnail}
               alt="Dish thumbnail"
@@ -172,16 +172,16 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
             />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-stone-600 flex items-center gap-1">
+            <p className="text-xs font-medium text-muted-foreground flex items-center gap-1">
               <Sparkles className="w-3 h-3 text-[#c1622d]" />
               Suggested thumbnail
             </p>
-            <p className="text-xs text-stone-400 mt-0.5">Will be saved with the item</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Will be saved with the item</p>
           </div>
           <button
             type="button"
             onClick={() => setThumbnail(null)}
-            className="text-stone-400 hover:text-stone-600"
+            className="text-muted-foreground hover:text-muted-foreground"
           >
             <X className="w-4 h-4" />
           </button>

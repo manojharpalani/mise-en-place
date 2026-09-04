@@ -1,8 +1,9 @@
 export const dynamic = 'force-dynamic'
+import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatCurrency } from '@/lib/utils'
-import { Users, ChefHat, ShoppingBag, DollarSign, Clock } from 'lucide-react'
+import { Users, ChefHat, ShoppingBag, DollarSign, Clock, Inbox } from 'lucide-react'
 
 async function getMetrics() {
   const [
@@ -37,7 +38,10 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
+      <div>
+        <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
+        <p className="text-muted-foreground mt-1">A live snapshot of the whole marketplace.</p>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -65,28 +69,42 @@ export default async function AdminDashboardPage() {
 
       {metrics.pendingSellers > 0 && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
-          <Clock className="w-5 h-5 text-amber-600" />
+          <Clock className="w-5 h-5 text-amber-600 shrink-0" />
           <p className="text-amber-800">
-            <strong>{metrics.pendingSellers} seller{metrics.pendingSellers > 1 ? 's' : ''}</strong> pending approval.
-            <a href="/admin/sellers" className="ml-2 underline">Review now</a>
+            <strong>{metrics.pendingSellers} seller{metrics.pendingSellers > 1 ? 's' : ''}</strong> waiting on permit approval.
+            <Link href="/admin/sellers" className="ml-2 underline font-medium">Review now</Link>
           </p>
         </div>
       )}
 
       <Card>
-        <CardHeader><CardTitle>Recent Orders</CardTitle></CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <CardTitle>Recent Orders</CardTitle>
+          {metrics.recentOrders.length > 0 && (
+            <Link href="/admin/orders" className="text-sm text-[#c1622d] font-medium hover:underline">
+              View all
+            </Link>
+          )}
+        </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {metrics.recentOrders.map((order) => (
-              <div key={order.id} className="flex items-center justify-between py-2 border-b last:border-0 text-sm">
-                <div>
-                  <p className="font-medium">{order.buyer.name || order.buyer.email}</p>
-                  <p className="text-muted-foreground">{order.seller.storeName}</p>
+          {metrics.recentOrders.length === 0 ? (
+            <div className="text-center py-10 text-muted-foreground">
+              <Inbox className="w-10 h-10 mx-auto mb-3 opacity-30" />
+              <p className="text-sm">No orders yet. Once buyers start ordering, they&apos;ll show up here.</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {metrics.recentOrders.map((order) => (
+                <div key={order.id} className="flex items-center justify-between py-2 border-b last:border-0 text-sm">
+                  <div>
+                    <p className="font-medium">{order.buyer.name || order.buyer.email}</p>
+                    <p className="text-muted-foreground">{order.seller.storeName}</p>
+                  </div>
+                  <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
                 </div>
-                <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

@@ -43,7 +43,7 @@ function StarDisplay({ rating }: { rating: number }) {
           stroke={s <= rating ? '#f59e0b' : '#d1d5db'}
         />
       ))}
-      <span className="text-xs text-stone-500 ml-1">Your review</span>
+      <span className="text-xs text-muted-foreground ml-1">Your review</span>
     </div>
   )
 }

@@ -71,7 +71,7 @@ export default async function OrderDetailPage({
   return (
     <div className="space-y-6 max-w-lg">
       <div className="flex items-center gap-3">
-        <Button asChild variant="ghost" size="sm" className="text-stone-500 -ml-2">
+        <Button asChild variant="ghost" size="sm" className="text-muted-foreground -ml-2">
           <Link href="/buyer/orders">
             <ArrowLeft className="w-4 h-4 mr-1" /> Orders
           </Link>
@@ -85,20 +85,20 @@ export default async function OrderDetailPage({
             <Receipt className="w-5 h-5 text-[#c1622d]" />
             Order Receipt
           </h1>
-          <p className="text-xs text-stone-400 mt-0.5 font-mono">#{order.id.slice(-8).toUpperCase()}</p>
+          <p className="text-xs text-muted-foreground mt-0.5 font-mono">#{order.id.slice(-8).toUpperCase()}</p>
         </div>
         <Badge className={STATUS_COLORS[order.status]}>{order.status}</Badge>
       </div>
 
       {/* Status message */}
-      <div className="rounded-xl bg-stone-50 border px-4 py-3 text-sm text-stone-600">
+      <div className="rounded-xl bg-muted border px-4 py-3 text-sm text-muted-foreground">
         {STATUS_MSG[order.status]}
       </div>
 
       {/* Store + fulfillment */}
       <div className="bg-white rounded-xl border divide-y">
         <div className="px-4 py-3 flex items-center justify-between">
-          <span className="text-xs text-stone-400 uppercase tracking-wide">From</span>
+          <span className="text-xs text-muted-foreground uppercase tracking-wide">From</span>
           <Link
             href={`/${order.seller.storeSlug}`}
             className="font-medium text-foreground hover:text-[#c1622d] text-sm"
@@ -108,12 +108,12 @@ export default async function OrderDetailPage({
         </div>
 
         <div className="px-4 py-3 flex items-center justify-between">
-          <span className="text-xs text-stone-400 uppercase tracking-wide">Date ordered</span>
+          <span className="text-xs text-muted-foreground uppercase tracking-wide">Date ordered</span>
           <span className="text-sm text-foreground">{formatDate(order.createdAt)}</span>
         </div>
 
         <div className="px-4 py-3 flex items-center justify-between">
-          <span className="text-xs text-stone-400 uppercase tracking-wide flex items-center gap-1">
+          <span className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1">
             <Calendar className="w-3 h-3" /> Scheduled
           </span>
           <span className="text-sm text-foreground">
@@ -122,7 +122,7 @@ export default async function OrderDetailPage({
         </div>
 
         <div className="px-4 py-3 flex items-start justify-between gap-3">
-          <span className="text-xs text-stone-400 uppercase tracking-wide flex items-center gap-1 mt-0.5">
+          <span className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1 mt-0.5">
             {order.fulfillmentType === 'DELIVERY'
               ? <><MapPin className="w-3 h-3" /> Delivery address</>
               : <><Package className="w-3 h-3" /> Pickup</>
@@ -138,7 +138,7 @@ export default async function OrderDetailPage({
 
         {order.notes && (
           <div className="px-4 py-3 flex items-start justify-between gap-3">
-            <span className="text-xs text-stone-400 uppercase tracking-wide flex items-center gap-1">
+            <span className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1">
               <Clock className="w-3 h-3" /> Notes
             </span>
             <span className="text-sm text-foreground text-right italic">{order.notes}</span>
@@ -148,15 +148,15 @@ export default async function OrderDetailPage({
 
       {/* Items + totals */}
       <div className="bg-white rounded-xl border overflow-hidden">
-        <div className="px-4 py-3 border-b bg-stone-50">
-          <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">Items</p>
+        <div className="px-4 py-3 border-b bg-muted">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Items</p>
         </div>
         <div className="divide-y">
           {order.items.map(item => (
             <div key={item.id} className="px-4 py-3 flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-foreground">{item.itemName}</p>
-                <p className="text-xs text-stone-400">{formatCurrency(item.unitPrice)} × {item.quantity}</p>
+                <p className="text-xs text-muted-foreground">{formatCurrency(item.unitPrice)} × {item.quantity}</p>
               </div>
               <p className="text-sm font-medium text-foreground">
                 {formatCurrency(item.unitPrice * item.quantity)}
@@ -164,13 +164,13 @@ export default async function OrderDetailPage({
             </div>
           ))}
         </div>
-        <div className="border-t px-4 py-3 space-y-1.5 bg-stone-50">
-          <div className="flex justify-between text-sm text-stone-500">
+        <div className="border-t px-4 py-3 space-y-1.5 bg-muted">
+          <div className="flex justify-between text-sm text-muted-foreground">
             <span>Subtotal</span>
             <span>{formatCurrency(order.subtotal)}</span>
           </div>
           {order.deliveryFee > 0 && (
-            <div className="flex justify-between text-sm text-stone-500">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>Delivery fee</span>
               <span>{formatCurrency(order.deliveryFee)}</span>
             </div>
@@ -185,17 +185,17 @@ export default async function OrderDetailPage({
       {/* Review */}
       {(completed || order.review) && (
         <div className="bg-white rounded-xl border px-4 py-4 space-y-2">
-          <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide">Your Review</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Your Review</p>
           {order.review ? (
             <div className="space-y-1">
               <StarDisplay rating={order.review.rating} />
               {order.review.comment && (
-                <p className="text-sm text-stone-600 italic">"{order.review.comment}"</p>
+                <p className="text-sm text-muted-foreground italic">"{order.review.comment}"</p>
               )}
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <p className="text-sm text-stone-400">No review yet.</p>
+              <p className="text-sm text-muted-foreground">No review yet.</p>
               <OrderReviewButton orderId={order.id} storeName={order.seller.storeName} />
             </div>
           )}

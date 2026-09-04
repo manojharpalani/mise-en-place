@@ -29,7 +29,7 @@ export function Navbar() {
         </Link>
 
         {/* Nav links */}
-        <div className="hidden md:flex items-center gap-6 text-sm text-stone-600">
+        <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
           <Link href="/sellers" className="hover:text-[#C1622D] transition-colors font-medium">
             Find Chefs
           </Link>
@@ -67,7 +67,7 @@ export function Navbar() {
                       {session.user?.name?.[0]?.toUpperCase() ?? session.user?.email?.[0]?.toUpperCase() ?? 'U'}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden md:block text-sm font-medium text-stone-700">
+                  <span className="hidden md:block text-sm font-medium text-foreground">
                     {session.user?.name || session.user?.email}
                   </span>
                 </button>
@@ -119,7 +119,7 @@ export function Navbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm" className="text-stone-600 hover:text-[#C1622D]">
+              <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-[#C1622D]">
                 <Link href="/auth/signin">Sign In</Link>
               </Button>
               <Button asChild size="sm" className="bg-[#C1622D] hover:bg-[#A64F20] text-white border-0 shadow-none">

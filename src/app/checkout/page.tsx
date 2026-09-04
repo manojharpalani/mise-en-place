@@ -185,7 +185,7 @@ export default function CheckoutPage() {
                   {fulfillmentType === 'DELIVERY' && (
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Delivery fee</span>
-                      <span>Calculated at order</span>
+                      <span>Calculated at pickup or delivery</span>
                     </div>
                   )}
                   <div className="flex justify-between font-bold text-lg">

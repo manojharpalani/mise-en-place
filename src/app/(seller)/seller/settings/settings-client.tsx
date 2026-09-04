@@ -191,7 +191,7 @@ export function SettingsClient({ seller }: {
           <div className="space-y-2">
             <Label>Store slug</Label>
             <div className="flex items-center gap-1">
-              <span className="text-sm text-stone-400 whitespace-nowrap">{appUrl}/store/</span>
+              <span className="text-sm text-muted-foreground whitespace-nowrap">{appUrl}/store/</span>
               <Input
                 {...register('storeSlug')}
                 className="flex-1"
@@ -201,8 +201,8 @@ export function SettingsClient({ seller }: {
             </div>
             {errors.storeSlug && <p className="text-sm text-red-500">{errors.storeSlug.message}</p>}
             {slugValue && SLUG_RE.test(slugValue) && (
-              <p className="text-xs text-stone-500">
-                Preview: <span className="font-medium text-stone-700">{appUrl}/store/{slugValue}</span>
+              <p className="text-xs text-muted-foreground">
+                Preview: <span className="font-medium text-foreground">{appUrl}/store/{slugValue}</span>
               </p>
             )}
           </div>
@@ -304,7 +304,7 @@ export function SettingsClient({ seller }: {
 
           {/* ── Connection ── */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-stone-700 border-b pb-1.5">Connection</h3>
+            <h3 className="text-sm font-semibold text-foreground border-b pb-1.5">Connection</h3>
             <div className="space-y-2">
               <Label>Phone Number ID</Label>
               <Input
@@ -312,7 +312,7 @@ export function SettingsClient({ seller }: {
                 placeholder="e.g. 123456789012345"
                 className="font-mono text-sm"
               />
-              <p className="text-xs text-stone-500">Meta Business Manager → WhatsApp → Phone Numbers</p>
+              <p className="text-xs text-muted-foreground">Meta Business Manager → WhatsApp → Phone Numbers</p>
             </div>
             <div className="space-y-2">
               <Label>Access Token</Label>
@@ -326,19 +326,19 @@ export function SettingsClient({ seller }: {
                 <button
                   type="button"
                   onClick={() => setShowWAToken(v => !v)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-stone-500 hover:text-stone-700"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground"
                 >
                   {showWAToken ? 'Hide' : 'Show'}
                 </button>
               </div>
-              <p className="text-xs text-stone-500">Use a permanent system user token — never a temporary token</p>
+              <p className="text-xs text-muted-foreground">Use a permanent system user token — never a temporary token</p>
             </div>
           </div>
 
           {/* ── Message Templates ── */}
           <div className="space-y-4">
             <div className="flex items-start justify-between border-b pb-1.5">
-              <h3 className="text-sm font-semibold text-stone-700">Message Templates</h3>
+              <h3 className="text-sm font-semibold text-foreground">Message Templates</h3>
               <a
                 href="https://business.facebook.com/wa/manage/message-templates/"
                 target="_blank"
@@ -365,7 +365,7 @@ export function SettingsClient({ seller }: {
                 placeholder="en_US"
                 className="font-mono text-sm max-w-[140px]"
               />
-              <p className="text-xs text-stone-500">Applied to all templates. Common codes: en_US, en_GB, hi, es</p>
+              <p className="text-xs text-muted-foreground">Applied to all templates. Common codes: en_US, en_GB, hi, es</p>
             </div>
 
             {/* Template rows */}
@@ -399,11 +399,11 @@ export function SettingsClient({ seller }: {
                 example: 'order_status_update',
               },
             ] as const).map(t => (
-              <div key={t.key} className="rounded-lg border border-stone-200 p-3 space-y-2">
+              <div key={t.key} className="rounded-lg border border-border p-3 space-y-2">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="text-sm font-medium text-stone-800">{t.label}</p>
-                    <p className="text-xs text-stone-500">{t.description}</p>
+                    <p className="text-sm font-medium text-foreground">{t.label}</p>
+                    <p className="text-xs text-muted-foreground">{t.description}</p>
                   </div>
                 </div>
                 <Input
@@ -411,8 +411,8 @@ export function SettingsClient({ seller }: {
                   placeholder={t.example}
                   className="font-mono text-sm"
                 />
-                <p className="text-xs text-stone-400">
-                  <span className="font-medium text-stone-500">Variables your template must include:</span>{' '}
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-muted-foreground">Variables your template must include:</span>{' '}
                   {t.vars}
                 </p>
               </div>

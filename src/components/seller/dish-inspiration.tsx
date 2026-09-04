@@ -44,7 +44,7 @@ function VideoCard({ video }: { video: VideoResult }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Thumbnail */}
-      <div className="relative w-full aspect-video bg-stone-100">
+      <div className="relative w-full aspect-video bg-muted">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
         <div
@@ -169,7 +169,7 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-1 mt-3 bg-stone-100 rounded-xl p-1">
+          <div className="flex gap-1 mt-3 bg-muted rounded-xl p-1">
             {tabs.map(t => (
               <button
                 key={t.id}

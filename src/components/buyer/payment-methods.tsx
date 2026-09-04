@@ -142,7 +142,7 @@ export function PaymentMethods() {
       <CardContent className="space-y-4">
         {/* Saved cards */}
         {loadingPMs ? (
-          <div className="flex items-center gap-2 text-sm text-stone-400">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="w-4 h-4 animate-spin" /> Loading…
           </div>
         ) : paymentMethods.length > 0 ? (
@@ -153,7 +153,7 @@ export function PaymentMethods() {
                 className="flex items-center justify-between rounded-lg border px-3 py-2.5"
               >
                 <div className="flex items-center gap-3">
-                  <CreditCard className="w-4 h-4 text-stone-400" />
+                  <CreditCard className="w-4 h-4 text-muted-foreground" />
                   <div>
                     <p className="text-sm font-medium">
                       {brandLabel(pm.brand)} ···· {pm.last4}
@@ -161,13 +161,13 @@ export function PaymentMethods() {
                         <span className="ml-2 text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-semibold">Link</span>
                       )}
                     </p>
-                    <p className="text-xs text-stone-400">Expires {pm.expMonth}/{pm.expYear}</p>
+                    <p className="text-xs text-muted-foreground">Expires {pm.expMonth}/{pm.expYear}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => removePaymentMethod(pm.id)}
                   disabled={removingId === pm.id}
-                  className="text-stone-300 hover:text-red-400 transition-colors"
+                  className="text-muted-foreground hover:text-red-400 transition-colors"
                 >
                   {removingId === pm.id
                     ? <Loader2 className="w-4 h-4 animate-spin" />
@@ -178,17 +178,17 @@ export function PaymentMethods() {
             ))}
           </div>
         ) : !showAddForm ? (
-          <p className="text-sm text-stone-400">No saved cards yet.</p>
+          <p className="text-sm text-muted-foreground">No saved cards yet.</p>
         ) : null}
 
         {/* Add card form */}
         {showAddForm && clientSecret ? (
           <div className="border rounded-lg p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-stone-700">Add a card</p>
+              <p className="text-sm font-medium text-foreground">Add a card</p>
               <button
                 onClick={() => { setShowAddForm(false); setClientSecret(null) }}
-                className="text-stone-400 hover:text-stone-600"
+                className="text-muted-foreground hover:text-muted-foreground"
               >
                 <X className="w-4 h-4" />
               </button>

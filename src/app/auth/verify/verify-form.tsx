@@ -7,7 +7,7 @@ import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Heart, Loader2, Mail } from 'lucide-react'
+import { Heart, Loader2, Mail, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
 
 export function VerifyForm() {
@@ -19,13 +19,15 @@ export function VerifyForm() {
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const [loading, setLoading] = useState(false)
   const [resending, setResending] = useState(false)
+  const [shownCode, setShownCode] = useState(devOtp)
   const inputs = useRef<(HTMLInputElement | null)[]>([])
 
-  // In dev: auto-fill the OTP from the URL and show a banner
+  // No email sender configured for this deployment: the code comes back in the
+  // API response instead of an inbox, so auto-fill it and keep it visible in a
+  // persistent banner (the toast alone disappears too fast to be useful).
   useEffect(() => {
     if (devOtp && devOtp.length === 6) {
       setOtp(devOtp.split(''))
-      toast.info(`Dev mode — OTP auto-filled: ${devOtp}`, { duration: 8000 })
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -87,9 +89,11 @@ export function VerifyForm() {
       const json = await res.json()
       if (json.devOtp) {
         setOtp(json.devOtp.split(''))
-        toast.info(`Dev mode — new OTP: ${json.devOtp}`, { duration: 8000 })
+        setShownCode(json.devOtp)
+        toast.success('New code generated')
       } else {
         toast.success('New code sent!')
+        setShownCode('')
         setOtp(['', '', '', '', '', ''])
         inputs.current[0]?.focus()
       }
@@ -101,7 +105,7 @@ export function VerifyForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
@@ -120,6 +124,15 @@ export function VerifyForm() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {shownCode && shownCode.length === 6 && (
+              <div className="mb-5 flex items-center gap-2 rounded-xl border border-[#E7DDCB] bg-[#FBF6EC] px-4 py-3">
+                <KeyRound className="w-4 h-4 shrink-0 text-[#8a5a2e]" />
+                <p className="text-sm text-[#8a5a2e]">
+                  No email set up in this demo — your code is{' '}
+                  <span className="font-mono font-bold tracking-widest">{shownCode}</span> and has been filled in for you.
+                </p>
+              </div>
+            )}
             <div className="flex gap-2 justify-center mb-6">
               {otp.map((digit, index) => (
                 <Input

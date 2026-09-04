@@ -237,7 +237,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
             <DialogTitle>Cancel Order</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-1">
-            <p className="text-sm text-stone-600">
+            <p className="text-sm text-muted-foreground">
               Order from <span className="font-medium">{cancellingOrder?.buyer.name || cancellingOrder?.buyer.email}</span>
               {cancellingOrder?.status === 'PROCESSING' && ' is being processed. Please provide a reason.'}
               {cancellingOrder?.status === 'PENDING' && '. The customer will be notified.'}

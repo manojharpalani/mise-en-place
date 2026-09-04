@@ -130,22 +130,22 @@ function DateRangeDialog({ open, onClose, title, initialStart, initialEnd, savin
         </DialogHeader>
         <div className="space-y-4 pt-2">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">Start Date</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">Start Date</label>
             <input
               type="date"
               value={start}
               onChange={e => setStart(e.target.value)}
-              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1.5">End Date</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">End Date</label>
             <input
               type="date"
               value={end}
               min={start}
               onChange={e => setEnd(e.target.value)}
-              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
+              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
             />
           </div>
           {start && end && end < start && (
@@ -625,7 +625,7 @@ export function WeeklyMenuPlanner({
               className={`flex items-center rounded-lg border text-sm font-medium transition-colors ${
                 i === activeMenuIndex
                   ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                  : 'bg-white text-stone-600 border-stone-200'
+                  : 'bg-white text-muted-foreground border-border'
               }`}
             >
               <button onClick={() => setActiveMenuIndex(i)} className="pl-3 pr-1 py-1.5">
@@ -684,7 +684,7 @@ export function WeeklyMenuPlanner({
                 }
               </Button>
               {currentMenu.status === 'PUBLISHED' ? (
-                <Button size="sm" disabled className="bg-stone-100 text-stone-400">
+                <Button size="sm" disabled className="bg-muted text-muted-foreground">
                   <Share2 className="w-4 h-4 mr-2" /> Published
                 </Button>
               ) : (
@@ -721,7 +721,7 @@ export function WeeklyMenuPlanner({
               onClick={clearWeek}
               size="sm"
               variant="ghost"
-              className="text-stone-400 hover:text-red-500 hover:bg-red-50"
+              className="text-muted-foreground hover:text-red-500 hover:bg-red-50"
               title="Clear entire week"
             >
               <Trash2 className="w-4 h-4 mr-1.5" /> Clear Week
@@ -768,7 +768,7 @@ export function WeeklyMenuPlanner({
                           </span>
                           <button
                             onClick={() => clearDay(dayData.id)}
-                            className="text-stone-200 hover:text-red-400 transition-colors"
+                            className="text-muted-foreground hover:text-red-400 transition-colors"
                             title="Clear this day"
                           >
                             <Trash2 className="w-3 h-3" />
@@ -776,7 +776,7 @@ export function WeeklyMenuPlanner({
                         </>
                       )}
                       {dayDate && (
-                        <span className="text-xs text-stone-400 font-normal">
+                        <span className="text-xs text-muted-foreground font-normal">
                           {format(dayDate, 'MMM d')}
                         </span>
                       )}
@@ -801,23 +801,23 @@ export function WeeklyMenuPlanner({
                           )}
                         </button>
                         <div className="flex items-center gap-1 ml-2 flex-shrink-0">
-                          <span className="text-stone-400 text-xs">{formatCurrency(mi.menuItem.salePrice ?? mi.menuItem.price)}</span>
-                          <button onClick={() => removeItemFromDay(dayData.id, mi.menuItem.id, null)} className="text-stone-200 hover:text-red-400 ml-1">
+                          <span className="text-muted-foreground text-xs">{formatCurrency(mi.menuItem.salePrice ?? mi.menuItem.price)}</span>
+                          <button onClick={() => removeItemFromDay(dayData.id, mi.menuItem.id, null)} className="text-muted-foreground hover:text-red-400 ml-1">
                             <Trash2 className="w-3 h-3" />
                           </button>
                         </div>
                       </div>
                       <div className="flex items-center gap-1">
-                        <span className="text-[10px] text-stone-400">Qty:</span>
+                        <span className="text-[10px] text-muted-foreground">Qty:</span>
                         <button
                           onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity - 1)}
-                          className="w-5 h-5 rounded text-stone-400 hover:text-stone-700 hover:bg-stone-100 flex items-center justify-center text-xs"
+                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
                           disabled={mi.quantity <= 1}
                         >−</button>
                         <span className="text-xs font-medium w-6 text-center">{mi.quantity}</span>
                         <button
                           onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity + 1)}
-                          className="w-5 h-5 rounded text-stone-400 hover:text-stone-700 hover:bg-stone-100 flex items-center justify-center text-xs"
+                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
                         >+</button>
                       </div>
                     </div>
@@ -829,28 +829,28 @@ export function WeeklyMenuPlanner({
                           <span className="font-medium">{ci.comboItem.name}</span>
                           <Badge className="ml-1 text-xs bg-amber-100 text-amber-700 py-0">Combo</Badge>
                         </div>
-                        <button onClick={() => removeItemFromDay(dayData.id, null, ci.comboItem.id)} className="text-stone-200 hover:text-red-400 ml-2">
+                        <button onClick={() => removeItemFromDay(dayData.id, null, ci.comboItem.id)} className="text-muted-foreground hover:text-red-400 ml-2">
                           <Trash2 className="w-3 h-3" />
                         </button>
                       </div>
                       <div className="flex items-center gap-1">
-                        <span className="text-[10px] text-stone-400">Qty:</span>
+                        <span className="text-[10px] text-muted-foreground">Qty:</span>
                         <button
                           onClick={() => updateItemQuantity(dayData.id, null, ci.comboItem.id, ci.quantity - 1)}
-                          className="w-5 h-5 rounded text-stone-400 hover:text-stone-700 hover:bg-stone-100 flex items-center justify-center text-xs"
+                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
                           disabled={ci.quantity <= 1}
                         >−</button>
                         <span className="text-xs font-medium w-6 text-center">{ci.quantity}</span>
                         <button
                           onClick={() => updateItemQuantity(dayData.id, null, ci.comboItem.id, ci.quantity + 1)}
-                          className="w-5 h-5 rounded text-stone-400 hover:text-stone-700 hover:bg-stone-100 flex items-center justify-center text-xs"
+                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
                         >+</button>
                       </div>
                     </div>
                   ))}
                   <button
                     onClick={() => setAddingToDayIndex(dayIndex)}
-                    className="w-full text-xs text-stone-400 hover:text-[#c1622d] border border-dashed border-stone-200 hover:border-[#e7ddcb] rounded-lg py-2 transition-colors"
+                    className="w-full text-xs text-muted-foreground hover:text-[#c1622d] border border-dashed border-border hover:border-[#e7ddcb] rounded-lg py-2 transition-colors"
                   >
                     + Add item
                   </button>
@@ -861,7 +861,7 @@ export function WeeklyMenuPlanner({
         </div>
       ) : (
         <div className="text-center py-20 bg-white rounded-xl border">
-          <p className="text-stone-400 mb-4">No plan yet. Create one to get started.</p>
+          <p className="text-muted-foreground mb-4">No plan yet. Create one to get started.</p>
           <Button onClick={() => setShowCreateDialog(true)} className="bg-[#c1622d] hover:bg-[#a64f20] text-white">
             Create a Plan
           </Button>
@@ -878,11 +878,11 @@ export function WeeklyMenuPlanner({
           </DialogHeader>
           <div className="space-y-4">
             {menuItems.length === 0 ? (
-              <p className="text-stone-500 text-sm">No menu items yet. Create some first.</p>
+              <p className="text-muted-foreground text-sm">No menu items yet. Create some first.</p>
             ) : (
               <>
                 <div>
-                  <p className="text-sm font-medium text-stone-700 mb-2">Menu Items</p>
+                  <p className="text-sm font-medium text-foreground mb-2">Menu Items</p>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
                     {menuItems.map(item => {
                       const dayData = addingToDayIndex !== null ? currentMenu?.days[addingToDayIndex] : null
@@ -894,7 +894,7 @@ export function WeeklyMenuPlanner({
                             {!item.ingredients && <span className="text-[10px] text-[#a64f20] flex-shrink-0">· needs ingredients</span>}
                           </div>
                           <div className="flex items-center gap-2 ml-2 flex-shrink-0">
-                            <span className="text-stone-400">{formatCurrency(item.salePrice ?? item.price)}</span>
+                            <span className="text-muted-foreground">{formatCurrency(item.salePrice ?? item.price)}</span>
                             {isAdded ? (
                               <button
                                 onClick={() => removeItemFromDay(dayData?.id, item.id, null)}
@@ -918,7 +918,7 @@ export function WeeklyMenuPlanner({
                 </div>
                 {comboItems.length > 0 && (
                   <div>
-                    <p className="text-sm font-medium text-stone-700 mb-2">Combos</p>
+                    <p className="text-sm font-medium text-foreground mb-2">Combos</p>
                     <div className="space-y-2 max-h-32 overflow-y-auto">
                       {comboItems.map(combo => {
                         const dayData = addingToDayIndex !== null ? currentMenu?.days[addingToDayIndex] : null
@@ -927,7 +927,7 @@ export function WeeklyMenuPlanner({
                           <div key={combo.id} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-sm ${isAdded ? 'bg-amber-50 border-amber-200' : 'bg-white'}`}>
                             <span className={isAdded ? 'font-medium' : ''}>{combo.name}</span>
                             <div className="flex items-center gap-2">
-                              <span className="text-stone-400">{formatCurrency(combo.comboPrice)}</span>
+                              <span className="text-muted-foreground">{formatCurrency(combo.comboPrice)}</span>
                               {isAdded ? (
                                 <button
                                   onClick={() => removeItemFromDay(dayData?.id, null, combo.id)}
@@ -969,14 +969,14 @@ export function WeeklyMenuPlanner({
           {/* Step 1 — upload */}
           {!importPlan && (
             <div className="space-y-4 pt-1">
-              <p className="text-sm text-stone-500">
+              <p className="text-sm text-muted-foreground">
                 Upload a photo of your handwritten menu, whiteboard, or printed plan. Claude will extract the dishes per day and add them to this week.
               </p>
 
               {importImage ? (
-                <div className="relative rounded-xl overflow-hidden border border-stone-200">
+                <div className="relative rounded-xl overflow-hidden border border-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={importImage.previewUrl} alt="Menu to import" className="w-full max-h-56 object-contain bg-stone-50" />
+                  <img src={importImage.previewUrl} alt="Menu to import" className="w-full max-h-56 object-contain bg-muted" />
                   <button
                     type="button"
                     onClick={() => { setImportImage(null); if (importImageRef.current) importImageRef.current.value = '' }}
@@ -989,7 +989,7 @@ export function WeeklyMenuPlanner({
                 <button
                   type="button"
                   onClick={() => importImageRef.current?.click()}
-                  className="w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-stone-200 hover:border-[#c1622d] rounded-xl py-10 text-stone-400 hover:text-[#c1622d] transition-colors"
+                  className="w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-border hover:border-[#c1622d] rounded-xl py-10 text-muted-foreground hover:text-[#c1622d] transition-colors"
                 >
                   <Sparkles className="w-8 h-8" />
                   <span className="font-medium">Click to upload menu image</span>
@@ -1024,29 +1024,29 @@ export function WeeklyMenuPlanner({
           {importPlan && (
             <div className="space-y-4 pt-1">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-stone-700">Review extracted plan</p>
+                <p className="text-sm font-medium text-foreground">Review extracted plan</p>
                 <button
                   type="button"
                   onClick={() => setImportPlan(null)}
-                  className="text-xs text-stone-400 hover:text-stone-600 underline"
+                  className="text-xs text-muted-foreground hover:text-muted-foreground underline"
                 >
                   ← Re-upload
                 </button>
               </div>
 
               {importPlan.notes && (
-                <p className="text-xs text-stone-400 italic">{importPlan.notes}</p>
+                <p className="text-xs text-muted-foreground italic">{importPlan.notes}</p>
               )}
 
               <div className="space-y-3">
                 {importPlan.days.map((day, di) => (
                   <div key={day.dayOfWeek} className="border rounded-xl overflow-hidden">
-                    <div className="bg-stone-50 px-3 py-2 text-xs font-semibold text-stone-600 uppercase tracking-wide">
+                    <div className="bg-muted px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                       {day.dayOfWeek}
                     </div>
                     <div className="divide-y">
                       {day.items.map((item, ii) => (
-                        <label key={ii} className={`flex items-start gap-3 px-3 py-2.5 cursor-pointer transition-colors ${item.selected ? 'bg-white' : 'bg-stone-50 opacity-50'}`}>
+                        <label key={ii} className={`flex items-start gap-3 px-3 py-2.5 cursor-pointer transition-colors ${item.selected ? 'bg-white' : 'bg-muted opacity-50'}`}>
                           <input
                             type="checkbox"
                             checked={item.selected}
@@ -1066,19 +1066,19 @@ export function WeeklyMenuPlanner({
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-sm font-medium text-stone-800">{item.name}</span>
+                              <span className="text-sm font-medium text-foreground">{item.name}</span>
                               {item.isCombo && (
                                 <Badge className="text-[10px] bg-amber-100 text-amber-700 py-0">Combo</Badge>
                               )}
                               {item.estimatedPrice != null && (
-                                <span className="text-xs text-stone-400">{formatCurrency(item.estimatedPrice)}</span>
+                                <span className="text-xs text-muted-foreground">{formatCurrency(item.estimatedPrice)}</span>
                               )}
                             </div>
                             {item.description && (
-                              <p className="text-xs text-stone-400 mt-0.5 truncate">{item.description}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5 truncate">{item.description}</p>
                             )}
                             {item.isCombo && item.comboComponents?.length ? (
-                              <p className="text-xs text-stone-400 mt-0.5">
+                              <p className="text-xs text-muted-foreground mt-0.5">
                                 Includes: {item.comboComponents.join(', ')}
                               </p>
                             ) : null}
@@ -1122,12 +1122,12 @@ export function WeeklyMenuPlanner({
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-5 pt-1">
-            <p className="text-sm text-stone-500">
+            <p className="text-sm text-muted-foreground">
               Claude will generate a varied weekly menu using your existing items{seller.cuisineType ? ` (${seller.cuisineType})` : ''}, creating new items or combos where needed. Previous 4 weeks are checked to keep meals fresh.
             </p>
 
             <div className="space-y-2">
-              <Label>Inspiration / special requests <span className="text-stone-400 font-normal">(optional)</span></Label>
+              <Label>Inspiration / special requests <span className="text-muted-foreground font-normal">(optional)</span></Label>
               <Textarea
                 placeholder={`e.g. "Focus on lighter meals this week" or "Add a festive theme for the weekend"`}
                 value={aiPrompt}
@@ -1139,9 +1139,9 @@ export function WeeklyMenuPlanner({
 
             {/* Image upload */}
             <div className="space-y-2">
-              <Label>Reference image <span className="text-stone-400 font-normal">(optional)</span></Label>
+              <Label>Reference image <span className="text-muted-foreground font-normal">(optional)</span></Label>
               {aiImage ? (
-                <div className="relative rounded-lg overflow-hidden border border-stone-200 bg-stone-50">
+                <div className="relative rounded-lg overflow-hidden border border-border bg-muted">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={aiImage.previewUrl} alt="Inspiration" className="w-full max-h-40 object-cover" />
                   <button
@@ -1156,7 +1156,7 @@ export function WeeklyMenuPlanner({
                 <button
                   type="button"
                   onClick={() => aiImageInputRef.current?.click()}
-                  className="w-full flex flex-col items-center justify-center gap-1.5 border border-dashed border-stone-200 hover:border-[#c1622d] rounded-lg py-4 text-stone-400 hover:text-[#c1622d] transition-colors text-sm"
+                  className="w-full flex flex-col items-center justify-center gap-1.5 border border-dashed border-border hover:border-[#c1622d] rounded-lg py-4 text-muted-foreground hover:text-[#c1622d] transition-colors text-sm"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Upload a handwritten menu, food photo, or reference image</span>
@@ -1184,7 +1184,7 @@ export function WeeklyMenuPlanner({
                       className={`flex-1 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
                         aiItemsPerDay === n
                           ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                          : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+                          : 'bg-white text-muted-foreground border-border hover:bg-muted'
                       }`}
                     >
                       {n}
@@ -1204,7 +1204,7 @@ export function WeeklyMenuPlanner({
                       className={`flex-1 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
                         aiIncludeCombo === v
                           ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                          : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+                          : 'bg-white text-muted-foreground border-border hover:bg-muted'
                       }`}
                     >
                       {v ? 'Yes' : 'No'}
@@ -1226,7 +1226,7 @@ export function WeeklyMenuPlanner({
                       className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-colors ${
                         aiComboSize === n
                           ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                          : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+                          : 'bg-white text-muted-foreground border-border hover:bg-muted'
                       }`}
                     >
                       {n}-item combo
@@ -1297,11 +1297,11 @@ export function WeeklyMenuPlanner({
               <Label>Select Items (min. 2) *</Label>
               <div className="space-y-1.5 max-h-48 overflow-y-auto border rounded-lg p-2">
                 {menuItems.length === 0 ? (
-                  <p className="text-sm text-stone-400 p-2">No menu items yet. Create items first.</p>
+                  <p className="text-sm text-muted-foreground p-2">No menu items yet. Create items first.</p>
                 ) : menuItems.map(item => {
                   const selected = comboSelectedItems.includes(item.id)
                   return (
-                    <label key={item.id} className={`flex items-center gap-3 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${selected ? 'bg-[#f7e9de]' : 'hover:bg-stone-50'}`}>
+                    <label key={item.id} className={`flex items-center gap-3 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${selected ? 'bg-[#f7e9de]' : 'hover:bg-muted'}`}>
                       <input
                         type="checkbox"
                         checked={selected}
@@ -1311,13 +1311,13 @@ export function WeeklyMenuPlanner({
                         className="accent-[#c1622d]"
                       />
                       <span className="flex-1 text-sm">{item.name}</span>
-                      <span className="text-xs text-stone-400">{formatCurrency(item.salePrice ?? item.price)}</span>
+                      <span className="text-xs text-muted-foreground">{formatCurrency(item.salePrice ?? item.price)}</span>
                     </label>
                   )
                 })}
               </div>
               {comboSelectedItems.length > 0 && (
-                <p className="text-xs text-stone-500">{comboSelectedItems.length} item{comboSelectedItems.length > 1 ? 's' : ''} selected</p>
+                <p className="text-xs text-muted-foreground">{comboSelectedItems.length} item{comboSelectedItems.length > 1 ? 's' : ''} selected</p>
               )}
             </div>
 
@@ -1413,7 +1413,7 @@ export function WeeklyMenuPlanner({
       {/* Flyer Modal */}
       <Dialog open={showFlyerModal} onOpenChange={setShowFlyerModal}>
         <DialogContent className="max-w-lg p-0 overflow-hidden rounded-2xl">
-          <div className="relative aspect-square w-full overflow-hidden bg-stone-100">
+          <div className="relative aspect-square w-full overflow-hidden bg-muted">
             {flyerDataUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={flyerDataUrl} alt="Weekly menu flyer" className="w-full h-full object-cover" />
@@ -1426,12 +1426,12 @@ export function WeeklyMenuPlanner({
             </button>
           </div>
           <div className="p-4 space-y-3 bg-white">
-            <p className="text-xs text-stone-500">Download and share with your customers on WhatsApp, Instagram, or Stories.</p>
+            <p className="text-xs text-muted-foreground">Download and share with your customers on WhatsApp, Instagram, or Stories.</p>
             <div className="flex gap-2">
               <a
                 href={flyerDataUrl ?? '#'}
                 download={`${seller.storeName.replace(/\s+/g, '-')}-menu-flyer.png`}
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium border border-stone-200 hover:bg-stone-50 transition-colors text-stone-700"
+                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium border border-border hover:bg-muted transition-colors text-foreground"
               >
                 <Download className="w-4 h-4" /> Download
               </a>
@@ -1463,7 +1463,7 @@ export function WeeklyMenuPlanner({
                   }
                 }}
                 disabled={generatingFlyer}
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium border border-stone-200 hover:bg-stone-50 transition-colors text-stone-700 disabled:opacity-50"
+                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-sm font-medium border border-border hover:bg-muted transition-colors text-foreground disabled:opacity-50"
               >
                 {generatingFlyer ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               </button>

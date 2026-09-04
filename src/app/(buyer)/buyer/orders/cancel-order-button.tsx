@@ -47,7 +47,7 @@ export function CancelOrderButton({ orderId, storeName }: { orderId: string; sto
             <DialogTitle>Cancel this order?</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-1">
-            <p className="text-sm text-stone-600">
+            <p className="text-sm text-muted-foreground">
               Your order from <span className="font-medium">{storeName}</span> will be cancelled.
               {' '}If you paid online, a refund will be initiated automatically.
             </p>

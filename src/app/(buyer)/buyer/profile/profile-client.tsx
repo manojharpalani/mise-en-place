@@ -124,7 +124,7 @@ export function ProfileClient({ user }: {
                 placeholder="+1 (555) 000-0000"
               />
               {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
-              <p className="text-xs text-stone-500">Used for order updates and menu notifications.</p>
+              <p className="text-xs text-muted-foreground">Used for order updates and menu notifications.</p>
             </div>
 
             {/* Notification channel toggle */}
@@ -142,14 +142,14 @@ export function ProfileClient({ user }: {
                     className={`flex-1 py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${
                       channel === ch
                         ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                        : 'bg-white text-stone-600 border-stone-200 hover:border-[#e7ddcb]'
+                        : 'bg-white text-muted-foreground border-border hover:border-[#e7ddcb]'
                     }`}
                   >
                     {ch === 'whatsapp' ? '💬 WhatsApp' : '📱 SMS'}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-muted-foreground">
                 {channel === 'whatsapp'
                   ? 'You\'ll receive updates via WhatsApp on the number above.'
                   : 'You\'ll receive SMS text messages on the number above.'}

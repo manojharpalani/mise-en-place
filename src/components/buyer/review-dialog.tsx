@@ -75,7 +75,7 @@ export function ReviewDialog({ orderId, storeName, open, onClose }: ReviewDialog
             ))}
           </div>
           {rating > 0 && (
-            <p className="text-center text-sm text-stone-500">
+            <p className="text-center text-sm text-muted-foreground">
               {['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent!'][rating]}
             </p>
           )}
