@@ -49,3 +49,6 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Architecture diagram tooling (downloaded by architecture/generate.sh)
+/architecture/.tools/

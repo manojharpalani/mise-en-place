@@ -1,4 +1,4 @@
-# WithMetta — Local Community Commerce Platform
+# Mise en Place — Local Community Commerce Platform
 
 A web-based platform connecting independent licensed home chefs, meal planners, and local buyers. Sellers get branded storefronts; planners get a private meal-planning tool with optional public profiles; WhatsApp is the primary engagement channel.
 
@@ -21,6 +21,14 @@ See `.env.example` for all required environment variables (Stripe, Twilio, SendG
 - `/planner/*` — Meal planner dashboard (weekly menus, grocery list, public profile)
 - `/admin/*` — Admin panel (approvals, moderation, metrics)
 - `/api/*` — REST API routes
+
+## Architecture
+
+The system is a Next.js 16 (App Router) monolith: server-rendered pages and REST API routes talk to a PostgreSQL database via Prisma, sit behind role-based auth middleware, and integrate with Stripe (payments), Twilio (SMS/WhatsApp), SendGrid (email), AWS S3 (media), and Anthropic/OpenAI (AI features).
+
+![Container diagram](./architecture/diagrams/containers.png)
+
+The architecture is tracked as code in [`architecture/workspace.dsl`](./architecture/workspace.dsl) (Structurizr DSL / C4 model). Update that file whenever a container or external integration changes, then run `./architecture/generate.sh` to regenerate the diagrams — a GitHub Action does this automatically on `main`. See [`architecture/README.md`](./architecture/README.md) for details.
 
 ## Database Migrations
 
