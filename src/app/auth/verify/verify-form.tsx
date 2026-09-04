@@ -104,7 +104,7 @@ export function VerifyForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
             <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
             Mise en Place
           </Link>
@@ -147,7 +147,7 @@ export function VerifyForm() {
             </Button>
 
             <div className="mt-4 text-center">
-              <span className="text-sm text-gray-500">Didn&apos;t receive it? </span>
+              <span className="text-sm text-muted-foreground">Didn&apos;t receive it? </span>
               <button
                 onClick={handleResend}
                 disabled={resending}
@@ -158,7 +158,7 @@ export function VerifyForm() {
             </div>
 
             <div className="mt-3 text-center">
-              <Link href="/auth/signin" className="text-sm text-gray-500 hover:underline">
+              <Link href="/auth/signin" className="text-sm text-muted-foreground hover:underline">
                 Use a different email
               </Link>
             </div>

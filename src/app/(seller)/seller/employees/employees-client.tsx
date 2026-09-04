@@ -92,7 +92,7 @@ export function EmployeesClient({ seller, initialEmployees }: { seller: { id: st
       </Card>
 
       {employees.length === 0 ? (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-12 text-muted-foreground">
           <p>No employees yet. Invite someone to help manage orders!</p>
         </div>
       ) : (
@@ -103,14 +103,14 @@ export function EmployeesClient({ seller, initialEmployees }: { seller: { id: st
                 <AvatarFallback>{(emp.user.name || emp.user.email || '?')[0]?.toUpperCase()}</AvatarFallback>
               </Avatar>
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{emp.user.name || emp.user.email}</p>
-                <p className="text-sm text-gray-500">{emp.inviteEmail || emp.user.email}</p>
+                <p className="font-medium text-foreground">{emp.user.name || emp.user.email}</p>
+                <p className="text-sm text-muted-foreground">{emp.inviteEmail || emp.user.email}</p>
               </div>
               <Badge
                 className={
                   emp.status === 'ACTIVE' ? 'bg-[#f7e9de] text-[#a64f20]' :
                   emp.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
-                  'bg-gray-100 text-gray-600'
+                  'bg-muted text-muted-foreground'
                 }
               >
                 {emp.status}

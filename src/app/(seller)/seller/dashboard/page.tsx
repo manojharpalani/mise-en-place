@@ -57,8 +57,8 @@ export default async function SellerDashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back! 👋</h1>
-          <p className="text-gray-500 mt-1">{seller.storeName}</p>
+          <h1 className="text-2xl font-bold text-foreground">Welcome back! 👋</h1>
+          <p className="text-muted-foreground mt-1">{seller.storeName}</p>
         </div>
         <div className="flex gap-3">
           {!seller.isActive && (
@@ -100,8 +100,8 @@ export default async function SellerDashboardPage() {
                   <Icon className={`w-5 h-5 ${stat.color}`} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
                 </div>
               </CardContent>
             </Card>
@@ -120,7 +120,7 @@ export default async function SellerDashboardPage() {
           <Link key={action.href} href={action.href}>
             <div className="bg-white border rounded-xl p-4 hover:border-[#e7ddcb] hover:shadow-sm transition-all text-center cursor-pointer">
               <div className="text-2xl mb-1">{action.icon}</div>
-              <p className="text-sm font-medium text-gray-700">{action.label}</p>
+              <p className="text-sm font-medium text-foreground">{action.label}</p>
             </div>
           </Link>
         ))}
@@ -136,7 +136,7 @@ export default async function SellerDashboardPage() {
         </CardHeader>
         <CardContent>
           {recentOrders.length === 0 ? (
-            <div className="text-center py-8 text-gray-400">
+            <div className="text-center py-8 text-muted-foreground">
               <ChefHat className="w-10 h-10 mx-auto mb-3 opacity-30" />
               <p>No orders yet this week</p>
               <p className="text-sm mt-1">Share your store to start getting orders!</p>
@@ -147,7 +147,7 @@ export default async function SellerDashboardPage() {
                 <div key={order.id} className="flex items-center justify-between py-2 border-b last:border-0">
                   <div>
                     <p className="font-medium text-sm">{order.buyer.name || order.buyer.email}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-muted-foreground">
                       {order.items.length} items · {formatDate(order.createdAt)}
                     </p>
                   </div>
@@ -159,7 +159,7 @@ export default async function SellerDashboardPage() {
                         order.status === 'PROCESSING' ? 'bg-blue-100 text-blue-700' :
                         order.status === 'READY' ? 'bg-[#f7e9de] text-[#a64f20]' :
                         order.status === 'CANCELLED' ? 'bg-red-100 text-red-700' :
-                        'bg-gray-100 text-gray-700'
+                        'bg-muted text-foreground'
                       }
                     >
                       {order.status}
@@ -181,7 +181,7 @@ export default async function SellerDashboardPage() {
         </CardHeader>
         <CardContent>
           {seller.reviews.length === 0 ? (
-            <div className="text-center py-8 text-gray-400">
+            <div className="text-center py-8 text-muted-foreground">
               <p className="text-sm">No reviews yet — complete some orders to start getting feedback!</p>
             </div>
           ) : (
@@ -191,7 +191,7 @@ export default async function SellerDashboardPage() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium text-gray-800">
+                        <span className="text-sm font-medium text-foreground">
                           {review.buyer.name || 'Customer'}
                         </span>
                         <div className="flex">
@@ -206,10 +206,10 @@ export default async function SellerDashboardPage() {
                         </div>
                       </div>
                       {review.comment && (
-                        <p className="text-sm text-gray-600 leading-snug">{review.comment}</p>
+                        <p className="text-sm text-muted-foreground leading-snug">{review.comment}</p>
                       )}
                     </div>
-                    <span className="text-xs text-gray-400 flex-shrink-0">{formatDate(review.createdAt)}</span>
+                    <span className="text-xs text-muted-foreground flex-shrink-0">{formatDate(review.createdAt)}</span>
                   </div>
                 </div>
               ))}

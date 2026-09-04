@@ -25,8 +25,8 @@ const STATUS_COLORS: Record<string, string> = {
   PENDING:    'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
   READY:      'bg-[#f7e9de] text-[#a64f20]',
-  DELIVERED:  'bg-gray-100 text-gray-600',
-  PICKED_UP:  'bg-gray-100 text-gray-600',
+  DELIVERED:  'bg-muted text-muted-foreground',
+  PICKED_UP:  'bg-muted text-muted-foreground',
   CANCELLED:  'bg-red-100 text-red-600',
 }
 
@@ -81,7 +81,7 @@ export default async function OrderDetailPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+          <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
             <Receipt className="w-5 h-5 text-[#c1622d]" />
             Order Receipt
           </h1>
@@ -101,7 +101,7 @@ export default async function OrderDetailPage({
           <span className="text-xs text-stone-400 uppercase tracking-wide">From</span>
           <Link
             href={`/${order.seller.storeSlug}`}
-            className="font-medium text-gray-900 hover:text-[#c1622d] text-sm"
+            className="font-medium text-foreground hover:text-[#c1622d] text-sm"
           >
             {order.seller.storeName}
           </Link>
@@ -109,14 +109,14 @@ export default async function OrderDetailPage({
 
         <div className="px-4 py-3 flex items-center justify-between">
           <span className="text-xs text-stone-400 uppercase tracking-wide">Date ordered</span>
-          <span className="text-sm text-gray-700">{formatDate(order.createdAt)}</span>
+          <span className="text-sm text-foreground">{formatDate(order.createdAt)}</span>
         </div>
 
         <div className="px-4 py-3 flex items-center justify-between">
           <span className="text-xs text-stone-400 uppercase tracking-wide flex items-center gap-1">
             <Calendar className="w-3 h-3" /> Scheduled
           </span>
-          <span className="text-sm text-gray-700">
+          <span className="text-sm text-foreground">
             {formatDate(order.scheduledDate)}
           </span>
         </div>
@@ -128,7 +128,7 @@ export default async function OrderDetailPage({
               : <><Package className="w-3 h-3" /> Pickup</>
             }
           </span>
-          <span className="text-sm text-gray-700 text-right">
+          <span className="text-sm text-foreground text-right">
             {order.fulfillmentType === 'DELIVERY'
               ? order.deliveryAddress || '—'
               : order.pickupWindow || 'See store for window'
@@ -141,7 +141,7 @@ export default async function OrderDetailPage({
             <span className="text-xs text-stone-400 uppercase tracking-wide flex items-center gap-1">
               <Clock className="w-3 h-3" /> Notes
             </span>
-            <span className="text-sm text-gray-700 text-right italic">{order.notes}</span>
+            <span className="text-sm text-foreground text-right italic">{order.notes}</span>
           </div>
         )}
       </div>
@@ -155,10 +155,10 @@ export default async function OrderDetailPage({
           {order.items.map(item => (
             <div key={item.id} className="px-4 py-3 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-800">{item.itemName}</p>
+                <p className="text-sm font-medium text-foreground">{item.itemName}</p>
                 <p className="text-xs text-stone-400">{formatCurrency(item.unitPrice)} × {item.quantity}</p>
               </div>
-              <p className="text-sm font-medium text-gray-800">
+              <p className="text-sm font-medium text-foreground">
                 {formatCurrency(item.unitPrice * item.quantity)}
               </p>
             </div>
@@ -175,7 +175,7 @@ export default async function OrderDetailPage({
               <span>{formatCurrency(order.deliveryFee)}</span>
             </div>
           )}
-          <div className="flex justify-between font-bold text-base text-gray-900 pt-1 border-t">
+          <div className="flex justify-between font-bold text-base text-foreground pt-1 border-t">
             <span>Total</span>
             <span className="text-[#c1622d]">{formatCurrency(order.total)}</span>
           </div>

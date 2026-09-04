@@ -89,7 +89,7 @@ export function PlannerFollowButton({ slug, isLoggedIn, isAlreadyFollowing }: Pr
           <DialogHeader>
             <DialogTitle>Follow this planner</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-gray-500">Enter your email to get notified when new meal plans are published.</p>
+          <p className="text-sm text-muted-foreground">Enter your email to get notified when new meal plans are published.</p>
           <div className="space-y-3">
             <Input
               type="email"

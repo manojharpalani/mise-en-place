@@ -20,7 +20,7 @@ export function ContactSidebar({ seller }: ContactSidebarProps) {
 
       {/* Contact Links */}
       <div className="bg-white rounded-xl border p-4 space-y-3">
-        <h3 className="font-semibold text-gray-900">Contact</h3>
+        <h3 className="font-semibold text-foreground">Contact</h3>
 
         {seller.whatsappGroupLink && (
           <a
@@ -38,10 +38,10 @@ export function ContactSidebar({ seller }: ContactSidebarProps) {
         {seller.user.email && (
           <a
             href={`mailto:${seller.user.email}`}
-            className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
+            className="flex items-center gap-3 p-3 hover:bg-muted rounded-lg transition-colors"
           >
-            <Mail className="w-5 h-5 text-gray-500" />
-            <span className="text-sm text-gray-700">{seller.user.email}</span>
+            <Mail className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm text-foreground">{seller.user.email}</span>
           </a>
         )}
       </div>
@@ -49,7 +49,7 @@ export function ContactSidebar({ seller }: ContactSidebarProps) {
       {/* Social Links */}
       {socialLinks && Object.keys(socialLinks).length > 0 && (
         <div className="bg-white rounded-xl border p-4">
-          <h3 className="font-semibold text-gray-900 mb-3">Social</h3>
+          <h3 className="font-semibold text-foreground mb-3">Social</h3>
           <div className="space-y-2">
             {Object.entries(socialLinks).map(([platform, url]) => (
               url && (
@@ -58,13 +58,13 @@ export function ContactSidebar({ seller }: ContactSidebarProps) {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors"
+                  className="flex items-center gap-3 p-2 hover:bg-muted rounded-lg transition-colors"
                 >
                   <span className="text-lg">
                     {platform === 'instagram' ? '📸' : platform === 'facebook' ? '📘' : platform === 'twitter' ? '🐦' : '🔗'}
                   </span>
-                  <span className="text-sm capitalize text-gray-700">{platform}</span>
-                  <ExternalLink className="w-3 h-3 text-gray-400 ml-auto" />
+                  <span className="text-sm capitalize text-foreground">{platform}</span>
+                  <ExternalLink className="w-3 h-3 text-muted-foreground ml-auto" />
                 </a>
               )
             ))}

@@ -29,10 +29,10 @@ export default async function FavoritesPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Favorite Sellers</h1>
+      <h1 className="text-2xl font-bold text-foreground">Favorite Sellers</h1>
 
       {favorites.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-muted-foreground">
           <Heart className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p>No favorites yet</p>
           <p className="text-sm mt-2 mb-6">Heart a seller on their storefront to save them here</p>
@@ -45,18 +45,18 @@ export default async function FavoritesPage() {
           {favorites.map(({ seller }) => (
             <Link key={seller.id} href={`/${seller.storeSlug}`}>
               <Card className="overflow-hidden hover:shadow-md transition-shadow">
-                <div className="aspect-video bg-gray-100 relative">
+                <div className="aspect-video bg-muted relative">
                   {seller.kitchenPhotos?.[0] ? (
                     <Image src={seller.kitchenPhotos[0]} alt={seller.storeName} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
                   ) : (
                     <div className="flex items-center justify-center h-full">
-                      <Utensils className="w-10 h-10 text-gray-300" />
+                      <Utensils className="w-10 h-10 text-muted-foreground" />
                     </div>
                   )}
                 </div>
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-gray-900">{seller.storeName}</h3>
-                  {seller.cuisineType && <p className="text-sm text-gray-500">{seller.cuisineType}</p>}
+                  <h3 className="font-semibold text-foreground">{seller.storeName}</h3>
+                  {seller.cuisineType && <p className="text-sm text-muted-foreground">{seller.cuisineType}</p>}
                   <div className="flex items-center gap-3 mt-2">
                     {seller.ratingAvg && (
                       <span className="flex items-center gap-1 text-sm text-amber-500">

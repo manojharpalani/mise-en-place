@@ -69,7 +69,7 @@ export function SubscribeForm({ sellerId }: { sellerId: string }) {
 
   return (
     <div className="bg-white rounded-xl border p-4">
-      <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+      <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
         <MessageCircle className="w-4 h-4 text-[#c1622d]" /> Get Updates
       </h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">

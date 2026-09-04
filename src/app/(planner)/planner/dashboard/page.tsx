@@ -41,10 +41,10 @@ export default async function PlannerDashboardPage() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-foreground">
           Welcome back, {profile.displayName.split(' ')[0]}
         </h1>
-        <p className="text-gray-500 mt-1">
+        <p className="text-muted-foreground mt-1">
           {currentMenu
             ? `You have ${daysPlanned} day${daysPlanned !== 1 ? 's' : ''} planned this week`
             : "You haven't started this week's meal plan yet"}
@@ -63,20 +63,20 @@ export default async function PlannerDashboardPage() {
       <div className="grid grid-cols-3 gap-4">
         <Card>
           <CardContent className="pt-6">
-            <div className="text-3xl font-bold text-gray-900">{daysPlanned}</div>
-            <div className="text-sm text-gray-500 mt-1">Days planned</div>
+            <div className="text-3xl font-bold text-foreground">{daysPlanned}</div>
+            <div className="text-sm text-muted-foreground mt-1">Days planned</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="text-3xl font-bold text-gray-900">{totalMealsThisWeek}</div>
-            <div className="text-sm text-gray-500 mt-1">Meals this week</div>
+            <div className="text-3xl font-bold text-foreground">{totalMealsThisWeek}</div>
+            <div className="text-sm text-muted-foreground mt-1">Meals this week</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="text-3xl font-bold text-gray-900">{profile.householdSize}</div>
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="text-3xl font-bold text-foreground">{profile.householdSize}</div>
+            <div className="text-sm text-muted-foreground mt-1">
               {profile.householdSize === 1 ? 'Person' : 'People'}
             </div>
           </CardContent>
@@ -93,7 +93,7 @@ export default async function PlannerDashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
-            <p className="text-sm text-gray-500 mb-3">Plan your week, add dishes, use AI suggestions</p>
+            <p className="text-sm text-muted-foreground mb-3">Plan your week, add dishes, use AI suggestions</p>
             <Button asChild size="sm" className="w-full bg-[#c1622d] hover:bg-[#a64f20]">
               <Link href="/planner/menu">
                 Plan This Week <ArrowRight className="w-4 h-4 ml-1" />
@@ -110,7 +110,7 @@ export default async function PlannerDashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
-            <p className="text-sm text-gray-500 mb-3">
+            <p className="text-sm text-muted-foreground mb-3">
               Auto-generated from your meal plan, scaled for {profile.householdSize}{' '}
               {profile.householdSize === 1 ? 'person' : 'people'}
             </p>
@@ -130,7 +130,7 @@ export default async function PlannerDashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
-            <p className="text-sm text-gray-500 mb-3">
+            <p className="text-sm text-muted-foreground mb-3">
               Find home chefs making the dishes on your meal plan
             </p>
             <Button asChild size="sm" variant="outline" className="w-full">

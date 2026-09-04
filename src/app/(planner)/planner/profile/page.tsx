@@ -90,7 +90,7 @@ export default function PlannerProfilePage() {
 
   return (
     <div className="max-w-lg space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Profile Settings</h1>
+      <h1 className="text-2xl font-bold text-foreground">Profile Settings</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <Card>
@@ -102,7 +102,7 @@ export default function PlannerProfilePage() {
               {errors.displayName && <p className="text-sm text-red-500">{errors.displayName.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label>Bio <span className="text-gray-400">(optional)</span></Label>
+              <Label>Bio <span className="text-muted-foreground">(optional)</span></Label>
               <Textarea rows={3} {...register('bio')} />
             </div>
           </CardContent>
@@ -119,18 +119,18 @@ export default function PlannerProfilePage() {
                 max={20}
                 {...register('householdSize', { valueAsNumber: true })}
               />
-              <p className="text-xs text-gray-500">Used to scale grocery quantities</p>
+              <p className="text-xs text-muted-foreground">Used to scale grocery quantities</p>
               {errors.householdSize && <p className="text-sm text-red-500">{errors.householdSize.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label>Cuisine Preferences <span className="text-gray-400">(optional)</span></Label>
+              <Label>Cuisine Preferences <span className="text-muted-foreground">(optional)</span></Label>
               <Input placeholder="e.g. Indian, Mexican, Italian" {...register('cuisinePrefs')} />
-              <p className="text-xs text-gray-500">Comma-separated</p>
+              <p className="text-xs text-muted-foreground">Comma-separated</p>
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label className="text-sm font-medium">Public Profile</Label>
-                <p className="text-xs text-gray-500 mt-0.5">Others can follow your meal plans</p>
+                <p className="text-xs text-muted-foreground mt-0.5">Others can follow your meal plans</p>
               </div>
               <Switch
                 checked={isPublic}

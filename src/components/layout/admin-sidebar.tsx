@@ -23,7 +23,7 @@ export function AdminSidebar() {
           <img src="/logo-mark.svg" alt="" className="w-6 h-4" />
           <span className="font-heading italic">mise en place</span>
         </Link>
-        <p className="text-xs text-gray-400 mt-0.5 flex items-center gap-1">
+        <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Admin Panel
         </p>
       </div>
@@ -39,7 +39,7 @@ export function AdminSidebar() {
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                 isActive
                   ? 'bg-[#F7E9DE] text-[#C1622D]'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                  : 'text-muted-foreground hover:bg-gray-800 hover:text-white'
               )}
             >
               <Icon className="w-4 h-4 flex-shrink-0" />

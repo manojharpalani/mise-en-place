@@ -132,7 +132,7 @@ export function ContentClient({ seller, initialArticles, userId }: ContentClient
       )}
 
       {articles.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-muted-foreground">
           <p>No articles yet. Share your story with your community!</p>
         </div>
       ) : (
@@ -143,13 +143,13 @@ export function ContentClient({ seller, initialArticles, userId }: ContentClient
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-gray-900">{article.title}</h3>
+                      <h3 className="font-semibold text-foreground">{article.title}</h3>
                       <Badge variant={article.isPublished ? 'default' : 'secondary'} className="text-xs">
                         {article.isPublished ? 'Published' : 'Draft'}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-500 mb-2">{formatDate(article.createdAt)}</p>
-                    <p className="text-sm text-gray-700 line-clamp-3">{article.body}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{formatDate(article.createdAt)}</p>
+                    <p className="text-sm text-foreground line-clamp-3">{article.body}</p>
                   </div>
                   <div className="flex gap-2 shrink-0">
                     <Button

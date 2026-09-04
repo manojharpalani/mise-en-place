@@ -77,12 +77,12 @@ export function ComboCard({ combo, sellerId, sellerName }: ComboCardProps) {
         </div>
       )}
       <div className="p-4">
-        <h3 className="font-semibold text-gray-900">{combo.name}</h3>
+        <h3 className="font-semibold text-foreground">{combo.name}</h3>
         {combo.description && (
-          <p className="text-sm text-gray-500 mt-1 line-clamp-2">{combo.description}</p>
+          <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{combo.description}</p>
         )}
         {combo.menuItems && combo.menuItems.length > 0 && (
-          <div className="mt-2 text-xs text-gray-500">
+          <div className="mt-2 text-xs text-muted-foreground">
             <span className="font-medium">Includes: </span>
             {combo.menuItems.map((ci) => `${ci.quantity}x ${ci.menuItem.name}`).join(', ')}
           </div>

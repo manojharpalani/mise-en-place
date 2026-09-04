@@ -106,8 +106,8 @@ export default function PlannerOnboardingPage() {
           <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-9 h-9 text-[#c1622d]" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">You&apos;re all set!</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-3">You&apos;re all set!</h2>
+          <p className="text-muted-foreground mb-6">
             Your meal planning profile is ready. Start planning your week.
           </p>
           <Button onClick={() => router.push('/planner/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
@@ -122,14 +122,14 @@ export default function PlannerOnboardingPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
             <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
             Mise en Place
           </Link>
           <div className="mt-4">
             <CalendarDays className="w-10 h-10 text-[#c1622d] mx-auto mb-2" />
-            <h1 className="text-2xl font-bold text-gray-900">Set Up Your Meal Planner</h1>
-            <p className="text-gray-500 mt-1">Plan your week, build your grocery list</p>
+            <h1 className="text-2xl font-bold text-foreground">Set Up Your Meal Planner</h1>
+            <p className="text-muted-foreground mt-1">Plan your week, build your grocery list</p>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ export default function PlannerOnboardingPage() {
         <div className="mb-8">
           <div className="flex justify-between text-sm mb-2">
             {STEPS.map((s, i) => (
-              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-gray-400'}`}>
+              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-muted-foreground'}`}>
                 {s.label}
               </span>
             ))}
@@ -162,13 +162,13 @@ export default function PlannerOnboardingPage() {
                 <div className="space-y-2">
                   <Label>Profile URL *</Label>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500 whitespace-nowrap">{displayUrl('/u/')}</span>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap">{displayUrl('/u/')}</span>
                     <Input placeholder="sharma-family" {...register('slug')} />
                   </div>
                   {errors.slug && <p className="text-sm text-red-500">{errors.slug.message}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label>Bio <span className="text-gray-400">(optional)</span></Label>
+                  <Label>Bio <span className="text-muted-foreground">(optional)</span></Label>
                   <Textarea
                     rows={3}
                     placeholder="A few words about your household and what you like to cook..."
@@ -191,21 +191,21 @@ export default function PlannerOnboardingPage() {
                     max={20}
                     {...register('householdSize', { valueAsNumber: true })}
                   />
-                  <p className="text-xs text-gray-500">Used to scale grocery quantities</p>
+                  <p className="text-xs text-muted-foreground">Used to scale grocery quantities</p>
                   {errors.householdSize && <p className="text-sm text-red-500">{errors.householdSize.message}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label>Cuisine Preferences <span className="text-gray-400">(optional)</span></Label>
+                  <Label>Cuisine Preferences <span className="text-muted-foreground">(optional)</span></Label>
                   <Input
                     placeholder="e.g. Indian, Mexican, Italian"
                     {...register('cuisinePrefs')}
                   />
-                  <p className="text-xs text-gray-500">Comma-separated — helps with AI suggestions</p>
+                  <p className="text-xs text-muted-foreground">Comma-separated — helps with AI suggestions</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="text-sm font-medium">Public Profile</Label>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       Let others follow your meal plans at {displayUrl('/u/')}{watch('slug') || '…'}
                     </p>
                   </div>
@@ -222,26 +222,26 @@ export default function PlannerOnboardingPage() {
             <Card>
               <CardHeader><CardTitle>Review & Finish</CardTitle></CardHeader>
               <CardContent className="space-y-3">
-                <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-sm">
+                <div className="bg-muted rounded-xl p-4 space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Name</span>
+                    <span className="text-muted-foreground">Name</span>
                     <span className="font-medium">{watch('displayName')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">URL</span>
+                    <span className="text-muted-foreground">URL</span>
                     <span className="font-medium">{displayUrl('/u/')}{watch('slug')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Household</span>
+                    <span className="text-muted-foreground">Household</span>
                     <span className="font-medium">{watch('householdSize')} {Number(watch('householdSize')) === 1 ? 'person' : 'people'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Profile</span>
+                    <span className="text-muted-foreground">Profile</span>
                     <span className="font-medium">{watch('isPublic') ? 'Public' : 'Private'}</span>
                   </div>
                   {watch('cuisinePrefs') && (
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Cuisine</span>
+                      <span className="text-muted-foreground">Cuisine</span>
                       <span className="font-medium">{watch('cuisinePrefs')}</span>
                     </div>
                   )}

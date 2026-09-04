@@ -113,7 +113,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
 
   if (!initialMenuId) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-muted-foreground">
         <p>No meal plan found. Create one in <a href="/planner/menu" className="text-[#c1622d] hover:underline">Meal Plan</a>.</p>
       </div>
     )
@@ -131,7 +131,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
               className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 m.id === activeMenuId
                   ? 'bg-[#c1622d] text-white'
-                  : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
+                  : 'bg-white border border-border text-muted-foreground hover:border-border'
               }`}
             >
               {m.label}
@@ -141,18 +141,18 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
       )}
 
       {/* Household scaling notice */}
-      <div className="flex items-center gap-2 text-sm text-gray-500 bg-blue-50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-blue-50 rounded-lg px-3 py-2">
         <Users className="w-4 h-4 text-blue-400 shrink-0" />
         Quantities scaled for {householdSize} {householdSize === 1 ? 'person' : 'people'}
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center py-12 text-gray-500">
+        <div className="flex items-center justify-center py-12 text-muted-foreground">
           <Loader2 className="w-5 h-5 animate-spin mr-2" /> Loading…
         </div>
       ) : dishes.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          <p className="font-medium text-gray-700">No meals planned this week</p>
+        <div className="text-center py-12 text-muted-foreground">
+          <p className="font-medium text-foreground">No meals planned this week</p>
           <p className="text-sm mt-1">Add meals in <a href="/planner/menu" className="text-[#c1622d] hover:underline">Meal Plan</a> first</p>
         </div>
       ) : (
@@ -167,13 +167,13 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
           )}
 
           {totalItems === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <p className="text-sm">No ingredient data yet. Add ingredients to your dishes.</p>
             </div>
           ) : (
             <>
               <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">{totalItems} items across {categories.length} categories</p>
+                <p className="text-sm text-muted-foreground">{totalItems} items across {categories.length} categories</p>
                 <Button size="sm" variant="outline" onClick={copyToClipboard}>
                   {copied ? <Check className="w-3.5 h-3.5 mr-1 text-green-600" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
                   {copied ? 'Copied' : 'Copy List'}
@@ -191,14 +191,14 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
                     <Card key={cat}>
                       <CardHeader className="py-3 px-4 cursor-pointer" onClick={() => toggleCollapse(cat)}>
                         <div className="flex items-center justify-between">
-                          <CardTitle className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                             <span>{info.emoji}</span>
                             {info.label}
-                            <span className="text-xs font-normal text-gray-400">
+                            <span className="text-xs font-normal text-muted-foreground">
                               {checkedCount}/{items.length}
                             </span>
                           </CardTitle>
-                          {isCollapsed ? <ChevronRight className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+                          {isCollapsed ? <ChevronRight className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                         </div>
                       </CardHeader>
                       {!isCollapsed && (
@@ -215,9 +215,9 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
                                   type="checkbox"
                                   checked={done ?? false}
                                   onChange={() => toggleCheck(key)}
-                                  className="w-4 h-4 rounded border-gray-300 text-[#c1622d] cursor-pointer"
+                                  className="w-4 h-4 rounded border-border text-[#c1622d] cursor-pointer"
                                 />
-                                <span className={`text-sm ${done ? 'line-through text-gray-400' : 'text-gray-800'}`}>
+                                <span className={`text-sm ${done ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
                                   <strong>{formatAmount(item.amount, item.unit)}</strong>{' '}
                                   <span className="capitalize">{item.name}</span>
                                 </span>
@@ -236,16 +236,16 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
           {/* Dishes summary */}
           <Card>
             <CardHeader className="py-3 px-4">
-              <CardTitle className="text-sm font-semibold text-gray-700">This Week&apos;s Meals</CardTitle>
+              <CardTitle className="text-sm font-semibold text-foreground">This Week&apos;s Meals</CardTitle>
             </CardHeader>
             <CardContent className="pt-0 px-4 pb-3">
               <div className="space-y-1">
                 {dishes.map((dish) => (
                   <div key={`${dish.dayOfWeek}_${dish.id}`} className="flex items-center justify-between text-sm py-1">
-                    <span className="text-gray-700">{dish.name}</span>
+                    <span className="text-foreground">{dish.name}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-gray-400 text-xs">{dish.dayOfWeek}</span>
-                      <span className="text-gray-500 text-xs">×{dish.servings}</span>
+                      <span className="text-muted-foreground text-xs">{dish.dayOfWeek}</span>
+                      <span className="text-muted-foreground text-xs">×{dish.servings}</span>
                       {!dish.hasIngredients && (
                         <span className="text-xs text-amber-500">no ingredients</span>
                       )}
@@ -261,7 +261,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
       <Button
         size="sm"
         variant="ghost"
-        className="text-gray-400"
+        className="text-muted-foreground"
         onClick={() => load(activeMenuId)}
         disabled={loading}
       >

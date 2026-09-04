@@ -494,7 +494,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                 className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   i === activeMenuIdx
                     ? 'bg-[#c1622d] text-white'
-                    : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
+                    : 'bg-white border border-border text-muted-foreground hover:border-border'
                 }`}
               >
                 {menuLabel(m)}
@@ -512,12 +512,12 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                   <Card key={day.id} className="flex flex-col">
                     <CardHeader className="pb-2 pt-3 px-3">
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-semibold text-gray-700">{dayName}</CardTitle>
+                        <CardTitle className="text-sm font-semibold text-foreground">{dayName}</CardTitle>
                         <div className="flex gap-1">
                           {totalItems > 0 && (
                             <button
                               onClick={() => clearDay(day.id)}
-                              className="p-1 rounded hover:bg-red-50 text-gray-400 hover:text-red-500"
+                              className="p-1 rounded hover:bg-red-50 text-muted-foreground hover:text-red-500"
                               title="Clear day"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -525,7 +525,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                           )}
                           <button
                             onClick={() => setManageDayId(day.id)}
-                            className="p-1 rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600"
+                            className="p-1 rounded hover:bg-muted text-muted-foreground hover:text-muted-foreground"
                             title="Add items"
                           >
                             <Pencil className="w-3.5 h-3.5" />
@@ -537,27 +537,27 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                       {totalItems === 0 ? (
                         <button
                           onClick={() => setManageDayId(day.id)}
-                          className="w-full text-xs text-gray-400 hover:text-[#c1622d] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-gray-200 rounded-lg hover:border-[#c1622d] transition-colors"
+                          className="w-full text-xs text-muted-foreground hover:text-[#c1622d] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-border rounded-lg hover:border-[#c1622d] transition-colors"
                         >
                           <Plus className="w-3.5 h-3.5" /> Add meals
                         </button>
                       ) : (
                         day.menuItems.map((di) => (
-                          <div key={di.id} className="flex items-center gap-1.5 bg-gray-50 rounded-lg px-2 py-1.5 group">
-                            <span className="flex-1 text-xs font-medium text-gray-800 truncate">{di.menuItem.name}</span>
+                          <div key={di.id} className="flex items-center gap-1.5 bg-muted rounded-lg px-2 py-1.5 group">
+                            <span className="flex-1 text-xs font-medium text-foreground truncate">{di.menuItem.name}</span>
                             <div className="flex items-center gap-1 shrink-0">
                               <button
                                 onClick={() => updateServings(day.id, di.id, di.servings - 1)}
-                                className="w-5 h-5 rounded text-xs bg-white border border-gray-200 hover:bg-gray-100"
+                                className="w-5 h-5 rounded text-xs bg-white border border-border hover:bg-muted"
                               >−</button>
                               <span className="text-xs w-5 text-center font-medium">{di.servings}</span>
                               <button
                                 onClick={() => updateServings(day.id, di.id, di.servings + 1)}
-                                className="w-5 h-5 rounded text-xs bg-white border border-gray-200 hover:bg-gray-100"
+                                className="w-5 h-5 rounded text-xs bg-white border border-border hover:bg-muted"
                               >+</button>
                               <button
                                 onClick={() => removeItemFromDay(day.id, di.id)}
-                                className="ml-0.5 opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500"
+                                className="ml-0.5 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-red-500"
                               >
                                 <X className="w-3.5 h-3.5" />
                               </button>
@@ -573,9 +573,9 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           )}
         </>
       ) : (
-        <div className="text-center py-16 text-gray-500">
-          <CalendarDays className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-          <p className="font-medium text-gray-700">No meal plans yet</p>
+        <div className="text-center py-16 text-muted-foreground">
+          <CalendarDays className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
+          <p className="font-medium text-foreground">No meal plans yet</p>
           <p className="text-sm mt-1 mb-4">Create your first week to start planning</p>
           <Button onClick={() => setShowNewWeek(true)} className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Plus className="w-4 h-4 mr-1" /> Create First Week
@@ -598,7 +598,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               />
             </div>
             <div className="space-y-2">
-              <Label>Notes <span className="text-gray-400">(optional)</span></Label>
+              <Label>Notes <span className="text-muted-foreground">(optional)</span></Label>
               <Textarea
                 rows={3}
                 placeholder="Recipe notes, special ingredients..."
@@ -654,7 +654,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
             </DialogTitle>
           </DialogHeader>
           {menuItems.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <p className="text-sm">No dishes in your library yet.</p>
               <Button
                 size="sm"
@@ -672,13 +672,13 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                   <div
                     key={item.id}
                     className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                      already ? 'bg-[#f7e9de] border-[#c1622d]' : 'bg-white border-gray-200'
+                      already ? 'bg-[#f7e9de] border-[#c1622d]' : 'bg-white border-border'
                     }`}
                   >
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{item.name}</p>
+                      <p className="text-sm font-medium text-foreground">{item.name}</p>
                       {item.description && (
-                        <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{item.description}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{item.description}</p>
                       )}
                     </div>
                     <Button
@@ -711,7 +711,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           <DialogHeader><DialogTitle>AI Plan Week</DialogTitle></DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label>Inspiration <span className="text-gray-400">(optional)</span></Label>
+              <Label>Inspiration <span className="text-muted-foreground">(optional)</span></Label>
               <Textarea
                 rows={3}
                 placeholder="e.g. Light summer meals, more vegetarian, use up pantry staples..."
@@ -720,7 +720,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               />
             </div>
             <div className="space-y-2">
-              <Label>Reference Image <span className="text-gray-400">(optional)</span></Label>
+              <Label>Reference Image <span className="text-muted-foreground">(optional)</span></Label>
               {aiImage ? (
                 <div className="flex items-center gap-2">
                   <Badge variant="secondary">Image attached</Badge>

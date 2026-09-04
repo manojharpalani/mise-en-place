@@ -37,8 +37,8 @@ export default async function PlannerGroceryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">Grocery List</h1>
-      <p className="text-gray-500 text-sm mb-6">
+      <h1 className="text-2xl font-bold text-foreground mb-2">Grocery List</h1>
+      <p className="text-muted-foreground text-sm mb-6">
         Scaled for {planner.householdSize} {planner.householdSize === 1 ? 'person' : 'people'}
       </p>
       <PlannerGroceryList

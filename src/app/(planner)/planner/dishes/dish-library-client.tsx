@@ -160,7 +160,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
       </div>
 
       {filtered.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-muted-foreground">
           <UtensilsCrossed className="w-12 h-12 mx-auto mb-4 opacity-30" />
           {search ? (
             <p>No dishes match &ldquo;{search}&rdquo;</p>
@@ -189,11 +189,11 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
               <CardContent className="p-4">
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 truncate">{item.name}</h3>
+                    <h3 className="font-semibold text-foreground truncate">{item.name}</h3>
                     {item.description && (
-                      <p className="text-sm text-gray-500 mt-0.5 line-clamp-2">{item.description}</p>
+                      <p className="text-sm text-muted-foreground mt-0.5 line-clamp-2">{item.description}</p>
                     )}
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {item.servings} {item.servings === 1 ? 'serving' : 'servings'}
                     </p>
                     {(item.cuisineTags.length > 0 || item.dietaryTags.length > 0) && (
@@ -242,7 +242,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Description <span className="text-gray-400">(optional)</span></Label>
+              <Label>Description <span className="text-muted-foreground">(optional)</span></Label>
               <Textarea
                 rows={2}
                 value={form.description}
@@ -261,7 +261,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Photo URL <span className="text-gray-400">(optional)</span></Label>
+              <Label>Photo URL <span className="text-muted-foreground">(optional)</span></Label>
               <Input
                 value={form.photoUrl}
                 onChange={(e) => setForm({ ...form, photoUrl: e.target.value })}
@@ -269,7 +269,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Cuisine Tags <span className="text-gray-400">(comma-separated)</span></Label>
+              <Label>Cuisine Tags <span className="text-muted-foreground">(comma-separated)</span></Label>
               <Input
                 value={form.cuisineTags}
                 onChange={(e) => setForm({ ...form, cuisineTags: e.target.value })}
@@ -277,7 +277,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Dietary Tags <span className="text-gray-400">(comma-separated)</span></Label>
+              <Label>Dietary Tags <span className="text-muted-foreground">(comma-separated)</span></Label>
               <Input
                 value={form.dietaryTags}
                 onChange={(e) => setForm({ ...form, dietaryTags: e.target.value })}

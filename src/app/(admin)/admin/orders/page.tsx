@@ -20,8 +20,8 @@ const STATUS_COLORS: Record<string, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
   READY: 'bg-[#f7e9de] text-[#a64f20]',
-  DELIVERED: 'bg-gray-100 text-gray-600',
-  PICKED_UP: 'bg-gray-100 text-gray-600',
+  DELIVERED: 'bg-muted text-muted-foreground',
+  PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
 }
 
@@ -30,7 +30,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">All Orders</h1>
+      <h1 className="text-2xl font-bold text-foreground">All Orders</h1>
       <div className="space-y-3">
         {orders.map((order) => (
           <Card key={order.id}>
@@ -39,12 +39,12 @@ export default async function AdminOrdersPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-medium">{order.buyer.name || order.buyer.email}</span>
-                    <span className="text-gray-400">→</span>
-                    <span className="text-gray-700">{order.seller.storeName}</span>
+                    <span className="text-muted-foreground">→</span>
+                    <span className="text-foreground">{order.seller.storeName}</span>
                     <Badge className={STATUS_COLORS[order.status]}>{order.status}</Badge>
                   </div>
-                  <p className="text-sm text-gray-400">{formatDate(order.createdAt)}</p>
-                  <p className="text-sm text-gray-600 mt-1">{order.items.length} items</p>
+                  <p className="text-sm text-muted-foreground">{formatDate(order.createdAt)}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{order.items.length} items</p>
                 </div>
                 <div className="text-right">
                   <p className="font-bold text-[#c1622d]">{formatCurrency(order.total)}</p>
@@ -55,7 +55,7 @@ export default async function AdminOrdersPage() {
           </Card>
         ))}
         {orders.length === 0 && (
-          <p className="text-gray-400 text-center py-12">No orders yet.</p>
+          <p className="text-muted-foreground text-center py-12">No orders yet.</p>
         )}
       </div>
     </div>

@@ -208,7 +208,7 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
       <div className="space-y-2">
         <Label>Dietary Tags</Label>
         <Input placeholder="vegan, gluten-free, halal (comma-separated)" {...register('dietaryTags')} />
-        <p className="text-xs text-gray-400">Examples: vegan, vegetarian, gluten-free, halal, kosher</p>
+        <p className="text-xs text-muted-foreground">Examples: vegan, vegetarian, gluten-free, halal, kosher</p>
       </div>
 
       <div className="space-y-2">

@@ -46,7 +46,7 @@ export default async function SellerMenuPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Weekly Menu Planner</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-6">Weekly Menu Planner</h1>
       <WeeklyMenuPlanner
         seller={data.seller}
         initialMenuItems={data.menuItems}

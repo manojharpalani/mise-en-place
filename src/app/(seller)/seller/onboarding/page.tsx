@@ -84,11 +84,11 @@ export default function OnboardingPage() {
         <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle className="w-9 h-9 text-[#c1622d]" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-3">Store Created!</h2>
-        <p className="text-gray-600 mb-2">
+        <h2 className="text-2xl font-bold text-foreground mb-3">Store Created!</h2>
+        <p className="text-muted-foreground mb-2">
           Your store has been submitted for review. We&apos;ll approve it within 24-48 hours.
         </p>
-        <p className="text-gray-500 text-sm mb-6">
+        <p className="text-muted-foreground text-sm mb-6">
           In the meantime, you can set up your menu, add items, and configure your settings.
         </p>
         <Button onClick={() => router.push('/seller/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
@@ -102,15 +102,15 @@ export default function OnboardingPage() {
     <div className="max-w-lg mx-auto">
       <div className="text-center mb-8">
         <ChefHat className="w-12 h-12 text-[#c1622d] mx-auto mb-3" />
-        <h1 className="text-2xl font-bold text-gray-900">Set Up Your Store</h1>
-        <p className="text-gray-500 mt-1">Let&apos;s get your kitchen on Mise en Place</p>
+        <h1 className="text-2xl font-bold text-foreground">Set Up Your Store</h1>
+        <p className="text-muted-foreground mt-1">Let&apos;s get your kitchen on Mise en Place</p>
       </div>
 
       {/* Progress */}
       <div className="mb-8">
         <div className="flex justify-between text-sm mb-2">
           {STEPS.map((s, i) => (
-            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-gray-400'}`}>
+            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-muted-foreground'}`}>
               {s.label}
             </span>
           ))}
@@ -135,7 +135,7 @@ export default function OnboardingPage() {
               <div className="space-y-2">
                 <Label>Store URL *</Label>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-500 whitespace-nowrap">{displayUrl('/s/')}</span>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">{displayUrl('/s/')}</span>
                   <Input placeholder="marias-kitchen" {...register('storeSlug')} />
                 </div>
                 {errors.storeSlug && <p className="text-sm text-red-500">{errors.storeSlug.message}</p>}
@@ -170,21 +170,21 @@ export default function OnboardingPage() {
           <Card>
             <CardHeader><CardTitle>Review & Submit</CardTitle></CardHeader>
             <CardContent className="space-y-3">
-              <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-sm">
+              <div className="bg-muted rounded-xl p-4 space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Store Name</span>
+                  <span className="text-muted-foreground">Store Name</span>
                   <span className="font-medium">{watch('storeName')}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">URL</span>
+                  <span className="text-muted-foreground">URL</span>
                   <span className="font-medium">{displayUrl('/s/')}{watch('storeSlug')}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Cuisine</span>
+                  <span className="text-muted-foreground">Cuisine</span>
                   <span className="font-medium">{watch('cuisineType')}</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 After submitting, your store will be reviewed by our team within 24-48 hours.
                 You&apos;ll be notified when approved.
               </p>

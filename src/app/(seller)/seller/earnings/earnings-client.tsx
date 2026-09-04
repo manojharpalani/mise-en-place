@@ -121,7 +121,7 @@ export function EarningsClient({ orders }: Props) {
             </div>
             <div>
               <p className="text-2xl font-bold">{formatCurrency(totalRevenue)}</p>
-              <p className="text-xs text-gray-500">Revenue</p>
+              <p className="text-xs text-muted-foreground">Revenue</p>
             </div>
           </CardContent>
         </Card>
@@ -132,7 +132,7 @@ export function EarningsClient({ orders }: Props) {
             </div>
             <div>
               <p className="text-2xl font-bold">{orderCount}</p>
-              <p className="text-xs text-gray-500">Orders</p>
+              <p className="text-xs text-muted-foreground">Orders</p>
             </div>
           </CardContent>
         </Card>
@@ -143,7 +143,7 @@ export function EarningsClient({ orders }: Props) {
             </div>
             <div>
               <p className="text-2xl font-bold">{formatCurrency(avgOrder)}</p>
-              <p className="text-xs text-gray-500">Avg order</p>
+              <p className="text-xs text-muted-foreground">Avg order</p>
             </div>
           </CardContent>
         </Card>
@@ -156,7 +156,7 @@ export function EarningsClient({ orders }: Props) {
         </CardHeader>
         <CardContent>
           {chartData.length === 0 ? (
-            <p className="text-gray-400 text-center py-8 text-sm">No orders in this period.</p>
+            <p className="text-muted-foreground text-center py-8 text-sm">No orders in this period.</p>
           ) : (
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
@@ -191,7 +191,7 @@ export function EarningsClient({ orders }: Props) {
         <CardContent>
           <div className="space-y-3">
             {filteredOrders.length === 0 ? (
-              <p className="text-gray-400 text-center py-8 text-sm">No orders in this period.</p>
+              <p className="text-muted-foreground text-center py-8 text-sm">No orders in this period.</p>
             ) : (
               filteredOrders.map((order) => (
                 <div
@@ -200,7 +200,7 @@ export function EarningsClient({ orders }: Props) {
                 >
                   <div>
                     <p className="font-medium text-sm">{order.buyer.name || order.buyer.email}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-muted-foreground">
                       {order.items.length} items · {formatDate(order.createdAt)}
                     </p>
                   </div>

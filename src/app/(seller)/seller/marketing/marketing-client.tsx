@@ -101,7 +101,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
             </div>
             <div>
               <p className="text-2xl font-bold">{emailSubscribers.length}</p>
-              <p className="text-xs text-gray-500">Email Subscribers</p>
+              <p className="text-xs text-muted-foreground">Email Subscribers</p>
             </div>
           </CardContent>
         </Card>
@@ -112,7 +112,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
             </div>
             <div>
               <p className="text-2xl font-bold">{smsSubscribers.length}</p>
-              <p className="text-xs text-gray-500">SMS/WhatsApp Subscribers</p>
+              <p className="text-xs text-muted-foreground">SMS/WhatsApp Subscribers</p>
             </div>
           </CardContent>
         </Card>
@@ -132,7 +132,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
             </CardHeader>
             <CardContent>
               {emailSubscribers.length === 0 ? (
-                <p className="text-gray-500">No email subscribers yet. Share your store to grow your list!</p>
+                <p className="text-muted-foreground">No email subscribers yet. Share your store to grow your list!</p>
               ) : (
                 <form onSubmit={emailForm.handleSubmit(sendEmailNewsletter)} className="space-y-4">
                   <div className="space-y-2">
@@ -170,7 +170,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
             </CardHeader>
             <CardContent>
               {smsSubscribers.length === 0 ? (
-                <p className="text-gray-500">No SMS/WhatsApp subscribers yet.</p>
+                <p className="text-muted-foreground">No SMS/WhatsApp subscribers yet.</p>
               ) : (
                 <form onSubmit={smsForm.handleSubmit(sendSMSBlast)} className="space-y-4">
                   <div className="space-y-2">
@@ -201,7 +201,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
               <CardTitle>Social Media Assets</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 Generate branded images for Instagram, Facebook, and WhatsApp
               </p>
               <SocialAssetGenerator storeSlug={seller.storeSlug} menuItems={seller.menuItems} />

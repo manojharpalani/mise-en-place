@@ -65,7 +65,7 @@ export default async function StorefrontPage({ params }: PageProps) {
     : false
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <Navbar />
 
       {/* Store Header */}
@@ -90,7 +90,7 @@ export default async function StorefrontPage({ params }: PageProps) {
             {/* Store Info */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{seller.storeName}</h1>
+                <h1 className="text-2xl md:text-3xl font-bold text-foreground">{seller.storeName}</h1>
                 {seller.permitStatus === 'APPROVED' && (
                   <Badge className="bg-[#f7e9de] text-[#a64f20] border-[#e7ddcb] flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" /> Permitted
@@ -99,15 +99,15 @@ export default async function StorefrontPage({ params }: PageProps) {
               </div>
 
               {seller.cuisineType && (
-                <p className="text-gray-500 mb-2">{seller.cuisineType}</p>
+                <p className="text-muted-foreground mb-2">{seller.cuisineType}</p>
               )}
 
-              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 {seller.ratingAvg && (
                   <span className="flex items-center gap-1 text-amber-500">
                     <Star className="w-4 h-4 fill-amber-400" />
                     <strong>{seller.ratingAvg.toFixed(1)}</strong>
-                    <span className="text-gray-400">({seller.reviewCount} reviews)</span>
+                    <span className="text-muted-foreground">({seller.reviewCount} reviews)</span>
                   </span>
                 )}
                 {seller.user.neighborhood && (
@@ -128,7 +128,7 @@ export default async function StorefrontPage({ params }: PageProps) {
               </div>
 
               {seller.bio && (
-                <p className="text-gray-700 mt-3 max-w-2xl">{seller.bio}</p>
+                <p className="text-foreground mt-3 max-w-2xl">{seller.bio}</p>
               )}
             </div>
           </div>

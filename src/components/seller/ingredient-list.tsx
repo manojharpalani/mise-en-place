@@ -24,17 +24,17 @@ export function IngredientListComponent({ items }: { items: Record<string, numbe
           <Download className="w-4 h-4 mr-2" /> Download List
         </Button>
       </div>
-      <div className="bg-gray-50 rounded-xl p-4 space-y-2">
+      <div className="bg-muted rounded-xl p-4 space-y-2">
         {Object.entries(items).map(([name, qty]) => (
           <div key={name} className="flex justify-between items-center py-1.5 border-b last:border-0">
-            <span className="text-sm font-medium text-gray-900">{name}</span>
-            <span className="text-sm text-gray-500 bg-white px-2 py-0.5 rounded-full border">
+            <span className="text-sm font-medium text-foreground">{name}</span>
+            <span className="text-sm text-muted-foreground bg-white px-2 py-0.5 rounded-full border">
               {qty} servings
             </span>
           </div>
         ))}
         {Object.keys(items).length === 0 && (
-          <p className="text-gray-400 text-sm text-center py-4">No items in this week&apos;s menu.</p>
+          <p className="text-muted-foreground text-sm text-center py-4">No items in this week&apos;s menu.</p>
         )}
       </div>
     </div>

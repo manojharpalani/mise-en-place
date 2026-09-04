@@ -39,11 +39,12 @@ async function main() {
 
   const seller = await prisma.sellerProfile.upsert({
     where: { userId: sellerUser.id },
-    update: { ratingAvg: 4.7, reviewCount: 8, storeSlug: 'chef-maya' },
+    update: { ratingAvg: 4.7, reviewCount: 8, storeSlug: 'chef-maya', kitchenPhotos: ['/seller-covers/chef-maya.jpg'] },
     create: {
       userId: sellerUser.id,
       storeSlug: 'chef-maya',
       storeName: "Chef Maya's Kitchen",
+      kitchenPhotos: ['/seller-covers/chef-maya.jpg'],
       bio: 'Home cook with 15 years of experience, specializing in South Indian cuisine. MEHKO certified.',
       story: 'I started cooking professionally after years of feeding my neighbors. Every dish is made with love and the freshest local ingredients.',
       cuisineType: 'South Indian',
@@ -173,6 +174,102 @@ async function main() {
   } else {
     console.log('~ Weekly menu already exists, skipping')
   }
+
+
+  // ── Additional Sellers (populated Find Chefs marketplace for demo) ──
+  const sellerSeeds = [
+    {
+      email: 'giulia@example.com', name: 'Giulia Romano', neighborhood: 'North Beach', zip: '94133',
+      storeSlug: 'nonnas-table', storeName: "Nonna's Table",
+      bio: 'Handmade pasta and Sunday-gravy classics, just like my grandmother taught me in Bologna.',
+      story: "I grew up rolling pasta dough on my nonna's kitchen table. Now I bring that same recipe box to San Francisco, one tray at a time.",
+      cuisineType: 'Italian', ratingAvg: 4.8, reviewCount: 21, coverPhoto: '/seller-covers/nonnas-table.jpg',
+      deliveryEnabled: true, deliveryRadiusMiles: 4, deliveryFee: 4, pickupEnabled: true,
+      items: [
+        { name: 'Cacio e Pepe', price: 16, description: 'Fresh tonnarelli tossed in Pecorino Romano and cracked black pepper.', dietaryTags: ['vegetarian'], cuisineTags: ['Italian'] },
+        { name: 'Lasagna alla Bolognese', price: 18, description: 'Layered pasta with slow-simmered beef ragù and béchamel.', dietaryTags: [], cuisineTags: ['Italian'] },
+        { name: 'Margherita Panzanella', price: 12, description: 'Tuscan bread salad with heirloom tomatoes, basil, and fresh mozzarella.', dietaryTags: ['vegetarian'], cuisineTags: ['Italian'] },
+        { name: 'Tiramisu', price: 8, description: 'Espresso-soaked ladyfingers layered with mascarpone cream.', dietaryTags: ['vegetarian'], cuisineTags: ['Italian'] },
+      ],
+    },
+    {
+      email: 'mateo@example.com', name: 'Mateo Reyes', neighborhood: 'Excelsior', zip: '94112',
+      storeSlug: 'taco-loco', storeName: 'Taco Loco',
+      bio: 'Street-style tacos and salsas made fresh daily — the flavors of Jalisco, right in your neighborhood.',
+      story: 'My family ran a taco stand back home for three generations. Taco Loco is my way of keeping that tradition alive.',
+      cuisineType: 'Mexican', ratingAvg: 4.6, reviewCount: 34, coverPhoto: '/seller-covers/taco-loco.jpg',
+      deliveryEnabled: true, deliveryRadiusMiles: 6, deliveryFee: 3, pickupEnabled: true,
+      items: [
+        { name: 'Tacos al Pastor (3)', price: 11, description: 'Marinated pork, pineapple, onion, and cilantro on corn tortillas.', dietaryTags: [], cuisineTags: ['Mexican'] },
+        { name: 'Birria Tacos (3)', price: 14, description: 'Slow-braised beef tacos served with consommé for dipping.', dietaryTags: [], cuisineTags: ['Mexican'] },
+        { name: 'Elote', price: 6, description: 'Grilled corn with crema, cotija, chili powder, and lime.', dietaryTags: ['vegetarian', 'gluten-free'], cuisineTags: ['Mexican'] },
+        { name: 'Vegan Jackfruit Tacos (3)', price: 12, description: 'Slow-cooked jackfruit carnitas with pickled onion and salsa verde.', dietaryTags: ['vegan'], cuisineTags: ['Mexican'] },
+      ],
+    },
+    {
+      email: 'jin@example.com', name: 'Jin Park', neighborhood: 'Richmond District', zip: '94121',
+      storeSlug: 'seoul-kitchen', storeName: 'Seoul Kitchen',
+      bio: 'Home-style Korean banchan, bibimbap, and kimchi fermented in small batches.',
+      story: 'I started fermenting kimchi in my apartment during the pandemic and never stopped. Now the whole neighborhood gets a jar.',
+      cuisineType: 'Korean', ratingAvg: 4.9, reviewCount: 15, coverPhoto: '/seller-covers/seoul-kitchen.jpg',
+      deliveryEnabled: false, deliveryRadiusMiles: null, deliveryFee: null, pickupEnabled: true,
+      items: [
+        { name: 'Bibimbap', price: 15, description: 'Mixed rice bowl with seasonal vegetables, gochujang, and a fried egg.', dietaryTags: ['vegetarian'], cuisineTags: ['Korean'] },
+        { name: 'Kimchi Jjigae', price: 13, description: 'Bubbling kimchi stew with tofu and pork belly.', dietaryTags: [], cuisineTags: ['Korean'] },
+        { name: 'Japchae', price: 12, description: 'Stir-fried glass noodles with vegetables and sesame oil.', dietaryTags: ['vegan'], cuisineTags: ['Korean'] },
+        { name: 'House Kimchi (16oz jar)', price: 9, description: 'Small-batch fermented napa cabbage kimchi.', dietaryTags: ['vegan', 'gluten-free'], cuisineTags: ['Korean'] },
+      ],
+    },
+  ]
+
+  let nextMenuItemId = 7
+  for (const s of sellerSeeds) {
+    const sUser = await prisma.user.upsert({
+      where: { email: s.email },
+      update: {},
+      create: { email: s.email, name: s.name, role: 'SELLER', emailVerified: now, neighborhood: s.neighborhood, zip: s.zip },
+    })
+
+    const sProfile = await prisma.sellerProfile.upsert({
+      where: { userId: sUser.id },
+      update: { ratingAvg: s.ratingAvg, reviewCount: s.reviewCount, kitchenPhotos: [s.coverPhoto] },
+      create: {
+        userId: sUser.id, storeSlug: s.storeSlug, storeName: s.storeName, bio: s.bio, story: s.story,
+        cuisineType: s.cuisineType, permitStatus: 'APPROVED', isActive: true,
+        deliveryEnabled: s.deliveryEnabled, deliveryRadiusMiles: s.deliveryRadiusMiles, deliveryFee: s.deliveryFee,
+        pickupEnabled: s.pickupEnabled, pickupWindows: [{ day: 'MON-SAT', startTime: '5:00 PM', endTime: '7:00 PM' }],
+        socialLinks: { email: s.email }, ratingAvg: s.ratingAvg, reviewCount: s.reviewCount,
+        kitchenPhotos: [s.coverPhoto],
+      },
+    })
+
+    for (const item of s.items) {
+      const id = nextMenuItemId++
+      await prisma.menuItem.upsert({
+        where: { id },
+        update: {},
+        create: { id, sellerId: sProfile.id, name: item.name, price: item.price, description: item.description, dietaryTags: item.dietaryTags, cuisineTags: item.cuisineTags, availableQuantity: 20 },
+      })
+    }
+    console.log(`✓ Seller: ${sProfile.storeName} (${s.items.length} items)`)
+  }
+
+  // ── A seller awaiting approval (demonstrates the admin approval queue) ──
+  const pendingUser = await prisma.user.upsert({
+    where: { email: 'newchef@example.com' },
+    update: {},
+    create: { email: 'newchef@example.com', name: 'Dana Kowalski', role: 'SELLER', emailVerified: now, neighborhood: 'Outer Sunset', zip: '94122' },
+  })
+  await prisma.sellerProfile.upsert({
+    where: { userId: pendingUser.id },
+    update: {},
+    create: {
+      userId: pendingUser.id, storeSlug: 'danas-bakehouse', storeName: "Dana's Bakehouse",
+      bio: 'Sourdough loaves and laminated pastries baked fresh every morning.',
+      cuisineType: 'Bakery', permitStatus: 'PENDING', isActive: false, pickupEnabled: true,
+    },
+  })
+  console.log("✓ Pending seller: Dana's Bakehouse (awaiting admin approval — won't show on Find Chefs yet)")
 
   // ── Buyers ─────────────────────────────────────────────────────
   const buyerData = [
@@ -479,13 +576,24 @@ async function main() {
 
   console.log('✓ Planner:', plannerUser.email)
 
+  // Keep the autoincrement sequences ahead of any explicitly-assigned seed ids
+  // above, so the app's own inserts (e.g. a seller adding a new menu item)
+  // never collide with a seeded id.
+  await prisma.$executeRawUnsafe(
+    `SELECT setval(pg_get_serial_sequence('"MenuItem"', 'id'), COALESCE((SELECT MAX(id) FROM "MenuItem"), 1))`
+  )
+  await prisma.$executeRawUnsafe(
+    `SELECT setval(pg_get_serial_sequence('"PlannerMenuItem"', 'id'), COALESCE((SELECT MAX(id) FROM "PlannerMenuItem"), 1))`
+  )
+
   console.log('\n🎉 Seed complete!')
-  console.log('   Admin:   admin@miseenplace.local')
-  console.log('   Seller:  chef@example.com      → /seller/dashboard')
-  console.log('   Buyer:   buyer@example.com     → /buyer/orders')
-  console.log('   Planner: planner@example.com   → /planner/dashboard')
-  console.log('   Store:   http://localhost:3000/s/chef-maya')
-  console.log('   Profile: http://localhost:3000/u/sharma-family')
+  console.log('   Admin:   admin@miseenplace.local            → /admin/dashboard')
+  console.log('   Seller:  chef@example.com                   → /seller/dashboard')
+  console.log('   Buyer:   buyer@example.com                  → /buyer/orders')
+  console.log('   Planner: planner@example.com                → /planner/dashboard')
+  console.log('   Find Chefs: http://localhost:3000/sellers   (5 approved sellers, 1 pending admin approval)')
+  console.log('   Store:      http://localhost:3000/chef-maya')
+  console.log('   Profile:    http://localhost:3000/u/sharma-family')
 }
 
 main()

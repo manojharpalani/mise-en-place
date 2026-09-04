@@ -23,8 +23,8 @@ export default async function MarketingPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">Marketing</h1>
-      <p className="text-gray-500 mb-6">Send newsletters and create social media assets</p>
+      <h1 className="text-2xl font-bold text-foreground mb-2">Marketing</h1>
+      <p className="text-muted-foreground mb-6">Send newsletters and create social media assets</p>
       <MarketingClient seller={seller} />
     </div>
   )

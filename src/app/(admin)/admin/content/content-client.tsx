@@ -57,7 +57,7 @@ export function ContentClient({ initialArticles }: { initialArticles: Article[] 
   }
 
   if (articles.length === 0) {
-    return <p className="text-gray-400 text-center py-12">No articles yet.</p>
+    return <p className="text-muted-foreground text-center py-12">No articles yet.</p>
   }
 
   return (
@@ -67,17 +67,17 @@ export function ContentClient({ initialArticles }: { initialArticles: Article[] 
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-medium text-gray-900 truncate">{article.title}</h3>
+                <h3 className="font-medium text-foreground truncate">{article.title}</h3>
                 <Badge variant={article.isPublished ? 'default' : 'secondary'}>
                   {article.isPublished ? 'Published' : 'Draft'}
                 </Badge>
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 {article.seller.storeName} · {article.author.name}
               </p>
-              <p className="text-xs text-gray-400 mt-1">{formatDate(article.createdAt)}</p>
+              <p className="text-xs text-muted-foreground mt-1">{formatDate(article.createdAt)}</p>
               {article.body && (
-                <p className="text-sm text-gray-600 mt-2 line-clamp-2">{article.body}</p>
+                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{article.body}</p>
               )}
             </div>
 

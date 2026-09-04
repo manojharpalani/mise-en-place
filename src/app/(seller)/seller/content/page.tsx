@@ -25,7 +25,7 @@ export default async function ContentPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Content</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-6">Content</h1>
       <ContentClient seller={data.seller} initialArticles={data.articles} userId={session.user.id} />
     </div>
   )

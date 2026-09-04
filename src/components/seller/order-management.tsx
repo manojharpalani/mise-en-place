@@ -32,8 +32,8 @@ const STATUS_COLORS: Record<OrderStatus, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
   READY: 'bg-[#f7e9de] text-[#a64f20]',
-  DELIVERED: 'bg-gray-100 text-gray-600',
-  PICKED_UP: 'bg-gray-100 text-gray-600',
+  DELIVERED: 'bg-muted text-muted-foreground',
+  PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
 }
 
@@ -129,7 +129,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
             key={status}
             onClick={() => setFilter(status)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              filter === status ? 'bg-[#c1622d] text-white' : 'bg-white border text-gray-600 hover:bg-gray-50'
+              filter === status ? 'bg-[#c1622d] text-white' : 'bg-white border text-muted-foreground hover:bg-muted'
             }`}
           >
             {status}
@@ -140,7 +140,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-muted-foreground">
           <Package className="w-12 h-12 mx-auto mb-3 opacity-30" />
           <p>No orders found</p>
         </div>
@@ -151,10 +151,10 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
               <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-gray-900">{order.buyer.name || order.buyer.email}</span>
+                    <span className="font-semibold text-foreground">{order.buyer.name || order.buyer.email}</span>
                     <Badge className={STATUS_COLORS[order.status]}>{order.status}</Badge>
                   </div>
-                  <div className="flex flex-wrap gap-3 mt-1 text-xs text-gray-500">
+                  <div className="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" /> {formatDate(order.createdAt)}
                     </span>
@@ -177,15 +177,15 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
                 <span className="font-bold text-lg text-[#c1622d]">{formatCurrency(order.total)}</span>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-3 mb-3">
+              <div className="bg-muted rounded-lg p-3 mb-3">
                 {order.items.map((item, i) => (
                   <div key={i} className="flex justify-between text-sm py-0.5">
-                    <span className="text-gray-700">{item.quantity}x {item.itemName}</span>
-                    <span className="text-gray-500">{formatCurrency(item.unitPrice * item.quantity)}</span>
+                    <span className="text-foreground">{item.quantity}x {item.itemName}</span>
+                    <span className="text-muted-foreground">{formatCurrency(item.unitPrice * item.quantity)}</span>
                   </div>
                 ))}
                 {order.deliveryFee > 0 && (
-                  <div className="flex justify-between text-sm pt-2 border-t mt-2 text-gray-500">
+                  <div className="flex justify-between text-sm pt-2 border-t mt-2 text-muted-foreground">
                     <span>Delivery fee</span>
                     <span>{formatCurrency(order.deliveryFee)}</span>
                   </div>
@@ -193,7 +193,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
               </div>
 
               {order.notes && (
-                <p className="text-sm text-gray-600 italic mb-3">Note: {order.notes}</p>
+                <p className="text-sm text-muted-foreground italic mb-3">Note: {order.notes}</p>
               )}
 
               <div className="flex gap-2">

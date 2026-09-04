@@ -33,11 +33,11 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted">
         <Navbar />
         <div className="max-w-lg mx-auto px-4 py-20 text-center">
-          <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+          <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+          <h1 className="text-2xl font-bold text-foreground mb-4">Your cart is empty</h1>
           <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Link href="/sellers">Browse Sellers</Link>
           </Button>
@@ -96,10 +96,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <Navbar />
       <main className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Checkout</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-6">Checkout</h1>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left: Order form */}
@@ -168,7 +168,7 @@ export default function CheckoutPage() {
             <Card>
               <CardHeader><CardTitle>Order Summary</CardTitle></CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-gray-500 font-medium">{items[0]?.sellerName}</p>
+                <p className="text-sm text-muted-foreground font-medium">{items[0]?.sellerName}</p>
 
                 {items.map((item, i) => (
                   <div key={i} className="flex justify-between text-sm">
@@ -179,12 +179,12 @@ export default function CheckoutPage() {
 
                 <div className="border-t pt-3 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Subtotal</span>
+                    <span className="text-muted-foreground">Subtotal</span>
                     <span>{formatCurrency(subtotal)}</span>
                   </div>
                   {fulfillmentType === 'DELIVERY' && (
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-500">Delivery fee</span>
+                      <span className="text-muted-foreground">Delivery fee</span>
                       <span>Calculated at order</span>
                     </div>
                   )}
@@ -203,7 +203,7 @@ export default function CheckoutPage() {
                   {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Place Order
                 </Button>
-                <p className="text-xs text-gray-400 text-center">
+                <p className="text-xs text-muted-foreground text-center">
                   Payment collected at pickup/delivery
                 </p>
               </CardContent>

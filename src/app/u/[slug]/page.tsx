@@ -76,14 +76,14 @@ export default async function PublicPlannerPage({ params }: PageProps) {
       <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
 
         {/* ── Profile Header ── */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-6">
+        <div className="bg-white rounded-2xl border border-border p-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-bold text-gray-900">{planner.displayName}</h1>
+              <h1 className="text-2xl font-bold text-foreground">{planner.displayName}</h1>
               {planner.bio && (
-                <p className="text-gray-500 mt-1 text-sm leading-relaxed">{planner.bio}</p>
+                <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{planner.bio}</p>
               )}
-              <div className="flex flex-wrap gap-3 mt-3 text-sm text-gray-500">
+              <div className="flex flex-wrap gap-3 mt-3 text-sm text-muted-foreground">
                 {planner.cuisinePrefs.length > 0 && (
                   <span className="flex items-center gap-1">
                     {planner.cuisinePrefs.join(' · ')}
@@ -110,7 +110,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                 />
               )}
               {followerCount > 0 && (
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-muted-foreground">
                   {followerCount} follower{followerCount !== 1 ? 's' : ''}
                 </span>
               )}
@@ -128,9 +128,9 @@ export default async function PublicPlannerPage({ params }: PageProps) {
 
         {/* ── Published Menus ── */}
         {planner.weeklyMenus.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
+          <div className="text-center py-12 text-muted-foreground">
             <CalendarDays className="w-10 h-10 mx-auto mb-3 opacity-40" />
-            <p className="font-medium text-gray-600">No published plans yet</p>
+            <p className="font-medium text-muted-foreground">No published plans yet</p>
             <p className="text-sm mt-1">Check back soon</p>
           </div>
         ) : (
@@ -143,12 +143,12 @@ export default async function PublicPlannerPage({ params }: PageProps) {
               const activeDays = menu.days.filter((d) => d.menuItems.length > 0)
 
               return (
-                <div key={menu.id} className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                <div key={menu.id} className="bg-white rounded-2xl border border-border overflow-hidden">
                   {/* Week header */}
                   <div className="px-5 py-4 border-b border-gray-50">
                     <div className="flex items-center gap-2">
                       <CalendarDays className="w-4 h-4 text-[#c1622d]" />
-                      <h2 className="font-semibold text-gray-900">{label}</h2>
+                      <h2 className="font-semibold text-foreground">{label}</h2>
                     </div>
                   </div>
 
@@ -158,14 +158,14 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                       const dayName = UTC_DAYS[new Date(day.date).getUTCDay()] ?? day.dayOfWeek
                       return (
                         <div key={day.id} className="px-5 py-3 flex gap-4">
-                          <span className="w-20 shrink-0 text-sm font-medium text-gray-500 pt-0.5">
+                          <span className="w-20 shrink-0 text-sm font-medium text-muted-foreground pt-0.5">
                             {dayName.slice(0, 3)}
                           </span>
                           <div className="flex flex-wrap gap-2">
                             {day.menuItems.map((di) => (
                               <span
                                 key={di.id}
-                                className="inline-flex items-center gap-1.5 text-sm bg-[#f7e9de] text-gray-800 rounded-full px-3 py-1"
+                                className="inline-flex items-center gap-1.5 text-sm bg-[#f7e9de] text-foreground rounded-full px-3 py-1"
                               >
                                 {di.menuItem.name}
                                 {di.servings > 1 && (
@@ -178,7 +178,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                       )
                     })}
                     {activeDays.length === 0 && (
-                      <div className="px-5 py-4 text-sm text-gray-400">No meals planned</div>
+                      <div className="px-5 py-4 text-sm text-muted-foreground">No meals planned</div>
                     )}
                   </div>
                 </div>
@@ -189,7 +189,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
 
         {/* ── Inspired By (Sprint 3 cross-sell) ── */}
         {allDishNames.length > 0 && (
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
+          <div className="bg-white rounded-2xl border border-border p-5">
             <InspiredBy dishNames={allDishNames} />
           </div>
         )}

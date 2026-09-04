@@ -73,7 +73,7 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-border overflow-hidden hover:shadow-md transition-shadow">
       {item.photoUrl && (
         <div className="aspect-video relative">
           <Image
@@ -93,19 +93,19 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
       <div className="p-4">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <h3 className="font-semibold text-gray-900">{item.name}</h3>
+            <h3 className="font-semibold text-foreground">{item.name}</h3>
             {item.description && (
-              <p className="text-sm text-gray-500 mt-1 line-clamp-2">{item.description}</p>
+              <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.description}</p>
             )}
           </div>
           <div className="text-right shrink-0">
             {item.salePrice ? (
               <>
                 <div className="font-bold text-[#c1622d]">{formatCurrency(item.salePrice)}</div>
-                <div className="text-xs text-gray-400 line-through">{formatCurrency(item.price)}</div>
+                <div className="text-xs text-muted-foreground line-through">{formatCurrency(item.price)}</div>
               </>
             ) : (
-              <div className="font-bold text-gray-900">{formatCurrency(item.price)}</div>
+              <div className="font-bold text-foreground">{formatCurrency(item.price)}</div>
             )}
           </div>
         </div>
@@ -115,7 +115,7 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
             {item.dietaryTags.map((tag) => (
               <span
                 key={tag}
-                className={`text-xs px-2 py-0.5 rounded-full font-medium ${DIETARY_COLORS[tag.toLowerCase()] || 'bg-gray-100 text-gray-600'}`}
+                className={`text-xs px-2 py-0.5 rounded-full font-medium ${DIETARY_COLORS[tag.toLowerCase()] || 'bg-muted text-muted-foreground'}`}
               >
                 {tag}
               </span>

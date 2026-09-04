@@ -231,7 +231,7 @@ export function SettingsClient({ seller }: {
           <div className="flex items-center justify-between">
             <div>
               <Label>Pickup Available</Label>
-              <p className="text-sm text-gray-500">Customers can pick up from your location</p>
+              <p className="text-sm text-muted-foreground">Customers can pick up from your location</p>
             </div>
             <Switch
               checked={pickupEnabled}
@@ -242,7 +242,7 @@ export function SettingsClient({ seller }: {
           <div className="flex items-center justify-between">
             <div>
               <Label>Delivery Available</Label>
-              <p className="text-sm text-gray-500">You offer delivery to customers</p>
+              <p className="text-sm text-muted-foreground">You offer delivery to customers</p>
             </div>
             <Switch
               checked={deliveryEnabled}

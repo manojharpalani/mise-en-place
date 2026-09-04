@@ -52,7 +52,7 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
 
   if (subscriptions.length === 0) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-muted-foreground">
         <Calendar className="w-12 h-12 mx-auto mb-4 opacity-30" />
         <p>No active subscriptions</p>
         <p className="text-sm mt-2 mb-6">Subscribe to a weekly menu to get daily meals!</p>
@@ -78,13 +78,13 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
                   </Link>
                 </CardTitle>
                 <div className="flex items-center gap-2">
-                  <Badge className={sub.status === 'ACTIVE' ? 'bg-[#f7e9de] text-[#a64f20]' : 'bg-gray-100 text-gray-600'}>
+                  <Badge className={sub.status === 'ACTIVE' ? 'bg-[#f7e9de] text-[#a64f20]' : 'bg-muted text-muted-foreground'}>
                     {sub.status}
                   </Badge>
                   <span className="font-bold text-[#c1622d]">{formatCurrency(sub.totalAmount)}/week</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Week of {formatDate(sub.weeklyMenu.weekStartDate)}
               </p>
             </CardHeader>
@@ -97,21 +97,21 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
                   return (
                     <div
                       key={day.id}
-                      className={`border rounded-xl p-3 ${isSkipped ? 'opacity-50 bg-gray-50' : ''}`}
+                      className={`border rounded-xl p-3 ${isSkipped ? 'opacity-50 bg-muted' : ''}`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-sm">{day.dayOfWeek}</span>
                         {isSkipped && <Badge variant="secondary" className="text-xs">Skipped</Badge>}
                       </div>
                       {day.menuItems.slice(0, 2).map((mi) => (
-                        <p key={mi.menuItem.name} className="text-xs text-gray-600 truncate">{mi.menuItem.name}</p>
+                        <p key={mi.menuItem.name} className="text-xs text-muted-foreground truncate">{mi.menuItem.name}</p>
                       ))}
                       {!isSkipped && !isPast && sub.status === 'ACTIVE' && (
                         <Button
                           size="sm"
                           variant="ghost"
                           onClick={() => skipDay(sub.id, day.id, day.date)}
-                          className="w-full mt-2 text-xs h-7 text-gray-500 hover:text-amber-600"
+                          className="w-full mt-2 text-xs h-7 text-muted-foreground hover:text-amber-600"
                         >
                           <SkipForward className="w-3 h-3 mr-1" /> Skip Day
                         </Button>

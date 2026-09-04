@@ -27,8 +27,8 @@ const STATUS_COLORS: Record<string, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
   READY: 'bg-[#f7e9de] text-[#a64f20]',
-  DELIVERED: 'bg-gray-100 text-gray-600',
-  PICKED_UP: 'bg-gray-100 text-gray-600',
+  DELIVERED: 'bg-muted text-muted-foreground',
+  PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
 }
 
@@ -57,10 +57,10 @@ export default async function BuyerOrdersPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">My Orders</h1>
+      <h1 className="text-2xl font-bold text-foreground">My Orders</h1>
 
       {orders.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-muted-foreground">
           <ShoppingBag className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p className="text-lg">No orders yet</p>
           <p className="text-sm mt-2 mb-6">Discover local chefs and place your first order!</p>
@@ -78,17 +78,17 @@ export default async function BuyerOrdersPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span
-                          className="font-semibold text-gray-900 hover:text-[#c1622d]"
+                          className="font-semibold text-foreground hover:text-[#c1622d]"
                           onClick={e => { e.preventDefault(); e.stopPropagation(); window.location.href = `/${order.seller.storeSlug}` }}
                         >
                           {order.seller.storeName}
                         </span>
                         <Badge className={STATUS_COLORS[order.status]}>{order.status}</Badge>
                       </div>
-                      <p className="text-sm text-gray-500">{formatDate(order.createdAt)}</p>
+                      <p className="text-sm text-muted-foreground">{formatDate(order.createdAt)}</p>
                       <div className="mt-2 space-y-1">
                         {order.items.map((item) => (
-                          <p key={item.id} className="text-sm text-gray-700">
+                          <p key={item.id} className="text-sm text-foreground">
                             {item.quantity}x {item.itemName} — {formatCurrency(item.unitPrice * item.quantity)}
                           </p>
                         ))}

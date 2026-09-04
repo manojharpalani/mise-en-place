@@ -71,7 +71,7 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-semibold text-gray-900">{seller.storeName}</h3>
+            <h3 className="font-semibold text-foreground">{seller.storeName}</h3>
             <Badge
               className={
                 seller.permitStatus === 'APPROVED' ? 'bg-[#f7e9de] text-[#a64f20]' :
@@ -85,9 +85,9 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
               {seller.isActive ? 'Active' : 'Inactive'}
             </Badge>
           </div>
-          <p className="text-sm text-gray-500">{seller.user.name || seller.user.email}</p>
-          {seller.cuisineType && <p className="text-sm text-gray-500">{seller.cuisineType}</p>}
-          <p className="text-xs text-gray-400 mt-1">{seller._count.orders} orders · /s/{seller.storeSlug}</p>
+          <p className="text-sm text-muted-foreground">{seller.user.name || seller.user.email}</p>
+          {seller.cuisineType && <p className="text-sm text-muted-foreground">{seller.cuisineType}</p>}
+          <p className="text-xs text-muted-foreground mt-1">{seller._count.orders} orders · /s/{seller.storeSlug}</p>
 
           {seller.permitDocumentUrl && (
             <a

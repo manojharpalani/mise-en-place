@@ -146,7 +146,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
           <div className="space-y-6">
             {todayMenu ? (
               <>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="w-4 h-4" />
                   Today&apos;s Menu — {new Date(todayMenu.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
                 </div>
@@ -159,12 +159,12 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                   ))}
                 </div>
                 {todayMenu.menuItems.length === 0 && todayMenu.comboItems.length === 0 && (
-                  <p className="text-gray-500 text-center py-8">No items scheduled for today.</p>
+                  <p className="text-muted-foreground text-center py-8">No items scheduled for today.</p>
                 )}
               </>
             ) : (
               <>
-                <p className="text-gray-500 mb-4">No menu scheduled for today. Browse the full store below.</p>
+                <p className="text-muted-foreground mb-4">No menu scheduled for today. Browse the full store below.</p>
                 {seller.menuItems.length > 0 && (
                   <div className="grid sm:grid-cols-2 gap-4">
                     {seller.menuItems.slice(0, 6).map((item) => (
@@ -181,17 +181,17 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
         <TabsContent value="store">
           {seller.weeklyMenus[0] ? (
             <div className="space-y-8">
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 Week of {formatDate(seller.weeklyMenus[0].weekStartDate)}
               </div>
               {seller.weeklyMenus[0].days.map((day) => (
                 <div key={day.id}>
-                  <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
+                  <h3 className="font-semibold text-lg text-foreground mb-3 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-[#c1622d]" />
                     {day.dayOfWeek} — {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </h3>
                   {day.menuItems.length === 0 && day.comboItems.length === 0 ? (
-                    <p className="text-sm text-gray-400 italic">No items scheduled</p>
+                    <p className="text-sm text-muted-foreground italic">No items scheduled</p>
                   ) : (
                     <div className="grid sm:grid-cols-2 gap-4">
                       {day.menuItems.map((mi) => (
@@ -207,7 +207,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
             </div>
           ) : (
             <div>
-              <p className="text-gray-500 mb-6">All available items:</p>
+              <p className="text-muted-foreground mb-6">All available items:</p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {seller.menuItems.map((item) => (
                   <ItemCard key={item.id} item={item} sellerId={seller.id} sellerName={seller.storeName} />
@@ -217,7 +217,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                 ))}
               </div>
               {seller.menuItems.length === 0 && seller.comboItems.length === 0 && (
-                <p className="text-gray-400 text-center py-12">No menu items yet.</p>
+                <p className="text-muted-foreground text-center py-12">No menu items yet.</p>
               )}
             </div>
           )}
@@ -228,31 +228,31 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
           <div className="space-y-6 max-w-2xl">
             {seller.story && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Our Story</h3>
-                <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{seller.story}</p>
+                <h3 className="font-semibold text-foreground mb-2">Our Story</h3>
+                <p className="text-foreground leading-relaxed whitespace-pre-wrap">{seller.story}</p>
               </div>
             )}
             {seller.bio && !seller.story && (
-              <p className="text-gray-700 leading-relaxed">{seller.bio}</p>
+              <p className="text-foreground leading-relaxed">{seller.bio}</p>
             )}
 
             <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Details</h3>
+              <h3 className="font-semibold text-foreground mb-3">Details</h3>
               <dl className="space-y-2 text-sm">
                 {seller.cuisineType && (
                   <div className="flex gap-3">
-                    <dt className="text-gray-500 w-28 shrink-0">Cuisine</dt>
-                    <dd className="text-gray-900">{seller.cuisineType}</dd>
+                    <dt className="text-muted-foreground w-28 shrink-0">Cuisine</dt>
+                    <dd className="text-foreground">{seller.cuisineType}</dd>
                   </div>
                 )}
                 {seller.user.neighborhood && (
                   <div className="flex gap-3">
-                    <dt className="text-gray-500 w-28 shrink-0">Location</dt>
-                    <dd className="text-gray-900">{seller.user.neighborhood}{seller.user.zip && `, ${seller.user.zip}`}</dd>
+                    <dt className="text-muted-foreground w-28 shrink-0">Location</dt>
+                    <dd className="text-foreground">{seller.user.neighborhood}{seller.user.zip && `, ${seller.user.zip}`}</dd>
                   </div>
                 )}
                 <div className="flex gap-3">
-                  <dt className="text-gray-500 w-28 shrink-0">Permit</dt>
+                  <dt className="text-muted-foreground w-28 shrink-0">Permit</dt>
                   <dd>
                     {seller.permitStatus === 'APPROVED' ? (
                       <Badge className="bg-[#f7e9de] text-[#a64f20] flex items-center gap-1 w-fit">
@@ -265,8 +265,8 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                 </div>
                 {seller.pickupEnabled && seller.pickupWindows && (
                   <div className="flex gap-3">
-                    <dt className="text-gray-500 w-28 shrink-0">Pickup</dt>
-                    <dd className="text-gray-900">
+                    <dt className="text-muted-foreground w-28 shrink-0">Pickup</dt>
+                    <dd className="text-foreground">
                       {(Array.isArray(seller.pickupWindows)
                         ? seller.pickupWindows as Array<{ day: string; startTime: string; endTime: string }>
                         : Object.entries(seller.pickupWindows as unknown as Record<string, string>).map(([day, time]) => ({ day, startTime: time, endTime: '' }))
@@ -278,8 +278,8 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                 )}
                 {seller.deliveryEnabled && (
                   <div className="flex gap-3">
-                    <dt className="text-gray-500 w-28 shrink-0">Delivery</dt>
-                    <dd className="text-gray-900">
+                    <dt className="text-muted-foreground w-28 shrink-0">Delivery</dt>
+                    <dd className="text-foreground">
                       Available{seller.deliveryFee ? ` — ${formatCurrency(seller.deliveryFee)} fee` : ''}
                     </dd>
                   </div>
@@ -290,7 +290,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
             {/* Kitchen Photos */}
             {seller.kitchenPhotos && seller.kitchenPhotos.length > 1 && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Kitchen Photos</h3>
+                <h3 className="font-semibold text-foreground mb-3">Kitchen Photos</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {seller.kitchenPhotos.map((photo, i) => (
                     <div key={i} className="aspect-square rounded-xl overflow-hidden">
@@ -303,9 +303,9 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
 
             {/* Reviews */}
             <div>
-              <h3 className="font-semibold text-gray-900 mb-4">Reviews ({seller.reviews.length})</h3>
+              <h3 className="font-semibold text-foreground mb-4">Reviews ({seller.reviews.length})</h3>
               {seller.reviews.length === 0 ? (
-                <p className="text-gray-400 text-sm">No reviews yet. Be the first!</p>
+                <p className="text-muted-foreground text-sm">No reviews yet. Be the first!</p>
               ) : (
                 <div className="space-y-4">
                   {seller.reviews.map((review) => (
@@ -317,11 +317,11 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                         </Avatar>
                         <div>
                           <p className="font-medium text-sm">{review.buyer.name || 'Anonymous'}</p>
-                          <p className="text-xs text-gray-400">{formatDate(review.createdAt)}</p>
+                          <p className="text-xs text-muted-foreground">{formatDate(review.createdAt)}</p>
                         </div>
                         <div className="flex ml-auto">{ratingStars(review.rating)}</div>
                       </div>
-                      {review.comment && <p className="text-sm text-gray-700">{review.comment}</p>}
+                      {review.comment && <p className="text-sm text-foreground">{review.comment}</p>}
                     </div>
                   ))}
                 </div>
@@ -334,7 +334,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
         <TabsContent value="story">
           <div className="space-y-6">
             {seller.articles.length === 0 ? (
-              <p className="text-gray-400 text-center py-12">No posts yet.</p>
+              <p className="text-muted-foreground text-center py-12">No posts yet.</p>
             ) : (
               seller.articles.map((article) => (
                 <article key={article.id} className="bg-white rounded-xl border p-6">
@@ -343,13 +343,13 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                       <Image src={article.imageUrl} alt={article.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 66vw" />
                     </div>
                   )}
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2">{article.title}</h2>
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+                  <h2 className="text-xl font-semibold text-foreground mb-2">{article.title}</h2>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                     <span>{article.author.name || 'Author'}</span>
                     <span>·</span>
                     <span>{formatDate(article.createdAt)}</span>
                   </div>
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{article.body}</p>
+                  <p className="text-foreground leading-relaxed whitespace-pre-wrap">{article.body}</p>
                 </article>
               ))
             )}

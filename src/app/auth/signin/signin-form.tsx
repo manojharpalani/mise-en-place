@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Heart, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { DemoAccountsCallout } from '@/components/demo-accounts'
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -25,7 +26,7 @@ export function SignInForm() {
   const callbackUrl = searchParams.get('callbackUrl') || '/'
   const [loading, setLoading] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
 
@@ -60,7 +61,7 @@ export function SignInForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
             <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
             Mise en Place
           </Link>
@@ -90,12 +91,18 @@ export function SignInForm() {
                 {loading ? 'Sending code...' : 'Send Login Code'}
               </Button>
             </form>
-            <div className="mt-4 text-center text-sm text-gray-500">
+            <div className="mt-4 text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{' '}
               <Link href="/auth/signup" className="text-[#c1622d] font-medium hover:underline">
                 Sign up
               </Link>
             </div>
+            <DemoAccountsCallout
+              onSelect={(email) => {
+                setValue('email', email, { shouldValidate: true })
+                handleSubmit(onSubmit)()
+              }}
+            />
           </CardContent>
         </Card>
       </div>

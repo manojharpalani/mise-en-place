@@ -85,8 +85,8 @@ export function ProfileClient({ user }: {
             </AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-semibold text-gray-900 text-lg">{user.name || 'No name set'}</p>
-            <p className="text-gray-500 text-sm">{user.email}</p>
+            <p className="font-semibold text-foreground text-lg">{user.name || 'No name set'}</p>
+            <p className="text-muted-foreground text-sm">{user.email}</p>
           </div>
         </CardContent>
       </Card>

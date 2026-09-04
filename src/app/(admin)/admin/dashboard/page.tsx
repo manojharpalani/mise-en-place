@@ -37,7 +37,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+      <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -54,8 +54,8 @@ export default async function AdminDashboardPage() {
                   <Icon className={`w-5 h-5 ${stat.color}`} />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-xs text-gray-500">{stat.label}</p>
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
                 </div>
               </CardContent>
             </Card>
@@ -81,7 +81,7 @@ export default async function AdminDashboardPage() {
               <div key={order.id} className="flex items-center justify-between py-2 border-b last:border-0 text-sm">
                 <div>
                   <p className="font-medium">{order.buyer.name || order.buyer.email}</p>
-                  <p className="text-gray-400">{order.seller.storeName}</p>
+                  <p className="text-muted-foreground">{order.seller.storeName}</p>
                 </div>
                 <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
               </div>
