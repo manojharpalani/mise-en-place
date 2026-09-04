@@ -1,27 +1,28 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Source_Sans_3 } from 'next/font/google'
+import { Instrument_Serif, Work_Sans } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/sonner'
 import { Providers } from '@/components/providers'
 
-const playfair = Playfair_Display({
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   variable: '--font-heading',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
 })
 
-const sourceSans = Source_Sans_3({
+const workSans = Work_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['300', '400', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
-  title: 'With Metta | Local Home Chefs & Fresh Meals',
-  description: 'Discover fresh, home-cooked meals from licensed local chefs in your neighborhood. Order daily or subscribe weekly — made with loving-kindness.',
+  title: 'Mise en Place | Local Home Chefs & Fresh Meals',
+  description: 'Discover fresh, home-cooked meals from licensed local chefs in your neighborhood. Order daily or subscribe weekly — every dish prepped with care.',
   openGraph: {
-    title: 'With Metta',
-    description: 'Fresh meals from local home chefs, made with loving-kindness.',
+    title: 'Mise en Place',
+    description: 'Fresh meals from local home chefs, prepped with care.',
     type: 'website',
   },
 }
@@ -32,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${workSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers>
           {children}

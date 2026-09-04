@@ -64,7 +64,7 @@ export function PlannerFollowButton({ slug, isLoggedIn, isAlreadyFollowing }: Pr
         size="sm"
         onClick={isLoggedIn ? unfollow : undefined}
         disabled={loading}
-        className="text-[#d4a5a5] border-[#d4a5a5]"
+        className="text-[#c1622d] border-[#c1622d]"
       >
         {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin mr-1" /> : <Check className="w-3.5 h-3.5 mr-1" />}
         Following
@@ -78,7 +78,7 @@ export function PlannerFollowButton({ slug, isLoggedIn, isAlreadyFollowing }: Pr
         size="sm"
         onClick={() => isLoggedIn ? follow() : setShowEmailDialog(true)}
         disabled={loading}
-        className="bg-[#d4a5a5] hover:bg-[#c49090]"
+        className="bg-[#c1622d] hover:bg-[#a64f20]"
       >
         {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin mr-1" /> : <Bell className="w-3.5 h-3.5 mr-1" />}
         Follow
@@ -104,7 +104,7 @@ export function PlannerFollowButton({ slug, isLoggedIn, isAlreadyFollowing }: Pr
                 size="sm"
                 onClick={() => follow(email)}
                 disabled={loading || !email}
-                className="bg-[#d4a5a5] hover:bg-[#c49090]"
+                className="bg-[#c1622d] hover:bg-[#a64f20]"
               >
                 {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : 'Follow'}
               </Button>

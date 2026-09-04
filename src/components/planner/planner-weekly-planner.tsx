@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { addDays, format, startOfWeek } from 'date-fns'
 import { toPng } from 'html-to-image'
+import { displayUrl } from '@/lib/site'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -352,7 +353,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
       '',
       ...lines,
       '',
-      `Follow: withmetta.com/u/${planner.slug}`,
+      `Follow: ${displayUrl(`/u/${planner.slug}`)}`,
     ].join('\n')
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
   }
@@ -466,7 +467,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           <PlannerFlyerCanvas
             ref={flyerRef}
             displayName={planner.displayName}
-            profileUrl={`withmetta.com/u/${planner.slug}`}
+            profileUrl={displayUrl(`/u/${planner.slug}`)}
             cuisinePrefs={planner.cuisinePrefs}
             bio={planner.bio}
             weekLabel={menuLabel(activeMenu)}
@@ -492,7 +493,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                 onClick={() => setActiveMenuIdx(i)}
                 className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   i === activeMenuIdx
-                    ? 'bg-[#d4a5a5] text-white'
+                    ? 'bg-[#c1622d] text-white'
                     : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
@@ -536,7 +537,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                       {totalItems === 0 ? (
                         <button
                           onClick={() => setManageDayId(day.id)}
-                          className="w-full text-xs text-gray-400 hover:text-[#d4a5a5] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-gray-200 rounded-lg hover:border-[#d4a5a5] transition-colors"
+                          className="w-full text-xs text-gray-400 hover:text-[#c1622d] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-gray-200 rounded-lg hover:border-[#c1622d] transition-colors"
                         >
                           <Plus className="w-3.5 h-3.5" /> Add meals
                         </button>
@@ -576,7 +577,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           <CalendarDays className="w-12 h-12 mx-auto mb-3 text-gray-300" />
           <p className="font-medium text-gray-700">No meal plans yet</p>
           <p className="text-sm mt-1 mb-4">Create your first week to start planning</p>
-          <Button onClick={() => setShowNewWeek(true)} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+          <Button onClick={() => setShowNewWeek(true)} className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Plus className="w-4 h-4 mr-1" /> Create First Week
           </Button>
         </div>
@@ -607,7 +608,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={() => setShowNewItem(false)}>Cancel</Button>
-              <Button onClick={saveNewItem} disabled={savingItem || !newItemName.trim()} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+              <Button onClick={saveNewItem} disabled={savingItem || !newItemName.trim()} className="bg-[#c1622d] hover:bg-[#a64f20]">
                 {savingItem ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Add Dish'}
               </Button>
             </div>
@@ -635,7 +636,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               <Button
                 onClick={createWeek}
                 disabled={creatingWeek || !newWeekStart}
-                className="bg-[#d4a5a5] hover:bg-[#c49090]"
+                className="bg-[#c1622d] hover:bg-[#a64f20]"
               >
                 {creatingWeek ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Create Week'}
               </Button>
@@ -657,7 +658,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               <p className="text-sm">No dishes in your library yet.</p>
               <Button
                 size="sm"
-                className="mt-3 bg-[#d4a5a5] hover:bg-[#c49090]"
+                className="mt-3 bg-[#c1622d] hover:bg-[#a64f20]"
                 onClick={() => { setManageDayId(null); setShowNewItem(true) }}
               >
                 <Plus className="w-4 h-4 mr-1" /> Add a Dish
@@ -671,7 +672,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                   <div
                     key={item.id}
                     className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                      already ? 'bg-[#fdf0ee] border-[#d4a5a5]' : 'bg-white border-gray-200'
+                      already ? 'bg-[#f7e9de] border-[#c1622d]' : 'bg-white border-gray-200'
                     }`}
                   >
                     <div>
@@ -683,7 +684,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                     <Button
                       size="sm"
                       variant={already ? 'outline' : 'default'}
-                      className={already ? '' : 'bg-[#d4a5a5] hover:bg-[#c49090]'}
+                      className={already ? '' : 'bg-[#c1622d] hover:bg-[#a64f20]'}
                       disabled={addingItem}
                       onClick={() => {
                         if (already) {
@@ -752,7 +753,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={() => setShowAiPlan(false)}>Cancel</Button>
-              <Button onClick={generateAiPlan} disabled={aiGenerating} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+              <Button onClick={generateAiPlan} disabled={aiGenerating} className="bg-[#c1622d] hover:bg-[#a64f20]">
                 {aiGenerating ? <Loader2 className="w-4 h-4 animate-spin mr-1" /> : <Wand2 className="w-4 h-4 mr-1" />}
                 Generate Plan
               </Button>
@@ -787,7 +788,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                   className="flex-1 bg-[#25d366] hover:bg-[#1fb955] text-white"
                   onClick={() => {
                     if (!activeMenu) return
-                    const text = `Check out my meal plan for ${menuLabel(activeMenu)}! withmetta.com/u/${planner.slug}`
+                    const text = `Check out my meal plan for ${menuLabel(activeMenu)}! ${displayUrl(`/u/${planner.slug}`)}`
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank')
                   }}
                 >

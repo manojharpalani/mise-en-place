@@ -154,7 +154,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
           onChange={(e) => setSearch(e.target.value)}
           className="max-w-sm"
         />
-        <Button onClick={openNew} className="bg-[#d4a5a5] hover:bg-[#c49090] ml-auto gap-1.5">
+        <Button onClick={openNew} className="bg-[#c1622d] hover:bg-[#a64f20] ml-auto gap-1.5">
           <Plus className="w-4 h-4" /> Add Dish
         </Button>
       </div>
@@ -168,7 +168,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
             <>
               <p className="font-medium">No dishes yet</p>
               <p className="text-sm mt-1 mb-5">Add your favourite dishes to start planning meals</p>
-              <Button onClick={openNew} className="bg-[#d4a5a5] hover:bg-[#c49090] gap-1.5">
+              <Button onClick={openNew} className="bg-[#c1622d] hover:bg-[#a64f20] gap-1.5">
                 <Plus className="w-4 h-4" /> Add your first dish
               </Button>
             </>
@@ -290,7 +290,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
             <Button
               disabled={saving}
               onClick={handleSave}
-              className="bg-[#d4a5a5] hover:bg-[#c49090]"
+              className="bg-[#c1622d] hover:bg-[#a64f20]"
             >
               {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
               {editing ? 'Save Changes' : 'Add Dish'}

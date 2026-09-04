@@ -150,7 +150,7 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
         <div className="relative">
           <Input placeholder="e.g. Homemade Biryani" {...register('name')} />
           {suggesting && (
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-[#d4a5a5]">
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-[#c1622d]">
               <Sparkles className="w-3 h-3 animate-pulse" />
               <span>Finding image…</span>
             </div>
@@ -173,7 +173,7 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs font-medium text-stone-600 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-[#d4a5a5]" />
+              <Sparkles className="w-3 h-3 text-[#c1622d]" />
               Suggested thumbnail
             </p>
             <p className="text-xs text-stone-400 mt-0.5">Will be saved with the item</p>
@@ -222,7 +222,7 @@ export function MenuItemForm({ sellerId, cuisineType, editItem, onSuccess, onCan
       </div>
 
       <div className="flex gap-3 pt-2">
-        <Button type="submit" className="bg-[#d4a5a5] hover:bg-[#c49090] flex-1" disabled={loading}>
+        <Button type="submit" className="bg-[#c1622d] hover:bg-[#a64f20] flex-1" disabled={loading}>
           {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
           {editItem ? 'Update Item' : 'Create Item'}
         </Button>

@@ -8,6 +8,7 @@ import { InspiredBy } from '@/components/planner/inspired-by'
 import { Badge } from '@/components/ui/badge'
 import { CalendarDays, Users, Globe } from 'lucide-react'
 import { format } from 'date-fns'
+import { displayUrl } from '@/lib/site'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -66,7 +67,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
     ),
   ].slice(0, 10)
 
-  const profileUrl = `withmetta.com/u/${slug}`
+  const profileUrl = displayUrl(`/u/${slug}`)
   const followerCount = planner._count.subscribers
 
   return (
@@ -146,7 +147,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                   {/* Week header */}
                   <div className="px-5 py-4 border-b border-gray-50">
                     <div className="flex items-center gap-2">
-                      <CalendarDays className="w-4 h-4 text-[#d4a5a5]" />
+                      <CalendarDays className="w-4 h-4 text-[#c1622d]" />
                       <h2 className="font-semibold text-gray-900">{label}</h2>
                     </div>
                   </div>
@@ -164,11 +165,11 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                             {day.menuItems.map((di) => (
                               <span
                                 key={di.id}
-                                className="inline-flex items-center gap-1.5 text-sm bg-[#fdf0ee] text-gray-800 rounded-full px-3 py-1"
+                                className="inline-flex items-center gap-1.5 text-sm bg-[#f7e9de] text-gray-800 rounded-full px-3 py-1"
                               >
                                 {di.menuItem.name}
                                 {di.servings > 1 && (
-                                  <span className="text-xs text-[#d4a5a5]">×{di.servings}</span>
+                                  <span className="text-xs text-[#c1622d]">×{di.servings}</span>
                                 )}
                               </span>
                             ))}

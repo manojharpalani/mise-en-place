@@ -11,7 +11,7 @@ export function OrderReviewButton({ orderId, storeName }: { orderId: string; sto
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1 text-xs text-[#d4a5a5] hover:text-[#b08080] font-medium"
+        className="inline-flex items-center gap-1 text-xs text-[#c1622d] hover:text-[#b08080] font-medium"
       >
         <Star className="w-3.5 h-3.5" />
         Rate &amp; Review

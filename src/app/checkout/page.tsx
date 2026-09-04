@@ -38,7 +38,7 @@ export default function CheckoutPage() {
         <div className="max-w-lg mx-auto px-4 py-20 text-center">
           <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-gray-300" />
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
-          <Button asChild className="bg-[#d4a5a5] hover:bg-[#c49090]">
+          <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Link href="/sellers">Browse Sellers</Link>
           </Button>
         </div>
@@ -190,14 +190,14 @@ export default function CheckoutPage() {
                   )}
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
-                    <span className="text-[#d4a5a5]">{formatCurrency(subtotal)}</span>
+                    <span className="text-[#c1622d]">{formatCurrency(subtotal)}</span>
                   </div>
                 </div>
 
                 <Button
                   onClick={handlePlaceOrder}
                   disabled={loading}
-                  className="w-full bg-[#d4a5a5] hover:bg-[#c49090] mt-4"
+                  className="w-full bg-[#c1622d] hover:bg-[#a64f20] mt-4"
                   size="lg"
                 >
                   {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}

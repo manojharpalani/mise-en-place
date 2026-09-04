@@ -73,7 +73,7 @@ export default async function StorefrontPage({ params }: PageProps) {
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             {/* Store Photo */}
-            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#fdf0ee] shrink-0">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#f7e9de] shrink-0">
               {seller.kitchenPhotos?.[0] ? (
                 <Image
                   src={seller.kitchenPhotos[0]}
@@ -92,7 +92,7 @@ export default async function StorefrontPage({ params }: PageProps) {
               <div className="flex flex-wrap items-center gap-3 mb-2">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{seller.storeName}</h1>
                 {seller.permitStatus === 'APPROVED' && (
-                  <Badge className="bg-[#fdf0ee] text-[#c49090] border-[#e8d5d0] flex items-center gap-1">
+                  <Badge className="bg-[#f7e9de] text-[#a64f20] border-[#e7ddcb] flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" /> Permitted
                   </Badge>
                 )}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { LayoutDashboard, ChefHat, ShoppingBag, Users, FileText, Heart, Shield } from 'lucide-react'
+import { LayoutDashboard, ChefHat, ShoppingBag, Users, FileText, Shield } from 'lucide-react'
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -20,8 +20,8 @@ export function AdminSidebar() {
     <aside className="w-56 min-h-screen bg-gray-900 text-white flex flex-col">
       <div className="p-4 border-b border-gray-800">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <Heart className="w-5 h-5 text-[#d4a5a5] fill-[#d4a5a5]" />
-          WithMetta
+          <img src="/logo-mark.svg" alt="" className="w-6 h-4" />
+          <span className="font-heading italic">mise en place</span>
         </Link>
         <p className="text-xs text-gray-400 mt-0.5 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Admin Panel
@@ -38,7 +38,7 @@ export function AdminSidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-[#fdf0ee] text-[#d4a5a5]'
+                  ? 'bg-[#F7E9DE] text-[#C1622D]'
                   : 'text-gray-400 hover:bg-gray-800 hover:text-white'
               )}
             >

@@ -1,4 +1,4 @@
-# WithMetta — Product Document
+# Mise en Place — Product Document
 
 > Living spec. Updated as features ship. See git history for revision trail.
 
@@ -6,7 +6,7 @@
 
 ## Vision
 
-WithMetta is a web-based local community commerce platform connecting independent licensed home chefs (MEHKO permit holders) with local buyers. Individual seller storefronts — not an aggregated marketplace. WhatsApp is the primary community engagement channel.
+Mise en Place is a web-based local community commerce platform connecting independent licensed home chefs (MEHKO permit holders) with local buyers. Individual seller storefronts — not an aggregated marketplace. WhatsApp is the primary community engagement channel.
 
 ---
 
@@ -581,7 +581,7 @@ Features are listed in the order they were built, grouped by area.
 - `POST/DELETE /api/planner/[slug]/subscribe` — follow/unfollow; logged-in users follow instantly, guests enter email
 - `PlannerFollowButton` — follow/unfollow button with email dialog for guests
 - Publish toggle on planner toolbar — marks `isPublished: true`, visible on public profile
-- Planner flyer canvas (`PlannerFlyerCanvas`) — pastel gradient, servings labels, "Planned with metta" footer
+- Planner flyer canvas (`PlannerFlyerCanvas`) — pastel gradient, servings labels, "Planned with care" footer
 - Share to WhatsApp — deeplink with week summary text + profile URL
 - Flyer dialog — download PNG + WhatsApp share
 

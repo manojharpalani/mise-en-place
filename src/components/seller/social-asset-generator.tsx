@@ -72,7 +72,7 @@ export function SocialAssetGenerator({ storeSlug, menuItems }: SocialAssetGenera
       <Button
         onClick={generateImage}
         disabled={loading || !selectedItemId}
-        className="w-full bg-[#d4a5a5] hover:bg-[#c49090]"
+        className="w-full bg-[#c1622d] hover:bg-[#a64f20]"
       >
         {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <ImageIcon className="w-4 h-4 mr-2" />}
         Generate Social Image

@@ -76,31 +76,31 @@ export function SignUpForm() {
   const roles: { value: FormData['role']; icon: React.ReactNode; label: string; description: string }[] = [
     {
       value: 'BUYER',
-      icon: <ShoppingBag className={`w-8 h-8 ${selectedRole === 'BUYER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      icon: <ShoppingBag className={`w-8 h-8 ${selectedRole === 'BUYER' ? 'text-[#c1622d]' : 'text-gray-400'}`} />,
       label: 'Buy Food',
       description: 'Order from local chefs',
     },
     {
       value: 'SELLER',
-      icon: <ChefHat className={`w-8 h-8 ${selectedRole === 'SELLER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      icon: <ChefHat className={`w-8 h-8 ${selectedRole === 'SELLER' ? 'text-[#c1622d]' : 'text-gray-400'}`} />,
       label: 'Sell Food',
       description: 'Start your home kitchen',
     },
     {
       value: 'PLANNER',
-      icon: <CalendarDays className={`w-8 h-8 ${selectedRole === 'PLANNER' ? 'text-[#d4a5a5]' : 'text-gray-400'}`} />,
+      icon: <CalendarDays className={`w-8 h-8 ${selectedRole === 'PLANNER' ? 'text-[#c1622d]' : 'text-gray-400'}`} />,
       label: 'Plan Meals',
       description: 'Weekly meal planner',
     },
   ]
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fdf0ee] to-white px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
-            <Heart className="w-7 h-7 text-[#d4a5a5] fill-[#d4a5a5]" />
-            WithMetta
+            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            Mise en Place
           </Link>
         </div>
         <Card>
@@ -123,7 +123,7 @@ export function SignUpForm() {
                       key={value}
                       className={`flex flex-col items-center gap-2 border-2 rounded-xl p-4 cursor-pointer transition-colors ${
                         selectedRole === value
-                          ? 'border-[#e28a93] bg-[#fdf0ee]'
+                          ? 'border-[#a64f20] bg-[#f7e9de]'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -148,14 +148,14 @@ export function SignUpForm() {
                 {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
               </div>
 
-              <Button type="submit" className="w-full bg-[#d4a5a5] hover:bg-[#c49090]" disabled={loading}>
+              <Button type="submit" className="w-full bg-[#c1622d] hover:bg-[#a64f20]" disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                 {loading ? 'Creating account...' : 'Create Account'}
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-gray-500">
               Already have an account?{' '}
-              <Link href="/auth/signin" className="text-[#d4a5a5] font-medium hover:underline">
+              <Link href="/auth/signin" className="text-[#c1622d] font-medium hover:underline">
                 Sign in
               </Link>
             </div>

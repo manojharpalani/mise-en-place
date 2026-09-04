@@ -26,7 +26,7 @@ async function getBuyerOrders(userId: string) {
 const STATUS_COLORS: Record<string, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
-  READY: 'bg-[#fdf0ee] text-[#c49090]',
+  READY: 'bg-[#f7e9de] text-[#a64f20]',
   DELIVERED: 'bg-gray-100 text-gray-600',
   PICKED_UP: 'bg-gray-100 text-gray-600',
   CANCELLED: 'bg-red-100 text-red-600',
@@ -64,7 +64,7 @@ export default async function BuyerOrdersPage() {
           <ShoppingBag className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p className="text-lg">No orders yet</p>
           <p className="text-sm mt-2 mb-6">Discover local chefs and place your first order!</p>
-          <Button asChild className="bg-[#d4a5a5] hover:bg-[#c49090]">
+          <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Link href="/sellers">Find Sellers</Link>
           </Button>
         </div>
@@ -78,7 +78,7 @@ export default async function BuyerOrdersPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span
-                          className="font-semibold text-gray-900 hover:text-[#d4a5a5]"
+                          className="font-semibold text-gray-900 hover:text-[#c1622d]"
                           onClick={e => { e.preventDefault(); e.stopPropagation(); window.location.href = `/${order.seller.storeSlug}` }}
                         >
                           {order.seller.storeName}
@@ -108,7 +108,7 @@ export default async function BuyerOrdersPage() {
                     </div>
 
                     <div className="text-right flex-shrink-0">
-                      <p className="font-bold text-[#d4a5a5] text-lg">{formatCurrency(order.total)}</p>
+                      <p className="font-bold text-[#c1622d] text-lg">{formatCurrency(order.total)}</p>
                       <Badge variant="outline" className="text-xs">{order.fulfillmentType}</Badge>
                     </div>
                   </div>

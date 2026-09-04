@@ -42,7 +42,7 @@ export default async function AdminDashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: 'Total Users', value: metrics.totalUsers, icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Active Sellers', value: metrics.totalSellers, icon: ChefHat, color: 'text-[#d4a5a5]', bg: 'bg-[#fdf0ee]' },
+          { label: 'Active Sellers', value: metrics.totalSellers, icon: ChefHat, color: 'text-[#c1622d]', bg: 'bg-[#f7e9de]' },
           { label: 'Total Orders', value: metrics.totalOrders, icon: ShoppingBag, color: 'text-purple-600', bg: 'bg-purple-50' },
           { label: 'Platform Revenue', value: formatCurrency(metrics.totalRevenue), icon: DollarSign, color: 'text-amber-600', bg: 'bg-amber-50' },
         ].map((stat) => {
@@ -83,7 +83,7 @@ export default async function AdminDashboardPage() {
                   <p className="font-medium">{order.buyer.name || order.buyer.email}</p>
                   <p className="text-gray-400">{order.seller.storeName}</p>
                 </div>
-                <span className="font-semibold text-[#d4a5a5]">{formatCurrency(order.total)}</span>
+                <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
               </div>
             ))}
           </div>

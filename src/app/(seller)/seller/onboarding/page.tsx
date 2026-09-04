@@ -14,6 +14,7 @@ import { Progress } from '@/components/ui/progress'
 import { Loader2, ChefHat, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { slugify } from '@/lib/utils'
+import { displayUrl } from '@/lib/site'
 
 const schema = z.object({
   storeName: z.string().min(2, 'Store name must be at least 2 characters'),
@@ -80,8 +81,8 @@ export default function OnboardingPage() {
   if (submitted) {
     return (
       <div className="max-w-lg mx-auto text-center py-16">
-        <div className="w-16 h-16 bg-[#fdf0ee] rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-9 h-9 text-[#d4a5a5]" />
+        <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-9 h-9 text-[#c1622d]" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-3">Store Created!</h2>
         <p className="text-gray-600 mb-2">
@@ -90,7 +91,7 @@ export default function OnboardingPage() {
         <p className="text-gray-500 text-sm mb-6">
           In the meantime, you can set up your menu, add items, and configure your settings.
         </p>
-        <Button onClick={() => router.push('/seller/dashboard')} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+        <Button onClick={() => router.push('/seller/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
           Go to Dashboard
         </Button>
       </div>
@@ -100,16 +101,16 @@ export default function OnboardingPage() {
   return (
     <div className="max-w-lg mx-auto">
       <div className="text-center mb-8">
-        <ChefHat className="w-12 h-12 text-[#d4a5a5] mx-auto mb-3" />
+        <ChefHat className="w-12 h-12 text-[#c1622d] mx-auto mb-3" />
         <h1 className="text-2xl font-bold text-gray-900">Set Up Your Store</h1>
-        <p className="text-gray-500 mt-1">Let&apos;s get your kitchen on WithMetta</p>
+        <p className="text-gray-500 mt-1">Let&apos;s get your kitchen on Mise en Place</p>
       </div>
 
       {/* Progress */}
       <div className="mb-8">
         <div className="flex justify-between text-sm mb-2">
           {STEPS.map((s, i) => (
-            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#d4a5a5]' : 'text-gray-400'}`}>
+            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-gray-400'}`}>
               {s.label}
             </span>
           ))}
@@ -134,7 +135,7 @@ export default function OnboardingPage() {
               <div className="space-y-2">
                 <Label>Store URL *</Label>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-500 whitespace-nowrap">withmetta.com/s/</span>
+                  <span className="text-sm text-gray-500 whitespace-nowrap">{displayUrl('/s/')}</span>
                   <Input placeholder="marias-kitchen" {...register('storeSlug')} />
                 </div>
                 {errors.storeSlug && <p className="text-sm text-red-500">{errors.storeSlug.message}</p>}
@@ -176,7 +177,7 @@ export default function OnboardingPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">URL</span>
-                  <span className="font-medium">withmetta.com/s/{watch('storeSlug')}</span>
+                  <span className="font-medium">{displayUrl('/s/')}{watch('storeSlug')}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Cuisine</span>
@@ -198,11 +199,11 @@ export default function OnboardingPage() {
             </Button>
           )}
           {step < 2 ? (
-            <Button type="button" onClick={nextStep} className="ml-auto bg-[#d4a5a5] hover:bg-[#c49090]">
+            <Button type="button" onClick={nextStep} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
               Next
             </Button>
           ) : (
-            <Button type="submit" disabled={loading} className="ml-auto bg-[#d4a5a5] hover:bg-[#c49090]">
+            <Button type="submit" disabled={loading} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
               {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
               Submit for Review
             </Button>

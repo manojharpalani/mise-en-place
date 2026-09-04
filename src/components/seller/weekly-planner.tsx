@@ -135,7 +135,7 @@ function DateRangeDialog({ open, onClose, title, initialStart, initialEnd, savin
               type="date"
               value={start}
               onChange={e => setStart(e.target.value)}
-              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#e28a93]"
+              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
             />
           </div>
           <div>
@@ -145,7 +145,7 @@ function DateRangeDialog({ open, onClose, title, initialStart, initialEnd, savin
               value={end}
               min={start}
               onChange={e => setEnd(e.target.value)}
-              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#e28a93]"
+              className="w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a64f20]"
             />
           </div>
           {start && end && end < start && (
@@ -157,7 +157,7 @@ function DateRangeDialog({ open, onClose, title, initialStart, initialEnd, savin
             </Button>
             <Button
               size="sm"
-              className="flex-1 bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+              className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
               disabled={!valid || saving}
               onClick={() => onSave(start, end)}
             >
@@ -624,7 +624,7 @@ export function WeeklyMenuPlanner({
               key={menu.id}
               className={`flex items-center rounded-lg border text-sm font-medium transition-colors ${
                 i === activeMenuIndex
-                  ? 'bg-[#d4a5a5] text-white border-[#d4a5a5]'
+                  ? 'bg-[#c1622d] text-white border-[#c1622d]'
                   : 'bg-white text-stone-600 border-stone-200'
               }`}
             >
@@ -664,7 +664,7 @@ export function WeeklyMenuPlanner({
               {missingIngredientsCount > 0 && (
                 <span
                   className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-white text-[10px] flex items-center justify-center font-bold"
-                  style={{ background: '#e28a93' }}
+                  style={{ background: '#a64f20' }}
                 >
                   {missingIngredientsCount}
                 </span>
@@ -674,7 +674,7 @@ export function WeeklyMenuPlanner({
               <Button
                 size="sm"
                 variant="outline"
-                className="border-[#d4a5a5] text-[#d4a5a5]"
+                className="border-[#c1622d] text-[#c1622d]"
                 onClick={generateFlyer}
                 disabled={generatingFlyer}
               >
@@ -692,7 +692,7 @@ export function WeeklyMenuPlanner({
                   size="sm"
                   onClick={publishMenu}
                   disabled={publishing}
-                  className="bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+                  className="bg-[#c1622d] hover:bg-[#a64f20] text-white"
                 >
                   {publishing
                     ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Publishing…</>
@@ -730,14 +730,14 @@ export function WeeklyMenuPlanner({
               onClick={() => setShowImport(true)}
               size="sm"
               variant="outline"
-              className="border-[#d4a5a5] text-[#d4a5a5] hover:bg-[#fdf0ee]"
+              className="border-[#c1622d] text-[#c1622d] hover:bg-[#f7e9de]"
             >
               <Plus className="w-4 h-4 mr-1.5" /> Import from Image
             </Button>
             <Button
               onClick={() => setShowAiPlan(true)}
               size="sm"
-              className="bg-gradient-to-r from-[#d4a5a5] to-[#c8a0d0] hover:from-[#c49090] hover:to-[#b890c0] text-white"
+              className="bg-gradient-to-r from-[#c1622d] to-[#c8a0d0] hover:from-[#a64f20] hover:to-[#b890c0] text-white"
             >
               <Wand2 className="w-4 h-4 mr-2" /> AI Plan Week
             </Button>
@@ -754,16 +754,16 @@ export function WeeklyMenuPlanner({
             const totalItems = dayData.menuItems.length + dayData.comboItems.length
 
             return (
-              <Card key={dayData.id ?? dayData.dayOfWeek} className={isToday ? 'border-[#e8d5d0] shadow-sm' : ''}>
+              <Card key={dayData.id ?? dayData.dayOfWeek} className={isToday ? 'border-[#e7ddcb] shadow-sm' : ''}>
                 <CardHeader className="py-3 px-4">
                   <CardTitle className="text-sm font-semibold flex items-center justify-between">
-                    <span className={isToday ? 'text-[#d4a5a5]' : ''}>
+                    <span className={isToday ? 'text-[#c1622d]' : ''}>
                       {dayNameFromDate(dayData.date, dayData.dayOfWeek)}{isToday && <span className="text-xs ml-1 font-normal">(Today)</span>}
                     </span>
                     <div className="flex items-center gap-2">
                       {totalItems > 0 && (
                         <>
-                          <span className="text-xs font-normal" style={{ color: '#a8a29e' }}>
+                          <span className="text-xs font-normal" style={{ color: '#8a7a63' }}>
                             {totalItems} item{totalItems !== 1 ? 's' : ''}
                           </span>
                           <button
@@ -785,7 +785,7 @@ export function WeeklyMenuPlanner({
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-2">
                   {dayData.menuItems.map(mi => (
-                    <div key={mi.menuItem.id} className="bg-[#fdf0ee] rounded-lg px-2 py-1.5 text-sm space-y-1">
+                    <div key={mi.menuItem.id} className="bg-[#f7e9de] rounded-lg px-2 py-1.5 text-sm space-y-1">
                       <div className="flex items-center justify-between">
                         <button
                           onClick={() => setInspiredItem({ id: mi.menuItem.id, name: mi.menuItem.name })}
@@ -793,9 +793,9 @@ export function WeeklyMenuPlanner({
                           title="Get recipe inspiration"
                         >
                           <span className="font-medium truncate">{mi.menuItem.name}</span>
-                          <span className="text-[10px] flex-shrink-0" style={{ color: '#d4a5a5' }}>✦</span>
+                          <span className="text-[10px] flex-shrink-0" style={{ color: '#c1622d' }}>✦</span>
                           {!mi.menuItem.ingredients && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: '#fdf0ee', color: '#e28a93', border: '1px solid #e8d5d0' }}>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: '#f7e9de', color: '#a64f20', border: '1px solid #e7ddcb' }}>
                               No ingredients
                             </span>
                           )}
@@ -850,7 +850,7 @@ export function WeeklyMenuPlanner({
                   ))}
                   <button
                     onClick={() => setAddingToDayIndex(dayIndex)}
-                    className="w-full text-xs text-stone-400 hover:text-[#d4a5a5] border border-dashed border-stone-200 hover:border-[#e8d5d0] rounded-lg py-2 transition-colors"
+                    className="w-full text-xs text-stone-400 hover:text-[#c1622d] border border-dashed border-stone-200 hover:border-[#e7ddcb] rounded-lg py-2 transition-colors"
                   >
                     + Add item
                   </button>
@@ -862,7 +862,7 @@ export function WeeklyMenuPlanner({
       ) : (
         <div className="text-center py-20 bg-white rounded-xl border">
           <p className="text-stone-400 mb-4">No plan yet. Create one to get started.</p>
-          <Button onClick={() => setShowCreateDialog(true)} className="bg-[#d4a5a5] hover:bg-[#c49090] text-white">
+          <Button onClick={() => setShowCreateDialog(true)} className="bg-[#c1622d] hover:bg-[#a64f20] text-white">
             Create a Plan
           </Button>
         </div>
@@ -888,10 +888,10 @@ export function WeeklyMenuPlanner({
                       const dayData = addingToDayIndex !== null ? currentMenu?.days[addingToDayIndex] : null
                       const isAdded = dayData?.menuItems.some(mi => mi.menuItem.id === item.id) ?? false
                       return (
-                        <div key={item.id} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-sm ${isAdded ? 'bg-[#fdf0ee] border-[#e8d5d0]' : 'bg-white'}`}>
+                        <div key={item.id} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-sm ${isAdded ? 'bg-[#f7e9de] border-[#e7ddcb]' : 'bg-white'}`}>
                           <div className="flex items-center gap-2 min-w-0">
                             <span className={isAdded ? 'font-medium' : ''}>{item.name}</span>
-                            {!item.ingredients && <span className="text-[10px] text-[#e28a93] flex-shrink-0">· needs ingredients</span>}
+                            {!item.ingredients && <span className="text-[10px] text-[#a64f20] flex-shrink-0">· needs ingredients</span>}
                           </div>
                           <div className="flex items-center gap-2 ml-2 flex-shrink-0">
                             <span className="text-stone-400">{formatCurrency(item.salePrice ?? item.price)}</span>
@@ -905,7 +905,7 @@ export function WeeklyMenuPlanner({
                             ) : (
                               <button
                                 onClick={() => addItemToDay(addingToDayIndex!, item.id, null)}
-                                className="text-xs text-[#d4a5a5] hover:text-[#b08080] font-medium"
+                                className="text-xs text-[#c1622d] hover:text-[#b08080] font-medium"
                               >
                                 Add
                               </button>
@@ -938,7 +938,7 @@ export function WeeklyMenuPlanner({
                               ) : (
                                 <button
                                   onClick={() => addItemToDay(addingToDayIndex!, null, combo.id)}
-                                  className="text-xs text-[#d4a5a5] hover:text-[#b08080] font-medium"
+                                  className="text-xs text-[#c1622d] hover:text-[#b08080] font-medium"
                                 >
                                   Add
                                 </button>
@@ -961,7 +961,7 @@ export function WeeklyMenuPlanner({
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Plus className="w-5 h-5 text-[#d4a5a5]" />
+              <Plus className="w-5 h-5 text-[#c1622d]" />
               Import Plan from Image
             </DialogTitle>
           </DialogHeader>
@@ -989,7 +989,7 @@ export function WeeklyMenuPlanner({
                 <button
                   type="button"
                   onClick={() => importImageRef.current?.click()}
-                  className="w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-stone-200 hover:border-[#d4a5a5] rounded-xl py-10 text-stone-400 hover:text-[#d4a5a5] transition-colors"
+                  className="w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-stone-200 hover:border-[#c1622d] rounded-xl py-10 text-stone-400 hover:text-[#c1622d] transition-colors"
                 >
                   <Sparkles className="w-8 h-8" />
                   <span className="font-medium">Click to upload menu image</span>
@@ -1007,7 +1007,7 @@ export function WeeklyMenuPlanner({
               <div className="flex gap-2 pt-1">
                 <Button variant="outline" className="flex-1" onClick={() => setShowImport(false)}>Cancel</Button>
                 <Button
-                  className="flex-1 bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+                  className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
                   disabled={!importImage || importAnalyzing}
                   onClick={analyzeImportImage}
                 >
@@ -1062,7 +1062,7 @@ export function WeeklyMenuPlanner({
                               )
                               return { ...prev, days }
                             })}
-                            className="mt-0.5 accent-[#d4a5a5] flex-shrink-0"
+                            className="mt-0.5 accent-[#c1622d] flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
@@ -1097,7 +1097,7 @@ export function WeeklyMenuPlanner({
               <div className="flex gap-2 pt-1">
                 <Button variant="outline" className="flex-1" onClick={() => { setShowImport(false); setImportImage(null); setImportPlan(null) }}>Cancel</Button>
                 <Button
-                  className="flex-1 bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+                  className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
                   disabled={importApplying || importPlan.days.every(d => d.items.every(i => !i.selected))}
                   onClick={applyImportPlan}
                 >
@@ -1117,7 +1117,7 @@ export function WeeklyMenuPlanner({
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Wand2 className="w-5 h-5 text-[#d4a5a5]" />
+              <Wand2 className="w-5 h-5 text-[#c1622d]" />
               AI Plan This Week
             </DialogTitle>
           </DialogHeader>
@@ -1156,7 +1156,7 @@ export function WeeklyMenuPlanner({
                 <button
                   type="button"
                   onClick={() => aiImageInputRef.current?.click()}
-                  className="w-full flex flex-col items-center justify-center gap-1.5 border border-dashed border-stone-200 hover:border-[#d4a5a5] rounded-lg py-4 text-stone-400 hover:text-[#d4a5a5] transition-colors text-sm"
+                  className="w-full flex flex-col items-center justify-center gap-1.5 border border-dashed border-stone-200 hover:border-[#c1622d] rounded-lg py-4 text-stone-400 hover:text-[#c1622d] transition-colors text-sm"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Upload a handwritten menu, food photo, or reference image</span>
@@ -1183,7 +1183,7 @@ export function WeeklyMenuPlanner({
                       onClick={() => setAiItemsPerDay(n)}
                       className={`flex-1 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
                         aiItemsPerDay === n
-                          ? 'bg-[#d4a5a5] text-white border-[#d4a5a5]'
+                          ? 'bg-[#c1622d] text-white border-[#c1622d]'
                           : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
                       }`}
                     >
@@ -1203,7 +1203,7 @@ export function WeeklyMenuPlanner({
                       onClick={() => setAiIncludeCombo(v)}
                       className={`flex-1 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
                         aiIncludeCombo === v
-                          ? 'bg-[#d4a5a5] text-white border-[#d4a5a5]'
+                          ? 'bg-[#c1622d] text-white border-[#c1622d]'
                           : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
                       }`}
                     >
@@ -1225,7 +1225,7 @@ export function WeeklyMenuPlanner({
                       onClick={() => setAiComboSize(n)}
                       className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-colors ${
                         aiComboSize === n
-                          ? 'bg-[#d4a5a5] text-white border-[#d4a5a5]'
+                          ? 'bg-[#c1622d] text-white border-[#c1622d]'
                           : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
                       }`}
                     >
@@ -1241,7 +1241,7 @@ export function WeeklyMenuPlanner({
                 Cancel
               </Button>
               <Button
-                className="flex-1 bg-gradient-to-r from-[#d4a5a5] to-[#c8a0d0] hover:from-[#c49090] hover:to-[#b890c0] text-white"
+                className="flex-1 bg-gradient-to-r from-[#c1622d] to-[#c8a0d0] hover:from-[#a64f20] hover:to-[#b890c0] text-white"
                 onClick={generateAiPlan}
                 disabled={aiGenerating}
               >
@@ -1260,7 +1260,7 @@ export function WeeklyMenuPlanner({
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Layers className="w-5 h-5 text-[#d4a5a5]" />
+              <Layers className="w-5 h-5 text-[#c1622d]" />
               Create Combo Meal
             </DialogTitle>
           </DialogHeader>
@@ -1301,14 +1301,14 @@ export function WeeklyMenuPlanner({
                 ) : menuItems.map(item => {
                   const selected = comboSelectedItems.includes(item.id)
                   return (
-                    <label key={item.id} className={`flex items-center gap-3 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${selected ? 'bg-[#fdf0ee]' : 'hover:bg-stone-50'}`}>
+                    <label key={item.id} className={`flex items-center gap-3 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${selected ? 'bg-[#f7e9de]' : 'hover:bg-stone-50'}`}>
                       <input
                         type="checkbox"
                         checked={selected}
                         onChange={() => setComboSelectedItems(prev =>
                           selected ? prev.filter(id => id !== item.id) : [...prev, item.id]
                         )}
-                        className="accent-[#d4a5a5]"
+                        className="accent-[#c1622d]"
                       />
                       <span className="flex-1 text-sm">{item.name}</span>
                       <span className="text-xs text-stone-400">{formatCurrency(item.salePrice ?? item.price)}</span>
@@ -1326,7 +1326,7 @@ export function WeeklyMenuPlanner({
                 Cancel
               </Button>
               <Button
-                className="flex-1 bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+                className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
                 onClick={saveCombo}
                 disabled={savingCombo || comboSelectedItems.length < 2 || !comboName.trim() || !comboPrice}
               >

@@ -1,0 +1,9 @@
+<svg width="80" height="48" viewBox="0 0 80 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mise en Place mark">
+  <line x1="2" y1="42" x2="78" y2="42" stroke="#8A6C50" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="16" cy="27" rx="13" ry="9.5" stroke="#C1622D" stroke-width="2.25"/>
+  <circle cx="16" cy="25" r="2.25" fill="#C1622D"/>
+  <ellipse cx="40" cy="31" rx="14.5" ry="10.5" stroke="#C1622D" stroke-width="2.25"/>
+  <circle cx="40" cy="29" r="2.25" fill="#C1622D"/>
+  <ellipse cx="64" cy="26" rx="12" ry="9" stroke="#C1622D" stroke-width="2.25"/>
+  <circle cx="64" cy="24" r="2.25" fill="#C1622D"/>
+</svg>

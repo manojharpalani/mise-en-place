@@ -27,11 +27,11 @@ export function ContactSidebar({ seller }: ContactSidebarProps) {
             href={seller.whatsappGroupLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-3 bg-[#fdf0ee] rounded-lg hover:bg-[#f5e0dc] transition-colors"
+            className="flex items-center gap-3 p-3 bg-[#f7e9de] rounded-lg hover:bg-[#f5e0dc] transition-colors"
           >
-            <MessageCircle className="w-5 h-5 text-[#d4a5a5] fill-[#fdf0ee]" />
-            <span className="text-sm font-medium text-[#c49090]">Join WhatsApp Group</span>
-            <ExternalLink className="w-4 h-4 text-[#d4a5a5] ml-auto" />
+            <MessageCircle className="w-5 h-5 text-[#c1622d] fill-[#f7e9de]" />
+            <span className="text-sm font-medium text-[#a64f20]">Join WhatsApp Group</span>
+            <ExternalLink className="w-4 h-4 text-[#c1622d] ml-auto" />
           </a>
         )}
 

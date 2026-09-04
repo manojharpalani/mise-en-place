@@ -251,7 +251,7 @@ export function SettingsClient({ seller }: {
           </div>
 
           {deliveryEnabled && (
-            <div className="grid grid-cols-2 gap-3 pl-4 border-l-2 border-[#e8d5d0]">
+            <div className="grid grid-cols-2 gap-3 pl-4 border-l-2 border-[#e7ddcb]">
               <div className="space-y-2">
                 <Label>Delivery Radius (miles)</Label>
                 <Input type="number" step="0.5" {...register('deliveryRadiusMiles')} placeholder="5" />
@@ -421,7 +421,7 @@ export function SettingsClient({ seller }: {
         </CardContent>
       </Card>
 
-      <Button type="submit" disabled={loading} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+      <Button type="submit" disabled={loading} className="bg-[#c1622d] hover:bg-[#a64f20]">
         {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
         Save Settings
       </Button>

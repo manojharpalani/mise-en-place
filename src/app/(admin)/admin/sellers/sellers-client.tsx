@@ -58,7 +58,7 @@ export function SellersAdminClient({ initialSellers }: { initialSellers: Seller[
 
       {approved.length > 0 && (
         <div>
-          <h2 className="text-lg font-semibold text-[#c49090] mb-3">Approved ({approved.length})</h2>
+          <h2 className="text-lg font-semibold text-[#a64f20] mb-3">Approved ({approved.length})</h2>
           <div className="space-y-3">
             {approved.map((s) => <ApprovalCard key={s.id} seller={s} onUpdate={updateSeller} />)}
           </div>

@@ -152,7 +152,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                 width: 'fit-content',
               }}
             >
-              Order on WithMetta →
+              Order on Mise en Place →
             </div>
           </div>
 

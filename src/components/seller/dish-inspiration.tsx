@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Loader2, Sparkles, Play, ExternalLink, MessageCircle, RefreshCw, ChefHat, Lightbulb, Share2 } from 'lucide-react'
 import { toast } from 'sonner'
 import type { InspirationResponse, VideoResult } from '@/app/api/menu-items/[id]/inspiration/route'
+import { absoluteUrl } from '@/lib/site'
 
 type Tab = 'recipe' | 'videos' | 'share'
 
@@ -38,7 +39,7 @@ function VideoCard({ video }: { video: VideoResult }) {
       target="_blank"
       rel="noopener noreferrer"
       className="flex-shrink-0 w-44 rounded-xl overflow-hidden border transition-transform active:scale-95"
-      style={{ borderColor: '#e7e5e4' }}
+      style={{ borderColor: '#e7ddcb' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -59,13 +60,13 @@ function VideoCard({ video }: { video: VideoResult }) {
 
       {/* Info */}
       <div className="p-2">
-        <p className="text-xs font-medium leading-tight line-clamp-2" style={{ color: '#292524' }}>
+        <p className="text-xs font-medium leading-tight line-clamp-2" style={{ color: '#2a2420' }}>
           {video.title}
         </p>
-        <p className="text-[10px] mt-1 truncate" style={{ color: '#78716c' }}>
+        <p className="text-[10px] mt-1 truncate" style={{ color: '#6b625a' }}>
           {video.creditText}
         </p>
-        <p className="text-[10px]" style={{ color: '#a8a29e' }}>
+        <p className="text-[10px]" style={{ color: '#8a7a63' }}>
           {video.viewCount} views
         </p>
       </div>
@@ -115,14 +116,13 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
   // Build WhatsApp share message whenever recipe loads
   useEffect(() => {
     if (!data || !item) return
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://withmetta.com'
-    const storeUrl = `${appUrl}/${seller.storeSlug}`
+    const storeUrl = absoluteUrl(`/${seller.storeSlug}`)
     setShareMsg(
       `✨ *${item.name}* is on the menu at *${seller.storeName}* this week!\n\n` +
       `${data.recipe.headline}\n\n` +
       `${data.recipe.story.split('.')[0]}.\n\n` +
       `🛒 Order now → ${storeUrl}\n\n` +
-      `Made with loving-kindness 🤍`
+      `Made with care 🤍`
     )
   }, [data, item, seller])
 
@@ -142,26 +142,26 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
       <SheetContent
         side="bottom"
         className="flex flex-col p-0 rounded-t-2xl"
-        style={{ background: '#fffcf5', height: '88dvh' }}
+        style={{ background: '#fbf6ec', height: '88dvh' }}
       >
         {/* Header */}
         <SheetHeader className="px-4 pt-4 pb-0">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-0.5">
-                <ChefHat className="w-4 h-4 flex-shrink-0" style={{ color: '#d4a5a5' }} />
-                <SheetTitle className="font-heading text-lg leading-tight truncate" style={{ color: '#292524' }}>
+                <ChefHat className="w-4 h-4 flex-shrink-0" style={{ color: '#c1622d' }} />
+                <SheetTitle className="font-heading text-lg leading-tight truncate" style={{ color: '#2a2420' }}>
                   {item?.name}
                 </SheetTitle>
               </div>
               {item?.description && (
-                <p className="text-xs line-clamp-1" style={{ color: '#78716c' }}>{item.description}</p>
+                <p className="text-xs line-clamp-1" style={{ color: '#6b625a' }}>{item.description}</p>
               )}
             </div>
             <button
               onClick={() => fetchInspiration(true)}
               className="ml-3 p-1.5 rounded-lg flex-shrink-0 mt-0.5"
-              style={{ background: '#f5f5f4', color: '#78716c' }}
+              style={{ background: '#f1e9db', color: '#6b625a' }}
               title="Refresh"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -176,8 +176,8 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                 onClick={() => setTab(t.id)}
                 className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all"
                 style={tab === t.id
-                  ? { background: 'white', color: '#292524', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }
-                  : { color: '#78716c' }
+                  ? { background: 'white', color: '#2a2420', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }
+                  : { color: '#6b625a' }
                 }
               >
                 {t.icon}
@@ -193,15 +193,15 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
           {loading ? (
             <div className="flex flex-col items-center justify-center h-full gap-4">
               <div className="relative">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#fdf0ee' }}>
-                  <Sparkles className="w-7 h-7 animate-pulse" style={{ color: '#e28a93' }} />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: '#f7e9de' }}>
+                  <Sparkles className="w-7 h-7 animate-pulse" style={{ color: '#a64f20' }} />
                 </div>
               </div>
               <div className="text-center">
-                <p className="font-medium text-sm" style={{ color: '#292524' }}>Finding inspiration…</p>
-                <p className="text-xs mt-1" style={{ color: '#a8a29e' }}>Asking Claude & searching YouTube</p>
+                <p className="font-medium text-sm" style={{ color: '#2a2420' }}>Finding inspiration…</p>
+                <p className="text-xs mt-1" style={{ color: '#8a7a63' }}>Asking Claude & searching YouTube</p>
               </div>
-              <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#d4a5a5' }} />
+              <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#c1622d' }} />
             </div>
           ) : !data ? null : (
 
@@ -212,54 +212,54 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                   {/* Headline */}
                   <div
                     className="rounded-2xl px-5 py-4 text-center"
-                    style={{ background: 'linear-gradient(135deg, #fdf0ee, #f0e0db)' }}
+                    style={{ background: 'linear-gradient(135deg, #f7e9de, #f0e0db)' }}
                   >
-                    <p className="font-heading text-xl font-semibold leading-snug" style={{ color: '#292524' }}>
+                    <p className="font-heading text-xl font-semibold leading-snug" style={{ color: '#2a2420' }}>
                       {data.recipe.headline}
                     </p>
                   </div>
 
                   {/* Story */}
-                  <div className="rounded-xl p-4 border" style={{ background: 'white', borderColor: '#e7e5e4' }}>
+                  <div className="rounded-xl p-4 border" style={{ background: 'white', borderColor: '#e7ddcb' }}>
                     <div className="flex items-center gap-2 mb-2">
-                      <Lightbulb className="w-4 h-4" style={{ color: '#e28a93' }} />
-                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#a8a29e' }}>The Story</span>
+                      <Lightbulb className="w-4 h-4" style={{ color: '#a64f20' }} />
+                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#8a7a63' }}>The Story</span>
                     </div>
-                    <p className="text-sm leading-relaxed" style={{ color: '#57534e' }}>{data.recipe.story}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: '#4a4239' }}>{data.recipe.story}</p>
                   </div>
 
                   {/* Tips */}
                   <div>
                     <div className="flex items-center gap-2 mb-3">
-                      <ChefHat className="w-4 h-4" style={{ color: '#d4a5a5' }} />
-                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#a8a29e' }}>Chef Tips</span>
+                      <ChefHat className="w-4 h-4" style={{ color: '#c1622d' }} />
+                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#8a7a63' }}>Chef Tips</span>
                     </div>
                     <div className="space-y-2">
                       {data.recipe.tips.map((tip, i) => (
-                        <div key={i} className="flex gap-3 rounded-xl p-3 border" style={{ background: 'white', borderColor: '#e7e5e4' }}>
+                        <div key={i} className="flex gap-3 rounded-xl p-3 border" style={{ background: 'white', borderColor: '#e7ddcb' }}>
                           <span
                             className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5"
-                            style={{ background: '#d4a5a5' }}
+                            style={{ background: '#c1622d' }}
                           >
                             {i + 1}
                           </span>
-                          <p className="text-sm leading-relaxed" style={{ color: '#57534e' }}>{tip}</p>
+                          <p className="text-sm leading-relaxed" style={{ color: '#4a4239' }}>{tip}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Serving */}
-                  <div className="rounded-xl p-4 border" style={{ background: '#fdf0ee', borderColor: '#e8d5d0' }}>
-                    <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: '#a8a29e' }}>🍽️ Serving Suggestion</p>
-                    <p className="text-sm" style={{ color: '#57534e' }}>{data.recipe.servingSuggestions}</p>
+                  <div className="rounded-xl p-4 border" style={{ background: '#f7e9de', borderColor: '#e7ddcb' }}>
+                    <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: '#8a7a63' }}>🍽️ Serving Suggestion</p>
+                    <p className="text-sm" style={{ color: '#4a4239' }}>{data.recipe.servingSuggestions}</p>
                   </div>
 
                   {/* Nudge to videos */}
                   <button
                     onClick={() => setTab('videos')}
                     className="w-full rounded-xl py-3 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
-                    style={{ background: '#292524', color: 'white' }}
+                    style={{ background: '#2a2420', color: 'white' }}
                   >
                     <Play className="w-4 h-4" /> Watch it being made →
                   </button>
@@ -271,15 +271,15 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                 <div className="space-y-4">
                   {data.videos.length === 0 ? (
                     <div className="text-center py-12">
-                      <p className="text-sm" style={{ color: '#78716c' }}>
+                      <p className="text-sm" style={{ color: '#6b625a' }}>
                         No videos found. Add a YouTube API key in your <code>.env</code> to enable this.
                       </p>
                     </div>
                   ) : (
                     <>
-                      <p className="text-xs" style={{ color: '#a8a29e' }}>
+                      <p className="text-xs" style={{ color: '#8a7a63' }}>
                         {data.videos.filter(v => v.isShort).length > 0 && (
-                          <span className="inline-flex items-center gap-1 mr-2 px-2 py-0.5 rounded-full" style={{ background: '#fdf0ee', color: '#e28a93' }}>
+                          <span className="inline-flex items-center gap-1 mr-2 px-2 py-0.5 rounded-full" style={{ background: '#f7e9de', color: '#a64f20' }}>
                             🩳 {data.videos.filter(v => v.isShort).length} Shorts
                           </span>
                         )}
@@ -294,18 +294,18 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                       </div>
 
                       {/* Credits */}
-                      <div className="rounded-xl p-3 border" style={{ background: '#fafaf9', borderColor: '#e7e5e4' }}>
-                        <p className="text-[10px] font-semibold uppercase tracking-wide mb-2" style={{ color: '#a8a29e' }}>Video Credits</p>
+                      <div className="rounded-xl p-3 border" style={{ background: '#faf3e6', borderColor: '#e7ddcb' }}>
+                        <p className="text-[10px] font-semibold uppercase tracking-wide mb-2" style={{ color: '#8a7a63' }}>Video Credits</p>
                         <ul className="space-y-1">
                           {data.videos.map(v => (
                             <li key={v.videoId} className="flex items-center gap-2">
-                              <ExternalLink className="w-3 h-3 flex-shrink-0" style={{ color: '#a8a29e' }} />
+                              <ExternalLink className="w-3 h-3 flex-shrink-0" style={{ color: '#8a7a63' }} />
                               <a
                                 href={`https://www.youtube.com/channel/${v.channelId}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-xs hover:underline truncate"
-                                style={{ color: '#78716c' }}
+                                style={{ color: '#6b625a' }}
                               >
                                 {v.creditText}
                               </a>
@@ -330,18 +330,18 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
               {/* ─── Share Teaser Tab ─── */}
               {tab === 'share' && (
                 <div className="space-y-4">
-                  <div className="rounded-xl p-3 border" style={{ background: 'white', borderColor: '#e7e5e4' }}>
-                    <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: '#a8a29e' }}>Preview</p>
+                  <div className="rounded-xl p-3 border" style={{ background: 'white', borderColor: '#e7ddcb' }}>
+                    <p className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: '#8a7a63' }}>Preview</p>
                     <textarea
                       value={shareMsg}
                       onChange={e => setShareMsg(e.target.value)}
                       rows={9}
                       className="w-full text-sm leading-relaxed resize-none focus:outline-none"
-                      style={{ color: '#292524', background: 'transparent' }}
+                      style={{ color: '#2a2420', background: 'transparent' }}
                     />
                   </div>
 
-                  <p className="text-xs text-center" style={{ color: '#a8a29e' }}>
+                  <p className="text-xs text-center" style={{ color: '#8a7a63' }}>
                     Edit the message above, then share
                   </p>
 
@@ -356,8 +356,8 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                     Send on WhatsApp
                   </Button>
 
-                  <div className="rounded-xl p-3 border" style={{ background: '#fafaf9', borderColor: '#e7e5e4' }}>
-                    <p className="text-[10px]" style={{ color: '#a8a29e' }}>
+                  <div className="rounded-xl p-3 border" style={{ background: '#faf3e6', borderColor: '#e7ddcb' }}>
+                    <p className="text-[10px]" style={{ color: '#8a7a63' }}>
                       💡 <strong>Tip:</strong> Send this to your WhatsApp subscriber group a day or two before to build excitement. Include a photo of the dish for even more engagement!
                     </p>
                   </div>

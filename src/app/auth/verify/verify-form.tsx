@@ -101,18 +101,18 @@ export function VerifyForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fdf0ee] to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
-            <Heart className="w-7 h-7 text-[#d4a5a5] fill-[#d4a5a5]" />
-            WithMetta
+            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            Mise en Place
           </Link>
         </div>
         <Card>
           <CardHeader className="text-center">
-            <div className="w-14 h-14 bg-[#fdf0ee] rounded-full flex items-center justify-center mx-auto mb-3">
-              <Mail className="w-7 h-7 text-[#d4a5a5]" />
+            <div className="w-14 h-14 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-3">
+              <Mail className="w-7 h-7 text-[#c1622d]" />
             </div>
             <CardTitle>Check your email</CardTitle>
             <CardDescription>
@@ -139,7 +139,7 @@ export function VerifyForm() {
 
             <Button
               onClick={() => handleVerify(otp.join(''))}
-              className="w-full bg-[#d4a5a5] hover:bg-[#c49090]"
+              className="w-full bg-[#c1622d] hover:bg-[#a64f20]"
               disabled={loading || otp.join('').length !== 6}
             >
               {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
@@ -151,7 +151,7 @@ export function VerifyForm() {
               <button
                 onClick={handleResend}
                 disabled={resending}
-                className="text-sm text-[#d4a5a5] font-medium hover:underline disabled:opacity-50"
+                className="text-sm text-[#c1622d] font-medium hover:underline disabled:opacity-50"
               >
                 {resending ? 'Sending...' : 'Resend code'}
               </button>

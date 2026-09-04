@@ -187,7 +187,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
               {seller.weeklyMenus[0].days.map((day) => (
                 <div key={day.id}>
                   <h3 className="font-semibold text-lg text-gray-900 mb-3 flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-[#d4a5a5]" />
+                    <Calendar className="w-5 h-5 text-[#c1622d]" />
                     {day.dayOfWeek} — {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </h3>
                   {day.menuItems.length === 0 && day.comboItems.length === 0 ? (
@@ -255,7 +255,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
                   <dt className="text-gray-500 w-28 shrink-0">Permit</dt>
                   <dd>
                     {seller.permitStatus === 'APPROVED' ? (
-                      <Badge className="bg-[#fdf0ee] text-[#c49090] flex items-center gap-1 w-fit">
+                      <Badge className="bg-[#f7e9de] text-[#a64f20] flex items-center gap-1 w-fit">
                         <CheckCircle className="w-3 h-3" /> Verified & Permitted
                       </Badge>
                     ) : (

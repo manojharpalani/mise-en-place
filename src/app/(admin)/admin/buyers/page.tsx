@@ -35,7 +35,7 @@ export default async function AdminBuyersPage() {
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Avatar className="w-8 h-8">
-                      <AvatarFallback className="text-xs bg-[#fdf0ee] text-[#c49090]">
+                      <AvatarFallback className="text-xs bg-[#f7e9de] text-[#a64f20]">
                         {(buyer.name || buyer.email || 'U')[0].toUpperCase()}
                       </AvatarFallback>
                     </Avatar>

@@ -88,13 +88,13 @@ export default async function PlannerDashboardPage() {
         <Card className="hover:shadow-md transition-shadow">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <CalendarDays className="w-5 h-5 text-[#d4a5a5]" />
+              <CalendarDays className="w-5 h-5 text-[#c1622d]" />
               Meal Plan
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <p className="text-sm text-gray-500 mb-3">Plan your week, add dishes, use AI suggestions</p>
-            <Button asChild size="sm" className="w-full bg-[#d4a5a5] hover:bg-[#c49090]">
+            <Button asChild size="sm" className="w-full bg-[#c1622d] hover:bg-[#a64f20]">
               <Link href="/planner/menu">
                 Plan This Week <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
@@ -105,7 +105,7 @@ export default async function PlannerDashboardPage() {
         <Card className="hover:shadow-md transition-shadow">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <ShoppingBasket className="w-5 h-5 text-[#d4a5a5]" />
+              <ShoppingBasket className="w-5 h-5 text-[#c1622d]" />
               Grocery List
             </CardTitle>
           </CardHeader>
@@ -125,7 +125,7 @@ export default async function PlannerDashboardPage() {
         <Card className="hover:shadow-md transition-shadow">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <ChefHat className="w-5 h-5 text-[#d4a5a5]" />
+              <ChefHat className="w-5 h-5 text-[#c1622d]" />
               Order from Local Chefs
             </CardTitle>
           </CardHeader>

@@ -34,7 +34,7 @@ export default async function SellersPage() {
           <div className="text-center py-20 text-gray-500">
             <Utensils className="w-12 h-12 mx-auto mb-4 opacity-30" />
             <p className="text-lg">No sellers in your area yet.</p>
-            <p className="text-sm mt-2">Be the first to <Link href="/auth/signup?role=seller" className="text-[#d4a5a5] underline">start selling!</Link></p>
+            <p className="text-sm mt-2">Be the first to <Link href="/auth/signup?role=seller" className="text-[#c1622d] underline">start selling!</Link></p>
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

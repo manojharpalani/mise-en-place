@@ -1,0 +1,26 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#C1622D" stroke-width="1.4" stroke-linecap="round">
+    <!-- sprig, top-left quadrant -->
+    <path d="M28 46 C 30 34, 30 24, 26 14" />
+    <path d="M27 34 C 33 31, 38 30, 43 32" />
+    <path d="M26 26 C 20 24, 15 24, 10 27" />
+    <path d="M27 18 C 32 16, 36 16, 40 19" />
+
+    <!-- small ring (bowl echo), top-right quadrant -->
+    <circle cx="182" cy="40" r="10" />
+    <circle cx="182" cy="40" r="1.6" fill="#C1622D" stroke="none" />
+
+    <!-- steam swirl, bottom-left quadrant -->
+    <path d="M34 190 C 44 182, 44 174, 34 168 C 24 162, 24 154, 34 146" />
+
+    <!-- thin rule with two dots, bottom-right quadrant -->
+    <path d="M150 205 L 205 205" />
+    <circle cx="146" cy="205" r="1.6" fill="#C1622D" stroke="none" />
+    <circle cx="209" cy="205" r="1.6" fill="#C1622D" stroke="none" />
+
+    <!-- second small sprig, center-right -->
+    <path d="M205 118 C 208 108, 208 100, 204 92" />
+    <path d="M206 108 C 211 106, 215 106, 218 109" />
+    <path d="M204 100 C 199 98, 195 98, 191 101" />
+  </g>
+</svg>

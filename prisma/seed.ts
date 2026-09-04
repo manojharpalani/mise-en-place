@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { subDays, subHours, addDays } from 'date-fns'
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/withmetta'
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/miseenplace'
 const adapter = new PrismaPg({ connectionString })
 const prisma = new PrismaClient({ adapter } as any)
 
@@ -12,10 +12,10 @@ const now = new Date()
 async function main() {
   // ── Admin ──────────────────────────────────────────────────────
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@withmetta.com' },
+    where: { email: 'admin@miseenplace.local' },
     update: {},
     create: {
-      email: 'admin@withmetta.com',
+      email: 'admin@miseenplace.local',
       name: 'Platform Admin',
       role: 'ADMIN',
       emailVerified: now,
@@ -480,7 +480,7 @@ async function main() {
   console.log('✓ Planner:', plannerUser.email)
 
   console.log('\n🎉 Seed complete!')
-  console.log('   Admin:   admin@withmetta.com')
+  console.log('   Admin:   admin@miseenplace.local')
   console.log('   Seller:  chef@example.com      → /seller/dashboard')
   console.log('   Buyer:   buyer@example.com     → /buyer/orders')
   console.log('   Planner: planner@example.com   → /planner/dashboard')

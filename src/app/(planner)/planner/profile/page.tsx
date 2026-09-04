@@ -83,7 +83,7 @@ export default function PlannerProfilePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="w-6 h-6 animate-spin text-[#d4a5a5]" />
+        <Loader2 className="w-6 h-6 animate-spin text-[#c1622d]" />
       </div>
     )
   }
@@ -140,7 +140,7 @@ export default function PlannerProfilePage() {
           </CardContent>
         </Card>
 
-        <Button type="submit" disabled={saving} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+        <Button type="submit" disabled={saving} className="bg-[#c1622d] hover:bg-[#a64f20]">
           {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
           Save Changes
         </Button>

@@ -114,7 +114,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
   if (!initialMenuId) {
     return (
       <div className="text-center py-12 text-gray-500">
-        <p>No meal plan found. Create one in <a href="/planner/menu" className="text-[#d4a5a5] hover:underline">Meal Plan</a>.</p>
+        <p>No meal plan found. Create one in <a href="/planner/menu" className="text-[#c1622d] hover:underline">Meal Plan</a>.</p>
       </div>
     )
   }
@@ -130,7 +130,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
               onClick={() => setActiveMenuId(m.id)}
               className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 m.id === activeMenuId
-                  ? 'bg-[#d4a5a5] text-white'
+                  ? 'bg-[#c1622d] text-white'
                   : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
               }`}
             >
@@ -153,7 +153,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
       ) : dishes.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
           <p className="font-medium text-gray-700">No meals planned this week</p>
-          <p className="text-sm mt-1">Add meals in <a href="/planner/menu" className="text-[#d4a5a5] hover:underline">Meal Plan</a> first</p>
+          <p className="text-sm mt-1">Add meals in <a href="/planner/menu" className="text-[#c1622d] hover:underline">Meal Plan</a> first</p>
         </div>
       ) : (
         <>
@@ -215,7 +215,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
                                   type="checkbox"
                                   checked={done ?? false}
                                   onChange={() => toggleCheck(key)}
-                                  className="w-4 h-4 rounded border-gray-300 text-[#d4a5a5] cursor-pointer"
+                                  className="w-4 h-4 rounded border-gray-300 text-[#c1622d] cursor-pointer"
                                 />
                                 <span className={`text-sm ${done ? 'line-through text-gray-400' : 'text-gray-800'}`}>
                                   <strong>{formatAmount(item.amount, item.unit)}</strong>{' '}

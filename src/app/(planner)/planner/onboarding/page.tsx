@@ -16,6 +16,7 @@ import { Switch } from '@/components/ui/switch'
 import { Loader2, CalendarDays, CheckCircle, Heart } from 'lucide-react'
 import { toast } from 'sonner'
 import { slugify } from '@/lib/utils'
+import { displayUrl } from '@/lib/site'
 
 const schema = z.object({
   displayName: z.string().min(2, 'Display name must be at least 2 characters'),
@@ -100,16 +101,16 @@ export default function PlannerOnboardingPage() {
 
   if (done) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fdf0ee] to-white px-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
         <div className="max-w-md text-center">
-          <div className="w-16 h-16 bg-[#fdf0ee] rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-9 h-9 text-[#d4a5a5]" />
+          <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-9 h-9 text-[#c1622d]" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-3">You&apos;re all set!</h2>
           <p className="text-gray-600 mb-6">
             Your meal planning profile is ready. Start planning your week.
           </p>
-          <Button onClick={() => router.push('/planner/dashboard')} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+          <Button onClick={() => router.push('/planner/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
             Go to Dashboard
           </Button>
         </div>
@@ -118,15 +119,15 @@ export default function PlannerOnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fdf0ee] to-white px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-gray-900">
-            <Heart className="w-7 h-7 text-[#d4a5a5] fill-[#d4a5a5]" />
-            WithMetta
+            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            Mise en Place
           </Link>
           <div className="mt-4">
-            <CalendarDays className="w-10 h-10 text-[#d4a5a5] mx-auto mb-2" />
+            <CalendarDays className="w-10 h-10 text-[#c1622d] mx-auto mb-2" />
             <h1 className="text-2xl font-bold text-gray-900">Set Up Your Meal Planner</h1>
             <p className="text-gray-500 mt-1">Plan your week, build your grocery list</p>
           </div>
@@ -136,7 +137,7 @@ export default function PlannerOnboardingPage() {
         <div className="mb-8">
           <div className="flex justify-between text-sm mb-2">
             {STEPS.map((s, i) => (
-              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#d4a5a5]' : 'text-gray-400'}`}>
+              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-gray-400'}`}>
                 {s.label}
               </span>
             ))}
@@ -161,7 +162,7 @@ export default function PlannerOnboardingPage() {
                 <div className="space-y-2">
                   <Label>Profile URL *</Label>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500 whitespace-nowrap">withmetta.com/u/</span>
+                    <span className="text-sm text-gray-500 whitespace-nowrap">{displayUrl('/u/')}</span>
                     <Input placeholder="sharma-family" {...register('slug')} />
                   </div>
                   {errors.slug && <p className="text-sm text-red-500">{errors.slug.message}</p>}
@@ -205,7 +206,7 @@ export default function PlannerOnboardingPage() {
                   <div>
                     <Label className="text-sm font-medium">Public Profile</Label>
                     <p className="text-xs text-gray-500 mt-0.5">
-                      Let others follow your meal plans at withmetta.com/u/{watch('slug') || '…'}
+                      Let others follow your meal plans at {displayUrl('/u/')}{watch('slug') || '…'}
                     </p>
                   </div>
                   <Switch
@@ -228,7 +229,7 @@ export default function PlannerOnboardingPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">URL</span>
-                    <span className="font-medium">withmetta.com/u/{watch('slug')}</span>
+                    <span className="font-medium">{displayUrl('/u/')}{watch('slug')}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Household</span>
@@ -256,11 +257,11 @@ export default function PlannerOnboardingPage() {
               </Button>
             )}
             {step < 2 ? (
-              <Button type="button" onClick={nextStep} className="ml-auto bg-[#d4a5a5] hover:bg-[#c49090]">
+              <Button type="button" onClick={nextStep} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
                 Next
               </Button>
             ) : (
-              <Button type="submit" disabled={loading} className="ml-auto bg-[#d4a5a5] hover:bg-[#c49090]">
+              <Button type="submit" disabled={loading} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                 Finish Setup
               </Button>

@@ -50,10 +50,10 @@ export async function POST(req: NextRequest) {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
     await sendEmail({
       to: data.email,
-      subject: `You've been invited to manage ${seller.storeName} on WithMetta`,
+      subject: `You've been invited to manage ${seller.storeName} on Mise en Place`,
       html: `
         <p>Hi!</p>
-        <p>You've been invited to manage orders for <strong>${seller.storeName}</strong> on WithMetta.</p>
+        <p>You've been invited to manage orders for <strong>${seller.storeName}</strong> on Mise en Place.</p>
         <p><a href="${appUrl}/auth/signin">Click here to sign in</a></p>
       `,
     })

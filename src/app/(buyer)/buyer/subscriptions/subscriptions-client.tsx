@@ -56,7 +56,7 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
         <Calendar className="w-12 h-12 mx-auto mb-4 opacity-30" />
         <p>No active subscriptions</p>
         <p className="text-sm mt-2 mb-6">Subscribe to a weekly menu to get daily meals!</p>
-        <Button asChild className="bg-[#d4a5a5] hover:bg-[#c49090]">
+        <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
           <Link href="/sellers">Browse Sellers</Link>
         </Button>
       </div>
@@ -73,15 +73,15 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">
-                  <Link href={`/${sub.seller.storeSlug}`} className="hover:text-[#d4a5a5]">
+                  <Link href={`/${sub.seller.storeSlug}`} className="hover:text-[#c1622d]">
                     {sub.seller.storeName}
                   </Link>
                 </CardTitle>
                 <div className="flex items-center gap-2">
-                  <Badge className={sub.status === 'ACTIVE' ? 'bg-[#fdf0ee] text-[#c49090]' : 'bg-gray-100 text-gray-600'}>
+                  <Badge className={sub.status === 'ACTIVE' ? 'bg-[#f7e9de] text-[#a64f20]' : 'bg-gray-100 text-gray-600'}>
                     {sub.status}
                   </Badge>
-                  <span className="font-bold text-[#d4a5a5]">{formatCurrency(sub.totalAmount)}/week</span>
+                  <span className="font-bold text-[#c1622d]">{formatCurrency(sub.totalAmount)}/week</span>
                 </div>
               </div>
               <p className="text-sm text-gray-500">

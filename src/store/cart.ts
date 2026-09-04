@@ -22,6 +22,15 @@ interface CartState {
   getItemCount: () => number
 }
 
+// One-time migration: carry over a cart saved under the old storage key
+// so no one's in-progress order silently disappears after the rebrand.
+if (typeof window !== 'undefined') {
+  const legacy = window.localStorage.getItem('withmetta-cart')
+  if (legacy && !window.localStorage.getItem('mise-en-place-cart')) {
+    window.localStorage.setItem('mise-en-place-cart', legacy)
+  }
+}
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
@@ -83,6 +92,6 @@ export const useCartStore = create<CartState>()(
         return get().items.reduce((sum, item) => sum + item.quantity, 0)
       },
     }),
-    { name: 'withmetta-cart' }
+    { name: 'mise-en-place-cart' }
   )
 )

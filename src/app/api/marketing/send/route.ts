@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             <div style="white-space: pre-wrap; line-height: 1.6;">${data.message.replace(/\n/g, '<br>')}</div>
             <hr style="margin-top: 24px; border: none; border-top: 1px solid #eee;">
             <p style="color: #666; font-size: 12px;">
-              You're receiving this because you subscribed to ${seller.storeName} on WithMetta.
+              You're receiving this because you subscribed to ${seller.storeName} on Mise en Place.
             </p>
           </div>
         `

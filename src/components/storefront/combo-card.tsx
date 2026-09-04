@@ -91,7 +91,7 @@ export function ComboCard({ combo, sellerId, sellerName }: ComboCardProps) {
           <div>
             <span className="font-bold text-amber-600 text-lg">{formatCurrency(combo.comboPrice)}</span>
             {savings > 0 && (
-              <span className="text-xs text-[#d4a5a5] ml-2">Save {formatCurrency(savings)}</span>
+              <span className="text-xs text-[#c1622d] ml-2">Save {formatCurrency(savings)}</span>
             )}
           </div>
         </div>

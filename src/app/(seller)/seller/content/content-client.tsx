@@ -94,7 +94,7 @@ export function ContentClient({ seller, initialArticles, userId }: ContentClient
   return (
     <div className="space-y-6">
       {!showForm && (
-        <Button onClick={() => setShowForm(true)} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+        <Button onClick={() => setShowForm(true)} className="bg-[#c1622d] hover:bg-[#a64f20]">
           <Plus className="w-4 h-4 mr-2" /> New Article
         </Button>
       )}
@@ -114,7 +114,7 @@ export function ContentClient({ seller, initialArticles, userId }: ContentClient
                 {errors.body && <p className="text-sm text-red-500">{errors.body.message}</p>}
               </div>
               <div className="flex gap-3">
-                <Button type="submit" disabled={loading} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+                <Button type="submit" disabled={loading} className="bg-[#c1622d] hover:bg-[#a64f20]">
                   {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   {editingId ? 'Update Article' : 'Publish Article'}
                 </Button>

@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -21,42 +20,36 @@ export function Navbar() {
   const role = (session?.user as { role?: string } | undefined)?.role
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#fffcf5]/90 backdrop-blur border-b border-[#e7e5e4]">
+    <nav className="sticky top-0 z-50 bg-[#FBF6EC]/90 backdrop-blur border-b border-[#E7DDCB]">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/logo-1.png"
-            alt="With Metta"
-            width={140}
-            height={40}
-            className="object-contain h-9 w-auto"
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/logo-mark.svg" alt="" width={40} height={24} className="h-6 w-auto" />
+          <span className="font-heading italic text-xl text-[#2A2420]">mise en place</span>
         </Link>
 
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-6 text-sm text-stone-600">
-          <Link href="/sellers" className="hover:text-[#d4a5a5] transition-colors font-medium">
+          <Link href="/sellers" className="hover:text-[#C1622D] transition-colors font-medium">
             Find Chefs
           </Link>
           {role === 'SELLER' && (
-            <Link href="/seller/dashboard" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/seller/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
               <ChefHat className="w-4 h-4" /> Dashboard
             </Link>
           )}
           {role === 'BUYER' && (
-            <Link href="/buyer/orders" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/buyer/orders" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
               <ShoppingBag className="w-4 h-4" /> My Orders
             </Link>
           )}
           {role === 'PLANNER' && (
-            <Link href="/planner/dashboard" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/planner/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
               <CalendarDays className="w-4 h-4" /> Meal Planner
             </Link>
           )}
           {role === 'ADMIN' && (
-            <Link href="/admin/dashboard" className="hover:text-[#d4a5a5] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/admin/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
               <Shield className="w-4 h-4" /> Admin
             </Link>
           )}
@@ -70,7 +63,7 @@ export function Navbar() {
                 <button className="flex items-center gap-2 focus:outline-none">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={session.user?.image ?? ''} />
-                    <AvatarFallback className="bg-[#e8d5d0] text-[#78716c] text-xs font-semibold">
+                    <AvatarFallback className="bg-[#E7DDCB] text-[#6B625A] text-xs font-semibold">
                       {session.user?.name?.[0]?.toUpperCase() ?? session.user?.email?.[0]?.toUpperCase() ?? 'U'}
                     </AvatarFallback>
                   </Avatar>
@@ -126,10 +119,10 @@ export function Navbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm" className="text-stone-600 hover:text-[#d4a5a5]">
+              <Button asChild variant="ghost" size="sm" className="text-stone-600 hover:text-[#C1622D]">
                 <Link href="/auth/signin">Sign In</Link>
               </Button>
-              <Button asChild size="sm" className="bg-[#d4a5a5] hover:bg-[#e28a93] text-white border-0 shadow-none">
+              <Button asChild size="sm" className="bg-[#C1622D] hover:bg-[#A64F20] text-white border-0 shadow-none">
                 <Link href="/auth/signup">Get Started</Link>
               </Button>
             </>

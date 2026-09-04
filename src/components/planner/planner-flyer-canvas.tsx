@@ -228,7 +228,7 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
             fontFamily: 'sans-serif',
             letterSpacing: '0.2px',
           }}>
-            Planned with metta ✨
+            Planned with care ✨
           </span>
         </div>
         <div style={{ fontSize: 9, color: '#7a6a8a', fontFamily: 'sans-serif', letterSpacing: '0.3px' }}>

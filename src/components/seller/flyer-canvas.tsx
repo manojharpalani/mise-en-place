@@ -283,7 +283,7 @@ export const FlyerCanvas = React.forwardRef<HTMLDivElement, {
             fontFamily: 'sans-serif',
             letterSpacing: '0.2px',
           }}>
-            Pre-order 24 hrs before · Made with metta
+            Pre-order 24 hrs before · Prepped with care
           </span>
         </div>
         <div style={{

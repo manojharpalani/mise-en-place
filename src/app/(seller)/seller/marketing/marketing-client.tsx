@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SocialAssetGenerator } from '@/components/seller/social-asset-generator'
 import { Loader2, Send, Users } from 'lucide-react'
 import { toast } from 'sonner'
+import { displayUrl } from '@/lib/site'
 
 const emailSchema = z.object({
   subject: z.string().min(1, 'Subject is required'),
@@ -106,8 +107,8 @@ export function MarketingClient({ seller }: MarketingClientProps) {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#fdf0ee] rounded-xl flex items-center justify-center">
-              <Users className="w-5 h-5 text-[#d4a5a5]" />
+            <div className="w-10 h-10 bg-[#f7e9de] rounded-xl flex items-center justify-center">
+              <Users className="w-5 h-5 text-[#c1622d]" />
             </div>
             <div>
               <p className="text-2xl font-bold">{smsSubscribers.length}</p>
@@ -152,7 +153,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
                       <p className="text-sm text-red-500">{emailForm.formState.errors.message.message}</p>
                     )}
                   </div>
-                  <Button type="submit" disabled={sending} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+                  <Button type="submit" disabled={sending} className="bg-[#c1622d] hover:bg-[#a64f20]">
                     {sending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
                     Send to {emailSubscribers.length} Subscribers
                   </Button>
@@ -175,7 +176,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
                   <div className="space-y-2">
                     <Label>Message (max 160 chars)</Label>
                     <Textarea
-                      placeholder="Today's special: Lamb Biryani $15! Order at withmetta.com/s/yourstore"
+                      placeholder={`Today's special: Lamb Biryani $15! Order at ${displayUrl('/s/yourstore')}`}
                       rows={4}
                       maxLength={160}
                       {...smsForm.register('message')}
@@ -184,7 +185,7 @@ export function MarketingClient({ seller }: MarketingClientProps) {
                       <p className="text-sm text-red-500">{smsForm.formState.errors.message.message}</p>
                     )}
                   </div>
-                  <Button type="submit" disabled={sending} className="bg-[#d4a5a5] hover:bg-[#c49090]">
+                  <Button type="submit" disabled={sending} className="bg-[#c1622d] hover:bg-[#a64f20]">
                     {sending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
                     Send to {smsSubscribers.length} Subscribers
                   </Button>

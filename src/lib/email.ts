@@ -7,7 +7,7 @@ function getSgMail() {
   return sgMail
 }
 
-const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || 'noreply@withmetta.com'
+const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || 'noreply@example.com'
 
 export async function sendEmail({
   to,
@@ -73,11 +73,11 @@ export async function sendNewsletter({
 export async function sendOTPEmail(to: string, otp: string) {
   return sendEmail({
     to,
-    subject: 'Your WithMetta Login Code',
+    subject: 'Your Mise en Place Login Code',
     html: `
       <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; padding: 24px;">
         <h2 style="color: #1a1a1a;">Your Login Code</h2>
-        <p>Use this code to sign in to WithMetta:</p>
+        <p>Use this code to sign in to Mise en Place:</p>
         <div style="background: #f4f4f4; border-radius: 8px; padding: 24px; text-align: center; margin: 24px 0;">
           <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #1a1a1a;">${otp}</span>
         </div>

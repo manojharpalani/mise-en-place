@@ -49,39 +49,39 @@
 }
 
 :root {
-  /* WithMetta Brand — warm stone + dusty rose */
-  --background: #fffcf5;
-  --foreground: #292524;
+  /* Mise en Place Brand — copper + cream */
+  --background: #fbf6ec;
+  --foreground: #2a2420;
   --card: #ffffff;
-  --card-foreground: #292524;
+  --card-foreground: #2a2420;
   --popover: #ffffff;
-  --popover-foreground: #292524;
-  --primary: #d4a5a5;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f5f4;
-  --secondary-foreground: #292524;
-  --muted: #f5f5f4;
-  --muted-foreground: #78716c;
-  --accent: #e8d5d0;
-  --accent-foreground: #292524;
+  --popover-foreground: #2a2420;
+  --primary: #c1622d;
+  --primary-foreground: #fbf6ec;
+  --secondary: #f1e9db;
+  --secondary-foreground: #2a2420;
+  --muted: #f1e9db;
+  --muted-foreground: #6b625a;
+  --accent: #e7ddcb;
+  --accent-foreground: #2a2420;
   --destructive: #dc2626;
-  --border: #e7e5e4;
-  --input: #e7e5e4;
-  --ring: #e28a93;
+  --border: #e7ddcb;
+  --input: #e7ddcb;
+  --ring: #c1622d;
   --radius: 0.75rem;
-  --sidebar: #fafaf9;
-  --sidebar-foreground: #292524;
-  --sidebar-primary: #d4a5a5;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f5f5f4;
-  --sidebar-accent-foreground: #292524;
-  --sidebar-border: #e7e5e4;
-  --sidebar-ring: #e28a93;
-  --chart-1: #e28a93;
-  --chart-2: #d4a5a5;
-  --chart-3: #b45309;
-  --chart-4: #78716c;
-  --chart-5: #57534e;
+  --sidebar: #faf3e6;
+  --sidebar-foreground: #2a2420;
+  --sidebar-primary: #c1622d;
+  --sidebar-primary-foreground: #fbf6ec;
+  --sidebar-accent: #f1e9db;
+  --sidebar-accent-foreground: #2a2420;
+  --sidebar-border: #e7ddcb;
+  --sidebar-ring: #c1622d;
+  --chart-1: #c1622d;
+  --chart-2: #d98a52;
+  --chart-3: #6b7756;
+  --chart-4: #8a7a63;
+  --chart-5: #4a4239;
 }
 
 @layer base {
@@ -90,41 +90,41 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans), 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans), 'Work Sans', ui-sans-serif, system-ui, sans-serif;
   }
   html {
     @apply font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading), 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading), 'Instrument Serif', Georgia, serif;
   }
 }
 
-/* WithMetta Brand Utilities */
+/* Mise en Place Brand Utilities */
 .font-heading {
-  font-family: var(--font-heading), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-heading), 'Instrument Serif', Georgia, serif;
 }
 
 .warm-gradient {
-  background: linear-gradient(135deg, #fafaf9 0%, #fffbeb 100%);
+  background: linear-gradient(135deg, #faf3e6 0%, #fdf8ee 100%);
 }
 
-.rose-gradient {
-  background: linear-gradient(135deg, #e8d5d0 0%, #eaacb3 100%);
+.copper-gradient {
+  background: linear-gradient(135deg, #e7ddcb 0%, #d98a52 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #d4a5a5, #e28a93);
+  background: linear-gradient(135deg, #c1622d, #d98a52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glass-card {
-  background: rgba(255, 252, 245, 0.85);
+  background: rgba(251, 246, 236, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(228, 220, 210, 0.6);
+  border: 1px solid rgba(231, 221, 203, 0.6);
 }
 
 @keyframes float {

@@ -31,7 +31,7 @@ interface Order {
 const STATUS_COLORS: Record<OrderStatus, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
-  READY: 'bg-[#fdf0ee] text-[#c49090]',
+  READY: 'bg-[#f7e9de] text-[#a64f20]',
   DELIVERED: 'bg-gray-100 text-gray-600',
   PICKED_UP: 'bg-gray-100 text-gray-600',
   CANCELLED: 'bg-red-100 text-red-600',
@@ -129,7 +129,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
             key={status}
             onClick={() => setFilter(status)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              filter === status ? 'bg-[#d4a5a5] text-white' : 'bg-white border text-gray-600 hover:bg-gray-50'
+              filter === status ? 'bg-[#c1622d] text-white' : 'bg-white border text-gray-600 hover:bg-gray-50'
             }`}
           >
             {status}
@@ -174,7 +174,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
                     )}
                   </div>
                 </div>
-                <span className="font-bold text-lg text-[#d4a5a5]">{formatCurrency(order.total)}</span>
+                <span className="font-bold text-lg text-[#c1622d]">{formatCurrency(order.total)}</span>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-3 mb-3">
@@ -201,7 +201,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
                   <Button
                     size="sm"
                     onClick={() => updateStatus(order.id, NEXT_STATUS[order.status]!)}
-                    className="bg-[#d4a5a5] hover:bg-[#c49090]"
+                    className="bg-[#c1622d] hover:bg-[#a64f20]"
                   >
                     {NEXT_STATUS_LABEL[order.status]}
                   </Button>
@@ -257,7 +257,7 @@ export function OrderManagement({ initialOrders }: { initialOrders: Order[] }) {
                       value={r}
                       checked={cancelReason === r}
                       onChange={() => setCancelReason(r)}
-                      className="accent-[#d4a5a5]"
+                      className="accent-[#c1622d]"
                     />
                     <span className="text-sm">{r}</span>
                   </label>

@@ -36,7 +36,7 @@ export default async function FavoritesPage() {
           <Heart className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p>No favorites yet</p>
           <p className="text-sm mt-2 mb-6">Heart a seller on their storefront to save them here</p>
-          <Button asChild className="bg-[#d4a5a5] hover:bg-[#c49090]">
+          <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
             <Link href="/sellers">Browse Sellers</Link>
           </Button>
         </div>

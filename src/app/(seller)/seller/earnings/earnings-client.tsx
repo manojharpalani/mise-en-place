@@ -105,7 +105,7 @@ export function EarningsClient({ orders }: Props) {
             size="sm"
             variant={period === p ? 'default' : 'outline'}
             onClick={() => setPeriod(p)}
-            className={period === p ? 'bg-[#d4a5a5] hover:bg-[#c49090] border-0' : ''}
+            className={period === p ? 'bg-[#c1622d] hover:bg-[#a64f20] border-0' : ''}
           >
             {PERIOD_LABELS[p]}
           </Button>
@@ -116,8 +116,8 @@ export function EarningsClient({ orders }: Props) {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#fdf0ee] rounded-xl flex items-center justify-center">
-              <DollarSign className="w-5 h-5 text-[#d4a5a5]" />
+            <div className="w-10 h-10 bg-[#f7e9de] rounded-xl flex items-center justify-center">
+              <DollarSign className="w-5 h-5 text-[#c1622d]" />
             </div>
             <div>
               <p className="text-2xl font-bold">{formatCurrency(totalRevenue)}</p>
@@ -178,7 +178,7 @@ export function EarningsClient({ orders }: Props) {
                   formatter={(value) => [formatCurrency(Number(value)), 'Revenue']}
                   contentStyle={{ borderRadius: 8, border: '1px solid #e5e7eb', fontSize: 13 }}
                 />
-                <Bar dataKey="revenue" fill="#d4a5a5" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="revenue" fill="#c1622d" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -206,7 +206,7 @@ export function EarningsClient({ orders }: Props) {
                   </div>
                   <div className="flex items-center gap-3">
                     <Badge variant="outline" className="text-xs">{order.fulfillmentType}</Badge>
-                    <span className="font-semibold text-[#d4a5a5]">{formatCurrency(order.total)}</span>
+                    <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
                   </div>
                 </div>
               ))

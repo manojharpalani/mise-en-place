@@ -65,7 +65,7 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
   }
 
   const DIETARY_COLORS: Record<string, string> = {
-    vegan: 'bg-[#fdf0ee] text-[#c49090]',
+    vegan: 'bg-[#f7e9de] text-[#a64f20]',
     vegetarian: 'bg-lime-100 text-lime-700',
     'gluten-free': 'bg-amber-100 text-amber-700',
     halal: 'bg-blue-100 text-blue-700',
@@ -101,7 +101,7 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
           <div className="text-right shrink-0">
             {item.salePrice ? (
               <>
-                <div className="font-bold text-[#d4a5a5]">{formatCurrency(item.salePrice)}</div>
+                <div className="font-bold text-[#c1622d]">{formatCurrency(item.salePrice)}</div>
                 <div className="text-xs text-gray-400 line-through">{formatCurrency(item.price)}</div>
               </>
             ) : (
@@ -128,7 +128,7 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
             <Button
               onClick={handleAdd}
               size="sm"
-              className="w-full bg-[#d4a5a5] hover:bg-[#c49090] text-white"
+              className="w-full bg-[#c1622d] hover:bg-[#a64f20] text-white"
             >
               <ShoppingCart className="w-4 h-4 mr-2" /> Add to Cart
             </Button>
