@@ -3,22 +3,27 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 
+// The checkout form sends `null` (not `undefined`) for an unset optional
+// field, so every optional field here must accept null too — `.optional()`
+// alone only allows the key to be missing/undefined and rejects an explicit
+// null, which was turning a normal pickup order (no delivery address; often
+// no pickup-window note either) into a 400 validation error at checkout.
 const orderSchema = z.object({
   sellerId: z.string(),
   fulfillmentType: z.enum(['PICKUP', 'DELIVERY']),
   scheduledDate: z.string(),
-  pickupWindow: z.string().optional(),
-  deliveryAddress: z.string().optional(),
-  notes: z.string().optional(),
+  pickupWindow: z.string().nullish(),
+  deliveryAddress: z.string().nullish(),
+  notes: z.string().nullish(),
   items: z.array(z.object({
-    menuItemId: z.number().optional(),
-    comboItemId: z.string().optional(),
+    menuItemId: z.number().nullish(),
+    comboItemId: z.string().nullish(),
     quantity: z.number().int().positive(),
     unitPrice: z.number().positive(),
     itemType: z.enum(['ITEM', 'COMBO']),
     itemName: z.string(),
   })),
-  stripePaymentIntentId: z.string().optional(),
+  stripePaymentIntentId: z.string().nullish(),
 })
 
 export async function POST(req: NextRequest) {
