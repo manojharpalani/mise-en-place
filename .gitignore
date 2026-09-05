@@ -52,3 +52,9 @@ next-env.d.ts
 
 # Architecture diagram tooling (downloaded by architecture/generate.sh)
 /architecture/.tools/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
