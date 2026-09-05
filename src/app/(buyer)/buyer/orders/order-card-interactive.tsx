@@ -52,7 +52,19 @@ export interface OrderActionsRowProps {
 
 export function OrderActionsRow({ orderId, storeName, status, reviewRating, isCompleted }: OrderActionsRowProps) {
   return (
-    <div className="mt-3 flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
+    // Bug fix: this row sits inside the order card's <Link> to the detail
+    // page. stopPropagation() alone stops the click from reaching the
+    // Link's own onClick -- but that's exactly where Next.js calls
+    // preventDefault() to swap in client-side routing. With the Link's
+    // handler never running, the anchor's native "follow this href"
+    // behavior went through anyway, so clicking "Cancel Order" or
+    // "Rate & Review" silently navigated to the order detail page instead
+    // of opening their dialog in place. Calling preventDefault() here too
+    // suppresses that native navigation directly.
+    <div
+      className="mt-3 flex items-center gap-3"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation() }}
+    >
       {reviewRating != null ? (
         <StarDisplay rating={reviewRating} />
       ) : isCompleted ? (
