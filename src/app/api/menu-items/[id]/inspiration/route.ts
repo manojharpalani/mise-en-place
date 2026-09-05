@@ -130,7 +130,7 @@ Return ONLY valid JSON matching this structure exactly:
 }`
 
   const msg = await anthropic.messages.create({
-    model: 'claude-fable-5',
+    model: 'claude-sonnet-4-5',
     max_tokens: 512,
     messages: [{ role: 'user', content: prompt }],
   })

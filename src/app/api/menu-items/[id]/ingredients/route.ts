@@ -39,7 +39,7 @@ List 5-12 ingredients. Be specific (e.g. "basmati rice" not "rice").`
   try {
     const anthropic = getAnthropic()
     const message = await anthropic.messages.create({
-      model: 'claude-fable-5',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       messages: [{ role: 'user', content: prompt }],
     })

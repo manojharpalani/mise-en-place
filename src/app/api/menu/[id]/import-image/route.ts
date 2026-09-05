@@ -118,7 +118,7 @@ Rules:
     try {
       const anthropic = getAnthropic()
       const response = await anthropic.messages.create({
-        model: 'claude-fable-5',
+        model: 'claude-sonnet-4-5',
         max_tokens: 2000,
         system: systemPrompt,
         messages: [{
