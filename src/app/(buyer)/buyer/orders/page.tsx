@@ -7,9 +7,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { formatCurrency, formatDate } from '@/lib/utils'
-import { ShoppingBag, Star } from 'lucide-react'
-import { OrderReviewButton } from './order-review-button'
-import { CancelOrderButton } from './cancel-order-button'
+import { ShoppingBag } from 'lucide-react'
+import { SellerNameButton, OrderActionsRow } from './order-card-interactive'
 
 async function getBuyerOrders(userId: string) {
   return prisma.order.findMany({
@@ -30,22 +29,6 @@ const STATUS_COLORS: Record<string, string> = {
   DELIVERED: 'bg-muted text-muted-foreground',
   PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
-}
-
-function StarDisplay({ rating }: { rating: number }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1, 2, 3, 4, 5].map(s => (
-        <Star
-          key={s}
-          className="w-3.5 h-3.5"
-          fill={s <= rating ? '#f59e0b' : 'none'}
-          stroke={s <= rating ? '#f59e0b' : '#d1d5db'}
-        />
-      ))}
-      <span className="text-xs text-muted-foreground ml-1">Your review</span>
-    </div>
-  )
 }
 
 export default async function BuyerOrdersPage() {
@@ -77,12 +60,7 @@ export default async function BuyerOrdersPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span
-                          className="font-semibold text-foreground hover:text-[#c1622d]"
-                          onClick={e => { e.preventDefault(); e.stopPropagation(); window.location.href = `/${order.seller.storeSlug}` }}
-                        >
-                          {order.seller.storeName}
-                        </span>
+                        <SellerNameButton storeSlug={order.seller.storeSlug} storeName={order.seller.storeName} />
                         <Badge className={STATUS_COLORS[order.status]}>{order.status}</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">{formatDate(order.createdAt)}</p>
@@ -94,17 +72,13 @@ export default async function BuyerOrdersPage() {
                         ))}
                       </div>
 
-                      {/* Actions */}
-                      <div className="mt-3 flex items-center gap-3" onClick={e => e.stopPropagation()}>
-                        {order.review ? (
-                          <StarDisplay rating={order.review.rating} />
-                        ) : completed.has(order.status) ? (
-                          <OrderReviewButton orderId={order.id} storeName={order.seller.storeName} />
-                        ) : null}
-                        {order.status === 'PENDING' && (
-                          <CancelOrderButton orderId={order.id} storeName={order.seller.storeName} />
-                        )}
-                      </div>
+                      <OrderActionsRow
+                        orderId={order.id}
+                        storeName={order.seller.storeName}
+                        status={order.status}
+                        reviewRating={order.review?.rating ?? null}
+                        isCompleted={completed.has(order.status)}
+                      />
                     </div>
 
                     <div className="text-right flex-shrink-0">
