@@ -260,9 +260,13 @@ async function main() {
     update: {},
     create: { email: 'newchef@example.com', name: 'Dana Kowalski', role: 'SELLER', emailVerified: now, neighborhood: 'Outer Sunset', zip: '94122' },
   })
+  // update (not just create) resets this back to PENDING/inactive on every
+  // seed run -- the admin-approval-queue e2e test approves or rejects this
+  // record, and without resetting it here, a re-seed would never restore
+  // the demo's "seller awaiting approval" scenario for the next test run.
   await prisma.sellerProfile.upsert({
     where: { userId: pendingUser.id },
-    update: {},
+    update: { permitStatus: 'PENDING', isActive: false },
     create: {
       userId: pendingUser.id, storeSlug: 'danas-bakehouse', storeName: "Dana's Bakehouse",
       bio: 'Sourdough loaves and laminated pastries baked fresh every morning.',
@@ -305,6 +309,49 @@ async function main() {
         status: 'ACTIVE',
       },
     }).catch(() => {/* ignore dup */})
+  }
+
+  // ── Favorites ──────────────────────────────────────────────────
+  // buyer@example.com favorites Chef Maya's Kitchen and Nonna's Table so
+  // /buyer/favorites has real data to render instead of just the empty state.
+  const nonnasTable = await prisma.sellerProfile.findUnique({ where: { storeSlug: 'nonnas-table' } })
+  const favoritePairs: Array<{ buyerId: string; sellerId: string }> = [
+    { buyerId: buyers[0].id, sellerId: seller.id },
+    ...(nonnasTable ? [{ buyerId: buyers[0].id, sellerId: nonnasTable.id }] : []),
+    { buyerId: buyers[1].id, sellerId: seller.id },
+  ]
+  for (const fav of favoritePairs) {
+    await prisma.favoriteSeller.upsert({
+      where: { buyerId_sellerId: { buyerId: fav.buyerId, sellerId: fav.sellerId } },
+      update: {},
+      create: fav,
+    })
+  }
+  console.log(`✓ ${favoritePairs.length} favorite-seller relationships`)
+
+  // ── Buyer subscription to a seller's weekly menu ─────────────────
+  // /buyer/subscriptions reads the Subscription model (recurring weekly-menu
+  // orders), which is distinct from the Subscriber model seeded above
+  // (WhatsApp marketing opt-in). Nothing seeded this before, so the page
+  // always rendered its empty state even for the demo buyer account.
+  const chefWeeklyMenuForSub = await prisma.weeklyMenu.findFirst({ where: { sellerId: seller.id } })
+  if (chefWeeklyMenuForSub) {
+    const existingSubscription = await prisma.subscription.findFirst({
+      where: { buyerId: buyers[0].id, sellerId: seller.id, weeklyMenuId: chefWeeklyMenuForSub.id },
+    })
+    if (!existingSubscription) {
+      await prisma.subscription.create({
+        data: {
+          buyerId: buyers[0].id,
+          sellerId: seller.id,
+          weeklyMenuId: chefWeeklyMenuForSub.id,
+          status: 'ACTIVE',
+          totalAmount: 65,
+          fulfillmentPreferences: { type: 'PICKUP', window: '5:00 PM \u2013 6:00 PM' },
+        },
+      })
+      console.log("\u2713 Buyer subscription: Alex Chen -> Chef Maya's Kitchen weekly menu")
+    }
   }
 
   // ── Orders ─────────────────────────────────────────────────────
