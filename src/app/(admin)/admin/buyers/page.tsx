@@ -10,7 +10,15 @@ async function getBuyers() {
       _count: { select: { buyerOrders: true } },
     },
     orderBy: { createdAt: 'desc' },
-  })
+  }) as Promise<Array<{
+    id: string
+    email: string
+    name: string | null
+    neighborhood: string | null
+    zip: string | null
+    createdAt: Date
+    _count: { buyerOrders: number }
+  }>>
 }
 
 export default async function AdminBuyersPage() {

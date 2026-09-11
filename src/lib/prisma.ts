@@ -23,8 +23,24 @@ function createPrismaClient(): PrismaClient {
   return new PrismaClient()
 }
 
-export const prisma = global.prisma || createPrismaClient()
+// Lazily construct the client on first actual use rather than at module
+// import time. Next.js evaluates route modules (top-level code included)
+// during its build-time "Collecting page data" phase, which previously
+// forced a real PrismaClient (and DB adapter) to be constructed during the
+// build itself -- crashing the build in environments where DATABASE_URL
+// isn't surfaced to that phase, even though every request handler that
+// actually needs it runs fine at runtime.
+function getPrismaClient(): PrismaClient {
+  if (!global.prisma) {
+    global.prisma = createPrismaClient()
+  }
+  return global.prisma
+}
 
-if (process.env.NODE_ENV !== 'production') global.prisma = prisma
+export const prisma = new Proxy({} as PrismaClient, {
+  get(_target, prop, receiver) {
+    return Reflect.get(getPrismaClient(), prop, receiver)
+  },
+})
 
 export default prisma
