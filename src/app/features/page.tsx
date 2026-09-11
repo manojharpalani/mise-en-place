@@ -10,13 +10,13 @@ import {
 
 export const metadata = {
   title: 'Features | Mise en Place',
-  description: 'Everything Mise en Place offers — for buyers finding a home chef nearby, home chefs starting a storefront, and meal planners organizing family dinners.',
+  description: 'Everything Mise en Place offers — for buyers finding a local chef nearby, local chefs starting a storefront, and meal planners organizing family dinners.',
 }
 
 type Feature = { icon: React.ReactNode; title: string; description: string }
 
 const buyerFeatures: Feature[] = [
-  { icon: <MapPin className="w-5 h-5" />, title: 'Discover chefs nearby', description: 'Browse licensed home chefs in your neighborhood, filtered by cuisine, dietary needs, and availability.' },
+  { icon: <MapPin className="w-5 h-5" />, title: 'Discover chefs nearby', description: 'Browse licensed local chefs in your neighborhood, filtered by cuisine, dietary needs, and availability.' },
   { icon: <ShoppingBag className="w-5 h-5" />, title: 'Order or subscribe', description: 'Place a one-time order for tonight, or subscribe to a weekly menu so it just shows up.' },
   { icon: <RotateCcw className="w-5 h-5" />, title: 'Pickup or delivery', description: "Choose whichever fits your schedule, with the chef's real pickup windows and delivery radius." },
   { icon: <Heart className="w-5 h-5" />, title: 'Favorite your chefs', description: 'Follow the storefronts you love and get back to them in one tap from your buyer dashboard.' },
@@ -142,7 +142,7 @@ export default function FeaturesPage() {
 
       <FeatureSection
         id="sellers"
-        eyebrow="For Home Chefs"
+        eyebrow="For Local Chefs"
         title="Start your storefront"
         description="Whether you hold a home kitchen permit or cook from a licensed facility, Mise en Place gives you everything to turn your cooking into a real, running business."
         features={sellerFeatures}

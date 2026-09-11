@@ -84,7 +84,7 @@ export default function HomePage() {
               Three ways to use Mise en Place
             </h2>
             <p className="text-lg max-w-xl mx-auto" style={{ color: '#6B625A' }}>
-              Simple, warm, and community-first — connecting you to local home chefs & planning your family meals.
+              Simple, warm, and community-first — connecting you to local chefs & planning your family meals.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -92,7 +92,7 @@ export default function HomePage() {
               {
                 icon: <MapPin className="w-7 h-7" style={{ color: '#C1622D' }} />,
                 title: 'Find a Chef Nearby',
-                description: 'Browse licensed home chefs in your neighborhood. Order daily meals or subscribe to a weekly menu, pickup or delivered.',
+                description: 'Browse licensed local chefs in your neighborhood. Order daily meals or subscribe to a weekly menu, pickup or delivered.',
                 cta: 'Find a Chef Near You',
                 href: '/sellers',
               },
@@ -137,10 +137,10 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium mb-5 border" style={{ background: 'rgba(255,255,255,0.6)', borderColor: '#C1622D', color: '#6B625A' }}>
-                For Home Chefs
+                For Local Chefs
               </div>
               <h2 className="font-heading text-3xl md:text-4xl font-normal mb-5" style={{ color: '#2A2420' }}>
-                Turn your kitchen into a local business
+                Your AI enabled chef operating system
               </h2>
               <p className="text-lg mb-8 leading-relaxed" style={{ color: '#4A4239' }}>
                 Whether you hold a home kitchen permit or cook from a licensed facility —

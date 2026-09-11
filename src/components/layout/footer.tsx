@@ -11,7 +11,7 @@ export function Footer() {
               <span className="font-heading italic text-xl" style={{ color: '#FBF6EC' }}>mise en place</span>
             </div>
             <p className="text-sm max-w-xs" style={{ color: '#C9BEAF' }}>
-              Local community commerce — connecting home chefs with food lovers, one dish prepped mise en place at a time.
+              Local community commerce — connecting local chefs with food lovers, one dish prepped mise en place at a time.
             </p>
             <div className="flex gap-3 mt-4">
               <a href="https://www.facebook.com/profile.php?id=61584715631470" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors" style={{ color: '#A79582' }}>Facebook</a>

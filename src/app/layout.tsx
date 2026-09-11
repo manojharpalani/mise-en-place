@@ -28,11 +28,11 @@ const workSans = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Mise en Place | Local Home Chefs & Fresh Meals',
+  title: 'Mise en Place | Local Chefs & Fresh Meals',
   description: 'Discover fresh, home-cooked meals from licensed local chefs in your neighborhood. Order daily or subscribe weekly — every dish prepped with care.',
   openGraph: {
     title: 'Mise en Place',
-    description: 'Fresh meals from local home chefs, prepped with care.',
+    description: 'Fresh meals from local chefs, prepped with care.',
     type: 'website',
   },
 }

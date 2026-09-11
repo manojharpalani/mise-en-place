@@ -131,7 +131,7 @@ export default async function PlannerDashboardPage() {
           </CardHeader>
           <CardContent className="pt-0">
             <p className="text-sm text-muted-foreground mb-3">
-              Find home chefs making the dishes on your meal plan
+              Find local chefs making the dishes on your meal plan
             </p>
             <Button asChild size="sm" variant="outline" className="w-full">
               <Link href="/sellers">

@@ -6,7 +6,7 @@ import { Heart, Handshake, Sprout, MapPin, ChefHat, CalendarDays } from 'lucide-
 
 export const metadata = {
   title: 'Our Story | Mise en Place',
-  description: 'Why we built Mise en Place: a platform that puts local home chefs and small business owners first.',
+  description: 'Why we built Mise en Place: a platform that puts local chefs and small business owners first.',
 }
 
 export default function AboutPage() {
@@ -44,7 +44,7 @@ export default function AboutPage() {
           <p>
             At the same time, small business ownership has gotten harder, not easier — buried under
             fees, algorithms, and platforms built for scale rather than for the person actually doing
-            the cooking. We wanted to build something different: a place where a home chef could open a
+            the cooking. We wanted to build something different: a place where a local chef could open a
             storefront in an afternoon, keep more of what they earn, and grow a real following in their
             own neighborhood.
           </p>
@@ -80,7 +80,7 @@ export default function AboutPage() {
               {
                 icon: <ChefHat className="w-7 h-7" style={{ color: '#C1622D' }} />,
                 title: 'Chefs come first',
-                description: 'Every feature starts from the same question: does this make it easier for a home chef to run a real business?',
+                description: 'Every feature starts from the same question: does this make it easier for a local chef to run a real business?',
               },
               {
                 icon: <Handshake className="w-7 h-7" style={{ color: '#C1622D' }} />,
