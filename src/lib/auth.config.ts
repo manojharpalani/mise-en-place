@@ -4,6 +4,12 @@ import Credentials from 'next-auth/providers/credentials'
 // Minimal auth config for edge runtime (middleware)
 // Does NOT include adapter or any Node.js-only modules
 export const authConfig: NextAuthConfig = {
+  // Trust the host from the incoming request (X-Forwarded-Host) instead of
+  // requiring a hardcoded NEXTAUTH_URL. Vercel deployments get a new URL
+  // per-deploy plus a stable alias, so a fixed NEXTAUTH_URL either goes
+  // stale or has to be updated on every deploy. This is the Vercel/Auth.js
+  // recommended approach. See: https://authjs.dev/reference/nextjs#trusthost
+  trustHost: true,
   session: { strategy: 'jwt' },
   pages: {
     signIn: '/auth/signin',

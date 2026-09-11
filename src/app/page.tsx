@@ -84,7 +84,7 @@ export default function HomePage() {
               Three ways to use Mise en Place
             </h2>
             <p className="text-lg max-w-xl mx-auto" style={{ color: '#6B625A' }}>
-              Simple, warm, and community-first — pick the one that&apos;s you.
+              Simple, warm, and community-first — connecting you to local home chefs & planning your family meals.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">

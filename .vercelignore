@@ -1,0 +1,9 @@
+# Local env files must never be uploaded as deployment source -- Vercel CLI
+# does not exclude gitignored files by default the way `git` does, so these
+# were previously shipping local secrets (and a hardcoded localhost
+# NEXTAUTH_URL) to every production build. Real env vars for deployments
+# live in the Vercel dashboard/CLI (`vercel env`), not in these files.
+.env
+.env.local
+.env.*.local
+.env.bak*
