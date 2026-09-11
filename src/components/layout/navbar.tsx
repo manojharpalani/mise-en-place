@@ -33,6 +33,9 @@ export function Navbar() {
           <Link href="/sellers" className="hover:text-[#C1622D] transition-colors font-medium">
             Find Chefs
           </Link>
+          <Link href="/features" className="hover:text-[#C1622D] transition-colors font-medium">
+            Features
+          </Link>
           {role === 'SELLER' && (
             <Link href="/seller/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
               <ChefHat className="w-4 h-4" /> Dashboard

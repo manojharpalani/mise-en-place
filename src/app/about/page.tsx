@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
-import { Heart, Handshake, Sprout, MapPin, ChefHat } from 'lucide-react'
+import { Heart, Handshake, Sprout, MapPin, ChefHat, CalendarDays } from 'lucide-react'
 
 export const metadata = {
   title: 'Our Story | Mise en Place',
@@ -123,7 +123,16 @@ export default function AboutPage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#2A2420', color: '#2A2420' }}>
-              <Link href="/auth/signup?role=seller">Start Your Storefront</Link>
+              <Link href="/auth/signup?role=seller">
+                <ChefHat className="w-5 h-5 mr-2" />
+                Start Your Storefront
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#C9BBA3', color: '#6B625A' }}>
+              <Link href="/auth/signup?role=planner">
+                <CalendarDays className="w-5 h-5 mr-2" />
+                Plan Family Meals
+              </Link>
             </Button>
           </div>
         </div>

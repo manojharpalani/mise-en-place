@@ -25,6 +25,8 @@ export function Footer() {
               <ul className="space-y-2" style={{ color: '#A79582' }}>
                 <li><Link href="/sellers" className="hover:text-white transition-colors">Find Chefs</Link></li>
                 <li><Link href="/auth/signup?role=seller" className="hover:text-white transition-colors">Sell on Mise en Place</Link></li>
+                <li><Link href="/auth/signup?role=planner" className="hover:text-white transition-colors">Plan Family Meals</Link></li>
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
                 <li><Link href="/auth/signin" className="hover:text-white transition-colors">Sign In</Link></li>
               </ul>
             </div>
