@@ -1,4 +1,4 @@
-workspace "Mise en Place (With Metta)" "Local community commerce platform connecting home chefs, meal planners, and buyers." {
+workspace "Mise en Place" "Local community commerce platform connecting home chefs, meal planners, and buyers." {
 
     !identifiers hierarchical
 

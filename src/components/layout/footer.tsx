@@ -20,11 +20,6 @@ export function Footer() {
             <p className="text-sm max-w-xs" style={{ color: '#CFE0D4' }}>
               Connecting local chefs with food lovers, one dish prepped mise en place at a time.
             </p>
-            <div className="flex gap-3 mt-4">
-              <a href="https://www.facebook.com/profile.php?id=61584715631470" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors" style={{ color: '#A9C2B1' }}>Facebook</a>
-              <span style={{ color: '#2f3a2a' }}>·</span>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors" style={{ color: '#A9C2B1' }}>Instagram</a>
-            </div>
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm">
             <div>
