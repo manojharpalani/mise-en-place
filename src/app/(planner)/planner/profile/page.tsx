@@ -90,7 +90,7 @@ export default function PlannerProfilePage() {
 
   return (
     <div className="max-w-lg space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Profile Settings</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Profile Settings</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <Card>

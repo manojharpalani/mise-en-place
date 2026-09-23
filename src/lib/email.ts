@@ -76,10 +76,10 @@ export async function sendOTPEmail(to: string, otp: string) {
     subject: 'Your Mise en Place Login Code',
     html: `
       <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; padding: 24px;">
-        <h2 style="color: #1a1a1a;">Your Login Code</h2>
+        <h2 style="color: #12402c;">Your Login Code</h2>
         <p>Use this code to sign in to Mise en Place:</p>
-        <div style="background: #f4f4f4; border-radius: 8px; padding: 24px; text-align: center; margin: 24px 0;">
-          <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #1a1a1a;">${otp}</span>
+        <div style="background: #fff9ec; border-radius: 8px; padding: 24px; text-align: center; margin: 24px 0;">
+          <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #12241b;">${otp}</span>
         </div>
         <p style="color: #666; font-size: 14px;">This code expires in 10 minutes. Do not share it with anyone.</p>
       </div>

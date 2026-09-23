@@ -67,9 +67,9 @@ export function ItemCard({ item, sellerId, sellerName }: ItemCardProps) {
   const DIETARY_COLORS: Record<string, string> = {
     vegan: 'bg-[#fff1d6] text-[#c43a20]',
     vegetarian: 'bg-lime-100 text-lime-700',
-    'gluten-free': 'bg-amber-100 text-amber-700',
-    halal: 'bg-blue-100 text-blue-700',
-    kosher: 'bg-purple-100 text-purple-700',
+    'gluten-free': 'bg-[#FFF1D6] text-[#7A5A12]',
+    halal: 'bg-[#E3EFE7] text-[#12402C]',
+    kosher: 'bg-[#FDE9DA] text-[#A34A12]',
   }
 
   return (

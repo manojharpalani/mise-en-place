@@ -26,7 +26,7 @@ export default async function AdminBuyersPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Buyers ({buyers.length})</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Buyers ({buyers.length})</h1>
       <div className="bg-white rounded-xl border overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-muted border-b">

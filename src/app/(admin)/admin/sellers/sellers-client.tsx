@@ -49,7 +49,7 @@ export function SellersAdminClient({ initialSellers }: { initialSellers: Seller[
 
       {pending.length > 0 && (
         <div>
-          <h2 className="text-lg font-semibold text-amber-700 mb-3">Pending Review ({pending.length})</h2>
+          <h2 className="text-lg font-semibold text-[#7A5A12] mb-3">Pending Review ({pending.length})</h2>
           <div className="space-y-3">
             {pending.map((s) => <ApprovalCard key={s.id} seller={s} onUpdate={updateSeller} />)}
           </div>

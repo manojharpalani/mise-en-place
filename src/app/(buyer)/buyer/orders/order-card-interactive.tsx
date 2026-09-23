@@ -33,8 +33,8 @@ function StarDisplay({ rating }: { rating: number }) {
         <Star
           key={s}
           className="w-3.5 h-3.5"
-          fill={s <= rating ? '#f59e0b' : 'none'}
-          stroke={s <= rating ? '#f59e0b' : '#d1d5db'}
+          fill={s <= rating ? '#f5b82e' : 'none'}
+          stroke={s <= rating ? '#f5b82e' : '#d1d5db'}
         />
       ))}
       <span className="text-xs text-muted-foreground ml-1">Your review</span>

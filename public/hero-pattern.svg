@@ -1,5 +1,5 @@
 <svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="#C1622D" stroke-width="1.4" stroke-linecap="round">
+  <g fill="none" stroke="#E2472B" stroke-width="1.4" stroke-linecap="round">
     <!-- sprig, top-left quadrant -->
     <path d="M28 46 C 30 34, 30 24, 26 14" />
     <path d="M27 34 C 33 31, 38 30, 43 32" />
@@ -8,15 +8,15 @@
 
     <!-- small ring (bowl echo), top-right quadrant -->
     <circle cx="182" cy="40" r="10" />
-    <circle cx="182" cy="40" r="1.6" fill="#C1622D" stroke="none" />
+    <circle cx="182" cy="40" r="1.6" fill="#E2472B" stroke="none" />
 
     <!-- steam swirl, bottom-left quadrant -->
     <path d="M34 190 C 44 182, 44 174, 34 168 C 24 162, 24 154, 34 146" />
 
     <!-- thin rule with two dots, bottom-right quadrant -->
     <path d="M150 205 L 205 205" />
-    <circle cx="146" cy="205" r="1.6" fill="#C1622D" stroke="none" />
-    <circle cx="209" cy="205" r="1.6" fill="#C1622D" stroke="none" />
+    <circle cx="146" cy="205" r="1.6" fill="#E2472B" stroke="none" />
+    <circle cx="209" cy="205" r="1.6" fill="#E2472B" stroke="none" />
 
     <!-- second small sprig, center-right -->
     <path d="M205 118 C 208 108, 208 100, 204 92" />

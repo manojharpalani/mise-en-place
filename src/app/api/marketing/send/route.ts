@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       if (emailList.length > 0) {
         const html = `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #16a34a;">Message from ${seller.storeName}</h2>
+            <h2 style="color: #12402c;">Message from ${seller.storeName}</h2>
             <div style="white-space: pre-wrap; line-height: 1.6;">${data.message.replace(/\n/g, '<br>')}</div>
             <hr style="margin-top: 24px; border: none; border-top: 1px solid #eee;">
             <p style="color: #666; font-size: 12px;">

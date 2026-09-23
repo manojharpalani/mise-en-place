@@ -39,16 +39,16 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
+        <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Admin Dashboard</h1>
         <p className="text-muted-foreground mt-1">A live snapshot of the whole marketplace.</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: 'Total Users', value: metrics.totalUsers, icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
+          { label: 'Total Users', value: metrics.totalUsers, icon: Users, color: 'text-[#12402C]', bg: 'bg-[#E3EFE7]' },
           { label: 'Active Sellers', value: metrics.totalSellers, icon: ChefHat, color: 'text-[#e2472b]', bg: 'bg-[#fff1d6]' },
-          { label: 'Total Orders', value: metrics.totalOrders, icon: ShoppingBag, color: 'text-purple-600', bg: 'bg-purple-50' },
-          { label: 'Platform Revenue', value: formatCurrency(metrics.totalRevenue), icon: DollarSign, color: 'text-amber-600', bg: 'bg-amber-50' },
+          { label: 'Total Orders', value: metrics.totalOrders, icon: ShoppingBag, color: 'text-[#D9661F]', bg: 'bg-[#FDE9DA]' },
+          { label: 'Platform Revenue', value: formatCurrency(metrics.totalRevenue), icon: DollarSign, color: 'text-[#B07D00]', bg: 'bg-[#FFF9EC]' },
         ].map((stat) => {
           const Icon = stat.icon
           return (
@@ -68,9 +68,9 @@ export default async function AdminDashboardPage() {
       </div>
 
       {metrics.pendingSellers > 0 && (
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
-          <Clock className="w-5 h-5 text-amber-600 shrink-0" />
-          <p className="text-amber-800">
+        <div className="bg-[#FFF9EC] border border-[#F3D08A] rounded-xl p-4 flex items-center gap-3">
+          <Clock className="w-5 h-5 text-[#B07D00] shrink-0" />
+          <p className="text-[#5C430D]">
             <strong>{metrics.pendingSellers} seller{metrics.pendingSellers > 1 ? 's' : ''}</strong> waiting on permit approval.
             <Link href="/admin/sellers" className="ml-2 underline font-medium">Review now</Link>
           </p>

@@ -22,8 +22,8 @@ async function getOrder(id: string, userId: string) {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  PENDING:    'bg-amber-100 text-amber-700',
-  PROCESSING: 'bg-blue-100 text-blue-700',
+  PENDING:    'bg-[#FFF1D6] text-[#7A5A12]',
+  PROCESSING: 'bg-[#E3EFE7] text-[#12402C]',
   READY:      'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED:  'bg-muted text-muted-foreground',
   PICKED_UP:  'bg-muted text-muted-foreground',
@@ -46,8 +46,8 @@ function StarDisplay({ rating }: { rating: number }) {
         <Star
           key={s}
           className="w-4 h-4"
-          fill={s <= rating ? '#f59e0b' : 'none'}
-          stroke={s <= rating ? '#f59e0b' : '#d1d5db'}
+          fill={s <= rating ? '#f5b82e' : 'none'}
+          stroke={s <= rating ? '#f5b82e' : '#d1d5db'}
         />
       ))}
     </div>
@@ -81,7 +81,7 @@ export default async function OrderDetailPage({
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold tracking-[-0.03em] text-[#12402C] flex items-center gap-2">
             <Receipt className="w-5 h-5 text-[#e2472b]" />
             Order Receipt
           </h1>

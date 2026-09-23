@@ -10,9 +10,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Heart, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { DemoAccountsCallout } from '@/components/demo-accounts'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -61,10 +62,7 @@ export function SignInForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
-            Mise en Place
-          </Link>
+          <BrandLogo size="lg" />
         </div>
         <Card>
           <CardHeader>

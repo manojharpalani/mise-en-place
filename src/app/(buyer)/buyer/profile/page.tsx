@@ -25,7 +25,7 @@ export default async function ProfilePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-6">My Profile</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C] mb-6">My Profile</h1>
       <ProfileClient user={user} />
     </div>
   )

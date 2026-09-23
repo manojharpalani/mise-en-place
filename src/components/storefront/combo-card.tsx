@@ -60,19 +60,19 @@ export function ComboCard({ combo, sellerId, sellerName }: ComboCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-amber-100 overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-[#EFE3C7] overflow-hidden hover:shadow-md transition-shadow">
       {combo.photoUrl ? (
         <div className="aspect-video relative">
           <Image src={combo.photoUrl} alt={combo.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
           <div className="absolute top-2 left-2">
-            <Badge className="bg-amber-500 text-white text-xs">Combo Deal</Badge>
+            <Badge className="bg-[#F5B82E] text-[#12241B] text-xs">Combo Deal</Badge>
           </div>
         </div>
       ) : (
-        <div className="aspect-video bg-amber-50 flex items-center justify-center">
-          <Package className="w-10 h-10 text-amber-300" />
+        <div className="aspect-video bg-[#FFF9EC] flex items-center justify-center">
+          <Package className="w-10 h-10 text-[#F3D08A]" />
           <div className="absolute top-2 left-2">
-            <Badge className="bg-amber-500 text-white text-xs">Combo Deal</Badge>
+            <Badge className="bg-[#F5B82E] text-[#12241B] text-xs">Combo Deal</Badge>
           </div>
         </div>
       )}
@@ -89,7 +89,7 @@ export function ComboCard({ combo, sellerId, sellerName }: ComboCardProps) {
         )}
         <div className="flex items-center justify-between mt-3">
           <div>
-            <span className="font-bold text-amber-600 text-lg">{formatCurrency(combo.comboPrice)}</span>
+            <span className="font-bold text-[#B07D00] text-lg">{formatCurrency(combo.comboPrice)}</span>
             {savings > 0 && (
               <span className="text-xs text-[#e2472b] ml-2">Save {formatCurrency(savings)}</span>
             )}
@@ -97,7 +97,7 @@ export function ComboCard({ combo, sellerId, sellerName }: ComboCardProps) {
         </div>
         <div className="mt-2">
           {currentQty === 0 ? (
-            <Button onClick={handleAdd} size="sm" className="w-full bg-amber-500 hover:bg-amber-600 text-white">
+            <Button onClick={handleAdd} size="sm" className="w-full bg-[#F5B82E] hover:bg-[#E5A61A] text-white">
               Add Combo
             </Button>
           ) : (

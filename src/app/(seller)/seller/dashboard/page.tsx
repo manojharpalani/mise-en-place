@@ -57,12 +57,12 @@ export default async function SellerDashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Welcome back! 👋</h1>
+          <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Welcome back! 👋</h1>
           <p className="text-muted-foreground mt-1">{seller.storeName}</p>
         </div>
         <div className="flex gap-3">
           {!seller.isActive && (
-            <Badge variant="secondary" className="bg-amber-100 text-amber-700">
+            <Badge variant="secondary" className="bg-[#FFF1D6] text-[#7A5A12]">
               Pending Approval
             </Badge>
           )}
@@ -73,9 +73,9 @@ export default async function SellerDashboardPage() {
       </div>
 
       {!seller.isActive && (
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-          <p className="text-amber-800 font-medium">Your store is pending admin approval.</p>
-          <p className="text-amber-700 text-sm mt-1">
+        <div className="bg-[#FFF9EC] border border-[#F3D08A] rounded-xl p-4">
+          <p className="text-[#5C430D] font-medium">Your store is pending admin approval.</p>
+          <p className="text-[#7A5A12] text-sm mt-1">
             We review all seller applications within 24-48 hours. Make sure you&apos;ve uploaded your permit in{' '}
             <Link href="/seller/settings" className="underline">Settings</Link>.
           </p>
@@ -85,12 +85,12 @@ export default async function SellerDashboardPage() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {[
-          { label: "Today's Orders", value: todayOrders.length, icon: ShoppingBag, color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Pending Orders', value: pendingOrders.length, icon: TrendingUp, color: 'text-amber-600', bg: 'bg-amber-50' },
+          { label: "Today's Orders", value: todayOrders.length, icon: ShoppingBag, color: 'text-[#12402C]', bg: 'bg-[#E3EFE7]' },
+          { label: 'Pending Orders', value: pendingOrders.length, icon: TrendingUp, color: 'text-[#B07D00]', bg: 'bg-[#FFF9EC]' },
           { label: 'Weekly Revenue', value: formatCurrency(weeklyRevenue), icon: DollarSign, color: 'text-[#e2472b]', bg: 'bg-[#fff1d6]' },
-          { label: 'Subscribers', value: seller.subscribers.length, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
-          { label: 'Avg Rating', value: seller.ratingAvg ? `${seller.ratingAvg.toFixed(1)} ★` : '—', icon: Star, color: 'text-amber-500', bg: 'bg-amber-50' },
-          { label: 'Total Reviews', value: seller.reviewCount, icon: Star, color: 'text-amber-500', bg: 'bg-amber-50' },
+          { label: 'Subscribers', value: seller.subscribers.length, icon: Users, color: 'text-[#D9661F]', bg: 'bg-[#FDE9DA]' },
+          { label: 'Avg Rating', value: seller.ratingAvg ? `${seller.ratingAvg.toFixed(1)} ★` : '—', icon: Star, color: 'text-[#D99A16]', bg: 'bg-[#FFF9EC]' },
+          { label: 'Total Reviews', value: seller.reviewCount, icon: Star, color: 'text-[#D99A16]', bg: 'bg-[#FFF9EC]' },
         ].map((stat) => {
           const Icon = stat.icon
           return (
@@ -155,8 +155,8 @@ export default async function SellerDashboardPage() {
                     <span className="font-semibold text-sm">{formatCurrency(order.total)}</span>
                     <Badge
                       className={
-                        order.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
-                        order.status === 'PROCESSING' ? 'bg-blue-100 text-blue-700' :
+                        order.status === 'PENDING' ? 'bg-[#FFF1D6] text-[#7A5A12]' :
+                        order.status === 'PROCESSING' ? 'bg-[#E3EFE7] text-[#12402C]' :
                         order.status === 'READY' ? 'bg-[#fff1d6] text-[#c43a20]' :
                         order.status === 'CANCELLED' ? 'bg-red-100 text-red-700' :
                         'bg-muted text-foreground'
@@ -175,7 +175,7 @@ export default async function SellerDashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+            <Star className="w-4 h-4 text-[#F5B82E] fill-[#F5B82E]" />
             Recent Reviews
           </CardTitle>
         </CardHeader>
@@ -199,8 +199,8 @@ export default async function SellerDashboardPage() {
                             <Star
                               key={s}
                               className="w-3 h-3"
-                              fill={s <= review.rating ? '#f59e0b' : 'none'}
-                              stroke={s <= review.rating ? '#f59e0b' : '#d1d5db'}
+                              fill={s <= review.rating ? '#f5b82e' : 'none'}
+                              stroke={s <= review.rating ? '#f5b82e' : '#d1d5db'}
                             />
                           ))}
                         </div>

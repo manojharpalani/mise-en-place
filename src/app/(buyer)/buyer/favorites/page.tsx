@@ -29,7 +29,7 @@ export default async function FavoritesPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Favorite Sellers</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Favorite Sellers</h1>
 
       {favorites.length === 0 ? (
         <div className="text-center py-16 text-muted-foreground">
@@ -59,8 +59,8 @@ export default async function FavoritesPage() {
                   {seller.cuisineType && <p className="text-sm text-muted-foreground">{seller.cuisineType}</p>}
                   <div className="flex items-center gap-3 mt-2">
                     {seller.ratingAvg && (
-                      <span className="flex items-center gap-1 text-sm text-amber-500">
-                        <Star className="w-4 h-4 fill-amber-400" />
+                      <span className="flex items-center gap-1 text-sm text-[#D99A16]">
+                        <Star className="w-4 h-4 fill-[#F5B82E]" />
                         {seller.ratingAvg.toFixed(1)}
                       </span>
                     )}

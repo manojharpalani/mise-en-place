@@ -65,7 +65,7 @@ function FeatureSection({
           <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium mb-5 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             {eyebrow}
           </div>
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>{title}</h2>
+          <h2 className="font-heading text-3xl md:text-[40px] leading-[1.05] font-extrabold tracking-[-0.035em] mb-4" style={{ color: '#12402C' }}>{title}</h2>
           <p className="text-lg leading-relaxed" style={{ color: '#4D5747' }}>{description}</p>
         </div>
 
@@ -103,7 +103,7 @@ export default function FeaturesPage() {
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             Features
           </div>
-          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#12241B' }}>
+          <h1 className="font-heading text-[44px] md:text-[64px] font-extrabold tracking-[-0.04em] mb-6 leading-[0.95]" style={{ color: '#12402C' }}>
             Built for three kinds of{' '}
             <span style={{ color: '#E2472B' }}>people at the table.</span>
           </h1>
@@ -167,7 +167,7 @@ export default function FeaturesPage() {
       {/* Bottom CTA */}
       <section className="py-20 px-4" style={{ background: '#FFF9EC' }}>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>
+          <h2 className="font-heading text-3xl md:text-[40px] leading-[1.05] font-extrabold tracking-[-0.035em] mb-4" style={{ color: '#12402C' }}>
             Not sure where you fit?
           </h2>
           <p className="text-lg mb-8" style={{ color: '#4D5747' }}>

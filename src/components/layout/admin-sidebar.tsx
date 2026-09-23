@@ -17,13 +17,13 @@ export function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-56 min-h-screen bg-gray-900 text-white flex flex-col">
-      <div className="p-4 border-b border-gray-800">
+    <aside className="w-56 min-h-screen bg-[#12402C] text-[#FFF9EC] flex flex-col">
+      <div className="p-4 border-b border-[#0D3223]">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg">
           <img src="/logo-mark-light.svg" alt="" className="w-6 h-6" />
-          <span className="font-heading font-extrabold tracking-tight">mise en <span className="text-[#E2472B]">place</span></span>
+          <span className="font-heading font-extrabold tracking-tight">mise en <span className="text-[#F5B82E]">place</span></span>
         </Link>
-        <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+        <p className="text-xs text-[#A9C2B1] mt-0.5 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Admin Panel
         </p>
       </div>
@@ -39,7 +39,7 @@ export function AdminSidebar() {
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                 isActive
                   ? 'bg-[#FFF1D6] text-[#E2472B]'
-                  : 'text-muted-foreground hover:bg-gray-800 hover:text-white'
+                  : 'text-[#CFE0D4] hover:bg-[#0D3223] hover:text-white'
               )}
             >
               <Icon className="w-4 h-4 flex-shrink-0" />

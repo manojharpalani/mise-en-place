@@ -23,8 +23,8 @@ async function getBuyerOrders(userId: string) {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  PENDING: 'bg-amber-100 text-amber-700',
-  PROCESSING: 'bg-blue-100 text-blue-700',
+  PENDING: 'bg-[#FFF1D6] text-[#7A5A12]',
+  PROCESSING: 'bg-[#E3EFE7] text-[#12402C]',
   READY: 'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED: 'bg-muted text-muted-foreground',
   PICKED_UP: 'bg-muted text-muted-foreground',
@@ -40,7 +40,7 @@ export default async function BuyerOrdersPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">My Orders</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">My Orders</h1>
 
       {orders.length === 0 ? (
         <div className="text-center py-16 text-muted-foreground">

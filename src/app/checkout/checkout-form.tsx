@@ -37,7 +37,7 @@ export function CheckoutForm() {
         <Navbar />
         <div className="max-w-lg mx-auto px-4 py-20 text-center">
           <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-          <h1 className="text-2xl font-bold text-foreground mb-4">Your cart is empty</h1>
+          <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C] mb-4">Your cart is empty</h1>
           <Button asChild className="bg-[#e2472b] hover:bg-[#c43a20]">
             <Link href="/sellers">Browse Sellers</Link>
           </Button>
@@ -99,7 +99,7 @@ export function CheckoutForm() {
     <div className="min-h-screen bg-muted">
       <Navbar />
       <main className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-2xl font-bold text-foreground mb-6">Checkout</h1>
+        <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C] mb-6">Checkout</h1>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left: Order form */}

@@ -29,8 +29,8 @@ interface Order {
 }
 
 const STATUS_COLORS: Record<OrderStatus, string> = {
-  PENDING: 'bg-amber-100 text-amber-700',
-  PROCESSING: 'bg-blue-100 text-blue-700',
+  PENDING: 'bg-[#FFF1D6] text-[#7A5A12]',
+  PROCESSING: 'bg-[#E3EFE7] text-[#12402C]',
   READY: 'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED: 'bg-muted text-muted-foreground',
   PICKED_UP: 'bg-muted text-muted-foreground',

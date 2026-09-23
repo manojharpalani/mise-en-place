@@ -18,7 +18,7 @@ export default async function AdminContentPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-foreground">Content Moderation</h1>
+      <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Content Moderation</h1>
       <ContentClient initialArticles={articles} />
     </div>
   )

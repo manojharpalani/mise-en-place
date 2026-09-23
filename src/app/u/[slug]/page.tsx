@@ -79,7 +79,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
         <div className="bg-white rounded-2xl border border-border p-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-bold text-foreground">{planner.displayName}</h1>
+              <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">{planner.displayName}</h1>
               {planner.bio && (
                 <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{planner.bio}</p>
               )}

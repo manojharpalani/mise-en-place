@@ -112,7 +112,7 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
     Array.from({ length: 5 }).map((_, i) => (
       <Star
         key={i}
-        className={`w-4 h-4 ${i < rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200 fill-gray-200'}`}
+        className={`w-4 h-4 ${i < rating ? 'text-[#F5B82E] fill-[#F5B82E]' : 'text-gray-200 fill-gray-200'}`}
       />
     ))
 

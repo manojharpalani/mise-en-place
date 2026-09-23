@@ -202,7 +202,7 @@ export function DishLibraryClient({ initialItems }: { initialItems: DishItem[] }
                           <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>
                         ))}
                         {item.dietaryTags.map((t) => (
-                          <Badge key={t} variant="outline" className="text-xs text-green-700 border-green-200">{t}</Badge>
+                          <Badge key={t} variant="outline" className="text-xs text-[#12402C] border-[#CFE0D4]">{t}</Badge>
                         ))}
                       </div>
                     )}

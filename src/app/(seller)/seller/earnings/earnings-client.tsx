@@ -127,8 +127,8 @@ export function EarningsClient({ orders }: Props) {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-              <ShoppingBag className="w-5 h-5 text-blue-600" />
+            <div className="w-10 h-10 bg-[#E3EFE7] rounded-xl flex items-center justify-center">
+              <ShoppingBag className="w-5 h-5 text-[#12402C]" />
             </div>
             <div>
               <p className="text-2xl font-bold">{orderCount}</p>
@@ -138,8 +138,8 @@ export function EarningsClient({ orders }: Props) {
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-purple-600" />
+            <div className="w-10 h-10 bg-[#FDE9DA] rounded-xl flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-[#D9661F]" />
             </div>
             <div>
               <p className="text-2xl font-bold">{formatCurrency(avgOrder)}</p>

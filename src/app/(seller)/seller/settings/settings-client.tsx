@@ -294,7 +294,7 @@ export function SettingsClient({ seller }: {
               href="https://developers.facebook.com/docs/whatsapp/cloud-api/get-started"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-rose-600 hover:underline"
+              className="inline-flex items-center gap-1 text-[#E2472B] hover:underline"
             >
               Setup guide <ExternalLink className="w-3 h-3" />
             </a>
@@ -343,13 +343,13 @@ export function SettingsClient({ seller }: {
                 href="https://business.facebook.com/wa/manage/message-templates/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-rose-600 hover:underline"
+                className="inline-flex items-center gap-1 text-xs text-[#E2472B] hover:underline"
               >
                 Manage templates <ExternalLink className="w-3 h-3" />
               </a>
             </div>
 
-            <div className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 flex gap-2 text-xs text-amber-800">
+            <div className="rounded-lg bg-[#FFF9EC] border border-[#F3D08A] px-3 py-2.5 flex gap-2 text-xs text-[#5C430D]">
               <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
               <div>
                 Templates must be created and approved in Meta Business Manager first.

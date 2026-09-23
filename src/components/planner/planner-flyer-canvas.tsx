@@ -11,12 +11,12 @@ export interface PlannerFlyerDay {
 }
 
 const DAY_PALETTES = [
-  { bg: '#fce4ec', header: '#e8607a', text: '#8b1a2e' },
-  { bg: '#f3e5f5', header: '#b967c7', text: '#5e1a72' },
-  { bg: '#e8eaf6', header: '#7986cb', text: '#1a237e' },
-  { bg: '#e0f7fa', header: '#26c6da', text: '#006064' },
-  { bg: '#f1f8e9', header: '#8bc34a', text: '#33691e' },
-  { bg: '#fff8e1', header: '#ffca28', text: '#6d4c00' },
+  { bg: '#fff1d6', header: '#b07d00', text: '#5c430d' },
+  { bg: '#fde4de', header: '#e2472b', text: '#7a1e0e' },
+  { bg: '#e3efe7', header: '#12402c', text: '#12402c' },
+  { bg: '#fff9ec', header: '#d9661f', text: '#7a3a10' },
+  { bg: '#eaf2df', header: '#4e7d32', text: '#2f4a1c' },
+  { bg: '#f6e6d8', header: '#8a4b22', text: '#4e2a12' },
 ]
 
 export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
@@ -39,10 +39,10 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
         height: 540,
         display: 'flex',
         flexDirection: 'column',
-        fontFamily: "'Georgia', 'Times New Roman', serif",
+        fontFamily: "var(--font-heading), 'Bricolage Grotesque', system-ui, sans-serif",
         overflow: 'hidden',
         flexShrink: 0,
-        background: 'linear-gradient(145deg, #fce8f0 0%, #ede8fc 30%, #e8edfc 55%, #e5f8ee 80%, #fef9e7 100%)',
+        background: 'linear-gradient(150deg, #fff9ec 0%, #fff1d6 50%, #fde3a7 100%)',
       }}
     >
       {/* Header */}
@@ -61,7 +61,7 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
         <div style={{
           fontSize: displayName.length > 20 ? 28 : displayName.length > 14 ? 34 : 40,
           fontWeight: 700,
-          color: '#1a1a2e',
+          color: '#12402c',
           lineHeight: 1.1,
           letterSpacing: '-0.5px',
           marginBottom: 6,
@@ -72,8 +72,8 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
         <div style={{
           fontSize: 13,
           fontStyle: 'italic',
-          color: '#5a4a6a',
-          fontFamily: 'sans-serif',
+          color: '#4d5747',
+          fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
           marginBottom: 12,
           lineHeight: 1.3,
           maxWidth: 360,
@@ -89,12 +89,12 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
           borderRadius: 40,
           padding: '5px 16px',
           whiteSpace: 'nowrap',
-          border: '1px solid rgba(180,130,200,0.25)',
+          border: '1px solid rgba(18,64,44,0.18)',
         }}>
-          <span style={{ fontSize: 11, color: '#7b5ea7', fontFamily: 'sans-serif', fontWeight: 700 }}>📅</span>
-          <span style={{ fontSize: 11, color: '#3a2a4a', fontFamily: 'sans-serif', fontWeight: 600 }}>{weekLabel}</span>
+          <span style={{ fontSize: 11, color: '#e2472b', fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif", fontWeight: 700 }}>📅</span>
+          <span style={{ fontSize: 11, color: '#12241b', fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif", fontWeight: 600 }}>{weekLabel}</span>
           {householdSize && householdSize > 1 && (
-            <span style={{ fontSize: 10, color: '#7b5ea7', fontFamily: 'sans-serif' }}>· {householdSize} people</span>
+            <span style={{ fontSize: 10, color: '#e2472b', fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif" }}>· {householdSize} people</span>
           )}
         </div>
       </div>
@@ -115,8 +115,8 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#9e8faf',
-            fontFamily: 'sans-serif',
+            color: '#6f7768',
+            fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
             fontSize: 13,
           }}>
             Add dishes to days to preview the flyer
@@ -144,7 +144,7 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
                 textAlign: 'center',
                 flexShrink: 0,
               }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: 'white', fontFamily: 'sans-serif', letterSpacing: '0.5px' }}>
+                <span style={{ fontSize: 10, fontWeight: 800, color: 'white', fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif", letterSpacing: '0.5px' }}>
                   {shortDay}
                 </span>
               </div>
@@ -167,8 +167,8 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
                     <div style={{
                       fontSize: 8,
                       fontWeight: 700,
-                      color: '#1a1a2e',
-                      fontFamily: 'sans-serif',
+                      color: '#12402c',
+                      fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
                       lineHeight: 1.2,
                       wordBreak: 'break-word',
                     }}>
@@ -178,7 +178,7 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
                       <div style={{
                         fontSize: 7,
                         color: palette.text,
-                        fontFamily: 'sans-serif',
+                        fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
                         marginTop: 2,
                         fontWeight: 500,
                       }}>
@@ -191,7 +191,7 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
                   <div style={{
                     fontSize: 7,
                     color: palette.text,
-                    fontFamily: 'sans-serif',
+                    fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
                     textAlign: 'center',
                     opacity: 0.8,
                   }}>
@@ -218,20 +218,20 @@ export const PlannerFlyerCanvas = React.forwardRef<HTMLDivElement, {
           borderRadius: 30,
           padding: '6px 22px',
           textAlign: 'center',
-          border: '1px solid rgba(180,130,200,0.20)',
+          border: '1px solid rgba(18,64,44,0.14)',
           whiteSpace: 'nowrap',
         }}>
           <span style={{
             fontSize: 10,
             fontWeight: 700,
-            color: '#3a2a4a',
-            fontFamily: 'sans-serif',
+            color: '#12241b',
+            fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif",
             letterSpacing: '0.2px',
           }}>
             Planned with care ✨
           </span>
         </div>
-        <div style={{ fontSize: 9, color: '#7a6a8a', fontFamily: 'sans-serif', letterSpacing: '0.3px' }}>
+        <div style={{ fontSize: 9, color: '#4d5747', fontFamily: "var(--font-sans), 'Onest', system-ui, sans-serif", letterSpacing: '0.3px' }}>
           {profileUrl}
         </div>
       </div>

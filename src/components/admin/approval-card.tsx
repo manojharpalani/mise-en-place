@@ -76,7 +76,7 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
               className={
                 seller.permitStatus === 'APPROVED' ? 'bg-[#fff1d6] text-[#c43a20]' :
                 seller.permitStatus === 'REJECTED' ? 'bg-red-100 text-red-600' :
-                'bg-amber-100 text-amber-700'
+                'bg-[#FFF1D6] text-[#7A5A12]'
               }
             >
               {seller.permitStatus}
@@ -94,7 +94,7 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
               href={seller.permitDocumentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline mt-2"
+              className="inline-flex items-center gap-1 text-sm text-[#12402C] hover:underline mt-2"
             >
               View Permit <ExternalLink className="w-3 h-3" />
             </a>

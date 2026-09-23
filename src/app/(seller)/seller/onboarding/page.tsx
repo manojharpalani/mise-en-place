@@ -102,7 +102,7 @@ export default function OnboardingPage() {
     <div className="max-w-lg mx-auto">
       <div className="text-center mb-8">
         <ChefHat className="w-12 h-12 text-[#e2472b] mx-auto mb-3" />
-        <h1 className="text-2xl font-bold text-foreground">Set Up Your Store</h1>
+        <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Set Up Your Store</h1>
         <p className="text-muted-foreground mt-1">Let&apos;s get your kitchen on Mise en Place</p>
       </div>
 

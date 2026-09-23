@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -13,10 +12,11 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Switch } from '@/components/ui/switch'
-import { Loader2, CalendarDays, CheckCircle, Heart } from 'lucide-react'
+import { Loader2, CalendarDays, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { slugify } from '@/lib/utils'
 import { displayUrl } from '@/lib/site'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 const schema = z.object({
   displayName: z.string().min(2, 'Display name must be at least 2 characters'),
@@ -122,13 +122,10 @@ export default function PlannerOnboardingPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
-            Mise en Place
-          </Link>
+          <BrandLogo size="lg" />
           <div className="mt-4">
             <CalendarDays className="w-10 h-10 text-[#e2472b] mx-auto mb-2" />
-            <h1 className="text-2xl font-bold text-foreground">Set Up Your Meal Planner</h1>
+            <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Set Up Your Meal Planner</h1>
             <p className="text-muted-foreground mt-1">Plan your week, build your grocery list</p>
           </div>
         </div>

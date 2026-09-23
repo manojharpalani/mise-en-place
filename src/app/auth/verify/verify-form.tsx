@@ -7,8 +7,9 @@ import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Heart, Loader2, Mail, KeyRound } from 'lucide-react'
+import { Loader2, Mail, KeyRound } from 'lucide-react'
 import { toast } from 'sonner'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 export function VerifyForm() {
   const router = useRouter()
@@ -108,10 +109,7 @@ export function VerifyForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
-            Mise en Place
-          </Link>
+          <BrandLogo size="lg" />
         </div>
         <Card>
           <CardHeader className="text-center">

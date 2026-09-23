@@ -141,8 +141,8 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
       )}
 
       {/* Household scaling notice */}
-      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-blue-50 rounded-lg px-3 py-2">
-        <Users className="w-4 h-4 text-blue-400 shrink-0" />
+      <div className="flex items-center gap-2 text-sm text-muted-foreground bg-[#E3EFE7] rounded-lg px-3 py-2">
+        <Users className="w-4 h-4 text-[#5F8F6E] shrink-0" />
         Quantities scaled for {householdSize} {householdSize === 1 ? 'person' : 'people'}
       </div>
 
@@ -159,10 +159,10 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
         <>
           {/* Missing ingredients warning */}
           {dishesWithoutIngredients.length > 0 && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+            <div className="bg-[#FFF9EC] border border-[#F3D08A] rounded-lg p-3 text-sm text-[#5C430D]">
               <strong>{dishesWithoutIngredients.length} dish{dishesWithoutIngredients.length > 1 ? 'es' : ''} missing ingredient data:</strong>{' '}
               {dishesWithoutIngredients.map((d) => d.name).join(', ')}
-              <p className="mt-1 text-amber-600 text-xs">Add ingredients via the dish library to include them in the grocery list.</p>
+              <p className="mt-1 text-[#B07D00] text-xs">Add ingredients via the dish library to include them in the grocery list.</p>
             </div>
           )}
 
@@ -175,7 +175,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
               <div className="flex items-center justify-between">
                 <p className="text-sm text-muted-foreground">{totalItems} items across {categories.length} categories</p>
                 <Button size="sm" variant="outline" onClick={copyToClipboard}>
-                  {copied ? <Check className="w-3.5 h-3.5 mr-1 text-green-600" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
+                  {copied ? <Check className="w-3.5 h-3.5 mr-1 text-[#12402C]" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
                   {copied ? 'Copied' : 'Copy List'}
                 </Button>
               </div>
@@ -247,7 +247,7 @@ export function PlannerGroceryList({ menus, initialMenuId, householdSize }: Prop
                       <span className="text-muted-foreground text-xs">{dish.dayOfWeek}</span>
                       <span className="text-muted-foreground text-xs">×{dish.servings}</span>
                       {!dish.hasIngredients && (
-                        <span className="text-xs text-amber-500">no ingredients</span>
+                        <span className="text-xs text-[#D99A16]">no ingredients</span>
                       )}
                     </div>
                   </div>

@@ -111,7 +111,7 @@ export function SubscriptionsClient({ initialSubscriptions }: { initialSubscript
                           size="sm"
                           variant="ghost"
                           onClick={() => skipDay(sub.id, day.id, day.date)}
-                          className="w-full mt-2 text-xs h-7 text-muted-foreground hover:text-amber-600"
+                          className="w-full mt-2 text-xs h-7 text-muted-foreground hover:text-[#B07D00]"
                         >
                           <SkipForward className="w-3 h-3 mr-1" /> Skip Day
                         </Button>

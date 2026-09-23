@@ -26,7 +26,11 @@ export default async function SellersPage() {
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 py-10">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Find Local Chefs</h1>
+          <div className="flex items-center gap-2 text-[13px] font-semibold tracking-wide mb-3 text-[#12402C]">
+            <span className="w-2 h-2 rounded-full bg-[#E2472B]" />
+            Licensed kitchens near you
+          </div>
+          <h1 className="text-4xl leading-[1.05] font-extrabold tracking-[-0.035em] text-[#12402C]">Find Local Chefs</h1>
           <p className="text-muted-foreground mt-2">Discover home-cooked meals from your neighbors</p>
         </div>
 
@@ -65,8 +69,8 @@ export default async function SellersPage() {
                         )}
                       </div>
                       {seller.ratingAvg && (
-                        <div className="flex items-center gap-1 text-sm text-amber-500 shrink-0">
-                          <Star className="w-4 h-4 fill-amber-400" />
+                        <div className="flex items-center gap-1 text-sm text-[#D99A16] shrink-0">
+                          <Star className="w-4 h-4 fill-[#F5B82E]" />
                           <span className="font-medium">{seller.ratingAvg.toFixed(1)}</span>
                           <span className="text-muted-foreground">({seller.reviewCount})</span>
                         </div>

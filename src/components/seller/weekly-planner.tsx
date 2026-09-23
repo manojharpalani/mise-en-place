@@ -737,7 +737,7 @@ export function WeeklyMenuPlanner({
             <Button
               onClick={() => setShowAiPlan(true)}
               size="sm"
-              className="bg-gradient-to-r from-[#e2472b] to-[#c8a0d0] hover:from-[#c43a20] hover:to-[#b890c0] text-white"
+              className="bg-gradient-to-r from-[#e2472b] to-[#f08a3c] hover:from-[#c43a20] hover:to-[#d9772b] text-white"
             >
               <Wand2 className="w-4 h-4 mr-2" /> AI Plan Week
             </Button>
@@ -823,11 +823,11 @@ export function WeeklyMenuPlanner({
                     </div>
                   ))}
                   {dayData.comboItems.map(ci => (
-                    <div key={ci.comboItem.id} className="bg-amber-50 rounded-lg px-2 py-1.5 text-sm space-y-1">
+                    <div key={ci.comboItem.id} className="bg-[#FFF9EC] rounded-lg px-2 py-1.5 text-sm space-y-1">
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="font-medium">{ci.comboItem.name}</span>
-                          <Badge className="ml-1 text-xs bg-amber-100 text-amber-700 py-0">Combo</Badge>
+                          <Badge className="ml-1 text-xs bg-[#FFF1D6] text-[#7A5A12] py-0">Combo</Badge>
                         </div>
                         <button onClick={() => removeItemFromDay(dayData.id, null, ci.comboItem.id)} className="text-muted-foreground hover:text-red-400 ml-2">
                           <Trash2 className="w-3 h-3" />
@@ -905,7 +905,7 @@ export function WeeklyMenuPlanner({
                             ) : (
                               <button
                                 onClick={() => addItemToDay(addingToDayIndex!, item.id, null)}
-                                className="text-xs text-[#e2472b] hover:text-[#b08080] font-medium"
+                                className="text-xs text-[#e2472b] hover:text-[#c43a20] font-medium"
                               >
                                 Add
                               </button>
@@ -924,7 +924,7 @@ export function WeeklyMenuPlanner({
                         const dayData = addingToDayIndex !== null ? currentMenu?.days[addingToDayIndex] : null
                         const isAdded = dayData?.comboItems.some(ci => ci.comboItem.id === combo.id) ?? false
                         return (
-                          <div key={combo.id} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-sm ${isAdded ? 'bg-amber-50 border-amber-200' : 'bg-white'}`}>
+                          <div key={combo.id} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-sm ${isAdded ? 'bg-[#FFF9EC] border-[#F3D08A]' : 'bg-white'}`}>
                             <span className={isAdded ? 'font-medium' : ''}>{combo.name}</span>
                             <div className="flex items-center gap-2">
                               <span className="text-muted-foreground">{formatCurrency(combo.comboPrice)}</span>
@@ -938,7 +938,7 @@ export function WeeklyMenuPlanner({
                               ) : (
                                 <button
                                   onClick={() => addItemToDay(addingToDayIndex!, null, combo.id)}
-                                  className="text-xs text-[#e2472b] hover:text-[#b08080] font-medium"
+                                  className="text-xs text-[#e2472b] hover:text-[#c43a20] font-medium"
                                 >
                                   Add
                                 </button>
@@ -1068,7 +1068,7 @@ export function WeeklyMenuPlanner({
                             <div className="flex items-center gap-2 flex-wrap">
                               <span className="text-sm font-medium text-foreground">{item.name}</span>
                               {item.isCombo && (
-                                <Badge className="text-[10px] bg-amber-100 text-amber-700 py-0">Combo</Badge>
+                                <Badge className="text-[10px] bg-[#FFF1D6] text-[#7A5A12] py-0">Combo</Badge>
                               )}
                               {item.estimatedPrice != null && (
                                 <span className="text-xs text-muted-foreground">{formatCurrency(item.estimatedPrice)}</span>
@@ -1091,7 +1091,7 @@ export function WeeklyMenuPlanner({
               </div>
 
               {importPlan.days.every(d => d.items.every(i => !i.selected)) && (
-                <p className="text-sm text-amber-600 text-center">Select at least one item to import.</p>
+                <p className="text-sm text-[#B07D00] text-center">Select at least one item to import.</p>
               )}
 
               <div className="flex gap-2 pt-1">
@@ -1241,7 +1241,7 @@ export function WeeklyMenuPlanner({
                 Cancel
               </Button>
               <Button
-                className="flex-1 bg-gradient-to-r from-[#e2472b] to-[#c8a0d0] hover:from-[#c43a20] hover:to-[#b890c0] text-white"
+                className="flex-1 bg-gradient-to-r from-[#e2472b] to-[#f08a3c] hover:from-[#c43a20] hover:to-[#d9772b] text-white"
                 onClick={generateAiPlan}
                 disabled={aiGenerating}
               >

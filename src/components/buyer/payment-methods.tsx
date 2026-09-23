@@ -158,7 +158,7 @@ export function PaymentMethods() {
                     <p className="text-sm font-medium">
                       {brandLabel(pm.brand)} ···· {pm.last4}
                       {pm.wallet === 'link' && (
-                        <span className="ml-2 text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-semibold">Link</span>
+                        <span className="ml-2 text-xs bg-[#E3EFE7] text-[#12402C] px-1.5 py-0.5 rounded font-semibold">Link</span>
                       )}
                     </p>
                     <p className="text-xs text-muted-foreground">Expires {pm.expMonth}/{pm.expYear}</p>

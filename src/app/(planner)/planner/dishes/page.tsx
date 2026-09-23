@@ -20,7 +20,7 @@ export default async function PlannerDishesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Dish Library</h1>
+          <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">Dish Library</h1>
           <p className="text-muted-foreground text-sm mt-1">Your personal collection of dishes to plan meals from</p>
         </div>
       </div>

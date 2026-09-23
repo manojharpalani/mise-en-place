@@ -212,7 +212,7 @@ export function DishInspiration({ item, seller, open, onClose }: DishInspiration
                   {/* Headline */}
                   <div
                     className="rounded-2xl px-5 py-4 text-center"
-                    style={{ background: 'linear-gradient(135deg, #fff1d6, #f0e0db)' }}
+                    style={{ background: 'linear-gradient(135deg, #fff1d6, #fff9ec)' }}
                   >
                     <p className="font-heading text-xl font-semibold leading-snug" style={{ color: '#12241b' }}>
                       {data.recipe.headline}

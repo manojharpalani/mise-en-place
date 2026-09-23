@@ -20,7 +20,7 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             Our Story
           </div>
-          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#12241B' }}>
+          <h1 className="font-heading text-[44px] md:text-[64px] font-extrabold tracking-[-0.04em] mb-6 leading-[0.95]" style={{ color: '#12402C' }}>
             Everything in its place —{' '}
             <span style={{ color: '#E2472B' }}>starting with who cooks it.</span>
           </h1>
@@ -68,7 +68,7 @@ export default function AboutPage() {
       <section className="py-20 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="font-heading text-3xl md:text-4xl font-normal mb-3" style={{ color: '#12241B' }}>
+            <h2 className="font-heading text-3xl md:text-[40px] leading-[1.05] font-extrabold tracking-[-0.035em] mb-3" style={{ color: '#12402C' }}>
               What we believe
             </h2>
             <p className="text-lg max-w-xl mx-auto" style={{ color: '#4D5747' }}>
@@ -97,7 +97,7 @@ export default function AboutPage() {
                 <div className="flex justify-center mb-5 w-14 h-14 rounded-2xl mx-auto items-center" style={{ background: '#FFF1D6' }}>
                   {v.icon}
                 </div>
-                <h3 className="font-heading text-xl font-normal mb-3" style={{ color: '#12241B' }}>{v.title}</h3>
+                <h3 className="font-heading text-xl font-bold mb-3" style={{ color: '#12402C' }}>{v.title}</h3>
                 <p style={{ color: '#4D5747' }}>{v.description}</p>
               </div>
             ))}
@@ -109,7 +109,7 @@ export default function AboutPage() {
       <section className="py-20 px-4" style={{ background: '#ffffff' }}>
         <div className="max-w-2xl mx-auto text-center">
           <Sprout className="w-8 h-8 mx-auto mb-5" style={{ color: '#E2472B' }} />
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>
+          <h2 className="font-heading text-3xl md:text-[40px] leading-[1.05] font-extrabold tracking-[-0.035em] mb-4" style={{ color: '#12402C' }}>
             Be part of the neighborhood
           </h2>
           <p className="text-lg mb-8" style={{ color: '#4D5747' }}>

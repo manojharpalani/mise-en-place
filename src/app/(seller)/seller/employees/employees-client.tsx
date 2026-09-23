@@ -109,7 +109,7 @@ export function EmployeesClient({ seller, initialEmployees }: { seller: { id: st
               <Badge
                 className={
                   emp.status === 'ACTIVE' ? 'bg-[#fff1d6] text-[#c43a20]' :
-                  emp.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
+                  emp.status === 'PENDING' ? 'bg-[#FFF1D6] text-[#7A5A12]' :
                   'bg-muted text-muted-foreground'
                 }
               >

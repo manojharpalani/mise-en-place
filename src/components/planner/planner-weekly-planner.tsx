@@ -430,7 +430,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                 variant="outline"
                 onClick={togglePublish}
                 disabled={publishing}
-                className={activeMenu.isPublished ? 'text-green-700 border-green-300' : ''}
+                className={activeMenu.isPublished ? 'text-[#12402C] border-[#A9C2B1]' : ''}
               >
                 {publishing
                   ? <Loader2 className="w-4 h-4 animate-spin mr-1" />

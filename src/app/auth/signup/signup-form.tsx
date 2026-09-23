@@ -11,8 +11,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Heart, Loader2, ShoppingBag, ChefHat, CalendarDays } from 'lucide-react'
+import { Loader2, ShoppingBag, ChefHat, CalendarDays } from 'lucide-react'
 import { toast } from 'sonner'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -98,10 +99,7 @@ export function SignUpForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
-            Mise en Place
-          </Link>
+          <BrandLogo size="lg" />
         </div>
         <Card>
           <CardHeader>

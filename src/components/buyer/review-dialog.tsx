@@ -68,8 +68,8 @@ export function ReviewDialog({ orderId, storeName, open, onClose }: ReviewDialog
               >
                 <Star
                   className="w-8 h-8 transition-colors"
-                  fill={star <= display ? '#f59e0b' : 'none'}
-                  stroke={star <= display ? '#f59e0b' : '#d1d5db'}
+                  fill={star <= display ? '#f5b82e' : 'none'}
+                  stroke={star <= display ? '#f5b82e' : '#d1d5db'}
                 />
               </button>
             ))}

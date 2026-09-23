@@ -39,7 +39,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
           display: 'flex',
           width: '1200px',
           height: '630px',
-          background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)',
+          background: 'linear-gradient(135deg, #fff9ec 0%, #fff1d6 55%, #fde3a7 100%)',
           fontFamily: 'system-ui, sans-serif',
           position: 'relative',
           overflow: 'hidden',
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
             width: 400,
             height: 400,
             borderRadius: '50%',
-            background: 'rgba(22, 163, 74, 0.1)',
+            background: 'rgba(245, 184, 46, 0.35)',
           }}
         />
 
@@ -73,7 +73,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                 style={{
                   width: '48px',
                   height: '48px',
-                  background: '#16a34a',
+                  background: '#e2472b',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
@@ -83,17 +83,17 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
               >
                 🍽️
               </div>
-              <span style={{ fontSize: '24px', fontWeight: 600, color: '#166534' }}>
+              <span style={{ fontSize: '24px', fontWeight: 600, color: '#12402c' }}>
                 {seller?.storeName || slug}
               </span>
             </div>
 
-            <h1 style={{ fontSize: '56px', fontWeight: 800, color: '#14532d', margin: '0 0 16px 0', lineHeight: 1.1 }}>
+            <h1 style={{ fontSize: '56px', fontWeight: 800, color: '#12402c', margin: '0 0 16px 0', lineHeight: 1.1 }}>
               {itemName}
             </h1>
 
             {seller?.cuisineType && (
-              <p style={{ fontSize: '24px', color: '#16a34a', margin: '0 0 24px 0' }}>
+              <p style={{ fontSize: '24px', color: '#e2472b', margin: '0 0 24px 0' }}>
                 {seller.cuisineType}
               </p>
             )}
@@ -105,7 +105,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                     style={{
                       fontSize: '48px',
                       fontWeight: 800,
-                      color: '#dc2626',
+                      color: '#e2472b',
                     }}
                   >
                     {itemSalePrice}
@@ -113,7 +113,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                   <span
                     style={{
                       fontSize: '32px',
-                      color: '#9ca3af',
+                      color: '#6f7768',
                       textDecoration: 'line-through',
                     }}
                   >
@@ -121,7 +121,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                   </span>
                   <div
                     style={{
-                      background: '#dc2626',
+                      background: '#e2472b',
                       color: 'white',
                       padding: '6px 16px',
                       borderRadius: '20px',
@@ -133,7 +133,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
                   </div>
                 </>
               ) : (
-                <span style={{ fontSize: '48px', fontWeight: 800, color: '#16a34a' }}>
+                <span style={{ fontSize: '48px', fontWeight: 800, color: '#e2472b' }}>
                   {itemPrice}
                 </span>
               )}
@@ -143,7 +143,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
               style={{
                 marginTop: '32px',
                 padding: '16px 24px',
-                background: '#16a34a',
+                background: '#e2472b',
                 color: 'white',
                 borderRadius: '12px',
                 fontSize: '20px',

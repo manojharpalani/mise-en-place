@@ -69,7 +69,7 @@ export default async function StorefrontPage({ params }: PageProps) {
       <Navbar />
 
       {/* Store Header */}
-      <div className="bg-white border-b">
+      <div className="bg-[#FFF9EC] border-b border-[#EFE3C7]" style={{ borderTop: '6px solid #F5B82E' }}>
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             {/* Store Photo */}
@@ -90,9 +90,9 @@ export default async function StorefrontPage({ params }: PageProps) {
             {/* Store Info */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h1 className="text-2xl md:text-3xl font-bold text-foreground">{seller.storeName}</h1>
+                <h1 className="text-3xl md:text-4xl leading-[1.05] font-extrabold tracking-[-0.035em] text-[#12402C]">{seller.storeName}</h1>
                 {seller.permitStatus === 'APPROVED' && (
-                  <Badge className="bg-[#fff1d6] text-[#c43a20] border-[#efe3c7] flex items-center gap-1">
+                  <Badge className="bg-[#E3EFE7] text-[#12402C] border-[#CFE0D4] flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" /> Permitted
                   </Badge>
                 )}
@@ -104,8 +104,8 @@ export default async function StorefrontPage({ params }: PageProps) {
 
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 {seller.ratingAvg && (
-                  <span className="flex items-center gap-1 text-amber-500">
-                    <Star className="w-4 h-4 fill-amber-400" />
+                  <span className="flex items-center gap-1 text-[#D99A16]">
+                    <Star className="w-4 h-4 fill-[#F5B82E]" />
                     <strong>{seller.ratingAvg.toFixed(1)}</strong>
                     <span className="text-muted-foreground">({seller.reviewCount} reviews)</span>
                   </span>
