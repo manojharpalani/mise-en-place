@@ -46,7 +46,7 @@ export default async function AdminDashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: 'Total Users', value: metrics.totalUsers, icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Active Sellers', value: metrics.totalSellers, icon: ChefHat, color: 'text-[#c1622d]', bg: 'bg-[#f7e9de]' },
+          { label: 'Active Sellers', value: metrics.totalSellers, icon: ChefHat, color: 'text-[#e2472b]', bg: 'bg-[#fff1d6]' },
           { label: 'Total Orders', value: metrics.totalOrders, icon: ShoppingBag, color: 'text-purple-600', bg: 'bg-purple-50' },
           { label: 'Platform Revenue', value: formatCurrency(metrics.totalRevenue), icon: DollarSign, color: 'text-amber-600', bg: 'bg-amber-50' },
         ].map((stat) => {
@@ -81,7 +81,7 @@ export default async function AdminDashboardPage() {
         <CardHeader className="flex flex-row items-center justify-between space-y-0">
           <CardTitle>Recent Orders</CardTitle>
           {metrics.recentOrders.length > 0 && (
-            <Link href="/admin/orders" className="text-sm text-[#c1622d] font-medium hover:underline">
+            <Link href="/admin/orders" className="text-sm text-[#e2472b] font-medium hover:underline">
               View all
             </Link>
           )}
@@ -100,7 +100,7 @@ export default async function AdminDashboardPage() {
                     <p className="font-medium">{order.buyer.name || order.buyer.email}</p>
                     <p className="text-muted-foreground">{order.seller.storeName}</p>
                   </div>
-                  <span className="font-semibold text-[#c1622d]">{formatCurrency(order.total)}</span>
+                  <span className="font-semibold text-[#e2472b]">{formatCurrency(order.total)}</span>
                 </div>
               ))}
             </div>

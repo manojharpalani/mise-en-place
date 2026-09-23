@@ -93,7 +93,7 @@ export function ReviewDialog({ orderId, storeName, open, onClose }: ReviewDialog
               Cancel
             </Button>
             <Button
-              className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
+              className="flex-1 bg-[#e2472b] hover:bg-[#c43a20] text-white"
               onClick={handleSubmit}
               disabled={submitting || rating === 0}
             >

@@ -24,7 +24,7 @@ async function getOrder(id: string, userId: string) {
 const STATUS_COLORS: Record<string, string> = {
   PENDING:    'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
-  READY:      'bg-[#f7e9de] text-[#a64f20]',
+  READY:      'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED:  'bg-muted text-muted-foreground',
   PICKED_UP:  'bg-muted text-muted-foreground',
   CANCELLED:  'bg-red-100 text-red-600',
@@ -82,7 +82,7 @@ export default async function OrderDetailPage({
       <div className="flex items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
-            <Receipt className="w-5 h-5 text-[#c1622d]" />
+            <Receipt className="w-5 h-5 text-[#e2472b]" />
             Order Receipt
           </h1>
           <p className="text-xs text-muted-foreground mt-0.5 font-mono">#{order.id.slice(-8).toUpperCase()}</p>
@@ -101,7 +101,7 @@ export default async function OrderDetailPage({
           <span className="text-xs text-muted-foreground uppercase tracking-wide">From</span>
           <Link
             href={`/${order.seller.storeSlug}`}
-            className="font-medium text-foreground hover:text-[#c1622d] text-sm"
+            className="font-medium text-foreground hover:text-[#e2472b] text-sm"
           >
             {order.seller.storeName}
           </Link>
@@ -177,7 +177,7 @@ export default async function OrderDetailPage({
           )}
           <div className="flex justify-between font-bold text-base text-foreground pt-1 border-t">
             <span>Total</span>
-            <span className="text-[#c1622d]">{formatCurrency(order.total)}</span>
+            <span className="text-[#e2472b]">{formatCurrency(order.total)}</span>
           </div>
         </div>
       </div>

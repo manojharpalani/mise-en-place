@@ -105,18 +105,18 @@ export function VerifyForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
             Mise en Place
           </Link>
         </div>
         <Card>
           <CardHeader className="text-center">
-            <div className="w-14 h-14 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-3">
-              <Mail className="w-7 h-7 text-[#c1622d]" />
+            <div className="w-14 h-14 bg-[#fff1d6] rounded-full flex items-center justify-center mx-auto mb-3">
+              <Mail className="w-7 h-7 text-[#e2472b]" />
             </div>
             <CardTitle>Check your email</CardTitle>
             <CardDescription>
@@ -125,9 +125,9 @@ export function VerifyForm() {
           </CardHeader>
           <CardContent>
             {shownCode && shownCode.length === 6 && (
-              <div className="mb-5 flex items-center gap-2 rounded-xl border border-[#E7DDCB] bg-[#FBF6EC] px-4 py-3">
-                <KeyRound className="w-4 h-4 shrink-0 text-[#8a5a2e]" />
-                <p className="text-sm text-[#8a5a2e]">
+              <div className="mb-5 flex items-center gap-2 rounded-xl border border-[#EFE3C7] bg-[#FFFFFF] px-4 py-3">
+                <KeyRound className="w-4 h-4 shrink-0 text-[#7a5a12]" />
+                <p className="text-sm text-[#7a5a12]">
                   No email set up in this demo — your code is{' '}
                   <span className="font-mono font-bold tracking-widest">{shownCode}</span> and has been filled in for you.
                 </p>
@@ -152,7 +152,7 @@ export function VerifyForm() {
 
             <Button
               onClick={() => handleVerify(otp.join(''))}
-              className="w-full bg-[#c1622d] hover:bg-[#a64f20]"
+              className="w-full bg-[#e2472b] hover:bg-[#c43a20]"
               disabled={loading || otp.join('').length !== 6}
             >
               {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
@@ -164,7 +164,7 @@ export function VerifyForm() {
               <button
                 onClick={handleResend}
                 disabled={resending}
-                className="text-sm text-[#c1622d] font-medium hover:underline disabled:opacity-50"
+                className="text-sm text-[#e2472b] font-medium hover:underline disabled:opacity-50"
               >
                 {resending ? 'Sending...' : 'Resend code'}
               </button>

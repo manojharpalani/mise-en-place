@@ -81,7 +81,7 @@ export function EmployeesClient({ seller, initialEmployees }: { seller: { id: st
                   {...register('email')}
                   className="flex-1"
                 />
-                <Button type="submit" disabled={loading} className="bg-[#c1622d] hover:bg-[#a64f20]">
+                <Button type="submit" disabled={loading} className="bg-[#e2472b] hover:bg-[#c43a20]">
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
                 </Button>
               </div>
@@ -108,7 +108,7 @@ export function EmployeesClient({ seller, initialEmployees }: { seller: { id: st
               </div>
               <Badge
                 className={
-                  emp.status === 'ACTIVE' ? 'bg-[#f7e9de] text-[#a64f20]' :
+                  emp.status === 'ACTIVE' ? 'bg-[#fff1d6] text-[#c43a20]' :
                   emp.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
                   'bg-muted text-muted-foreground'
                 }

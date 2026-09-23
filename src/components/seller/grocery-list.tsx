@@ -277,14 +277,14 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
       <SheetContent
         side="bottom"
         className="flex flex-col p-0 rounded-t-2xl"
-        style={{ background: '#fbf6ec', height: '92dvh' }}
+        style={{ background: '#ffffff', height: '92dvh' }}
       >
         {/* Header */}
-        <SheetHeader className="px-4 pt-4 pb-3 border-b" style={{ borderColor: '#e7ddcb' }}>
+        <SheetHeader className="px-4 pt-4 pb-3 border-b" style={{ borderColor: '#efe3c7' }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5" style={{ color: '#c1622d' }} />
-              <SheetTitle className="font-heading text-lg" style={{ color: '#2a2420' }}>
+              <ShoppingCart className="w-5 h-5" style={{ color: '#e2472b' }} />
+              <SheetTitle className="font-heading text-lg" style={{ color: '#12241b' }}>
                 Grocery List
               </SheetTitle>
             </div>
@@ -293,7 +293,7 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                 <button
                   onClick={clearChecked}
                   className="text-xs px-2 py-1 rounded-lg"
-                  style={{ color: '#6b625a', background: '#f1e9db' }}
+                  style={{ color: '#4d5747', background: '#fbf3df' }}
                 >
                   Clear ({checkedCount})
                 </button>
@@ -302,11 +302,11 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                 onClick={copyList}
                 disabled={!aggregated.length}
                 className="p-1.5 rounded-lg disabled:opacity-40"
-                style={{ color: '#6b625a', background: '#f1e9db' }}
+                style={{ color: '#4d5747', background: '#fbf3df' }}
               >
-                {copied ? <Check className="w-4 h-4 text-[#c1622d]" /> : <Copy className="w-4 h-4" />}
+                {copied ? <Check className="w-4 h-4 text-[#e2472b]" /> : <Copy className="w-4 h-4" />}
               </button>
-              <button onClick={fetchData} className="p-1.5 rounded-lg" style={{ color: '#6b625a', background: '#f1e9db' }}>
+              <button onClick={fetchData} className="p-1.5 rounded-lg" style={{ color: '#4d5747', background: '#fbf3df' }}>
                 <RefreshCw className="w-4 h-4" />
               </button>
             </div>
@@ -322,9 +322,9 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                   className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                     m.id === activeMenuId
                       ? 'text-white border-transparent'
-                      : 'border-[#e7ddcb] text-[#6b625a] bg-white'
+                      : 'border-[#efe3c7] text-[#4d5747] bg-white'
                   }`}
-                  style={m.id === activeMenuId ? { background: '#2a2420', borderColor: '#2a2420' } : {}}
+                  style={m.id === activeMenuId ? { background: '#12241b', borderColor: '#12241b' } : {}}
                 >
                   {m.label}
                 </button>
@@ -341,9 +341,9 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                 className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                   filterMode === 'week'
                     ? 'text-white border-transparent'
-                    : 'border-[#e7ddcb] text-[#6b625a] bg-white'
+                    : 'border-[#efe3c7] text-[#4d5747] bg-white'
                 }`}
-                style={filterMode === 'week' ? { background: '#c1622d', borderColor: '#c1622d' } : {}}
+                style={filterMode === 'week' ? { background: '#e2472b', borderColor: '#e2472b' } : {}}
               >
                 All Week
               </button>
@@ -356,9 +356,9 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                   className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                     filterMode === 'day' && selectedDay === day
                       ? 'text-white border-transparent'
-                      : 'border-[#e7ddcb] text-[#6b625a] bg-white'
+                      : 'border-[#efe3c7] text-[#4d5747] bg-white'
                   }`}
-                  style={filterMode === 'day' && selectedDay === day ? { background: '#c1622d', borderColor: '#c1622d' } : {}}
+                  style={filterMode === 'day' && selectedDay === day ? { background: '#e2472b', borderColor: '#e2472b' } : {}}
                 >
                   {day.slice(0, 3)}
                 </button>
@@ -366,7 +366,7 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
 
               {/* Divider */}
               {days.length > 0 && data && data.dishes.length > 0 && (
-                <span className="flex-shrink-0 w-px h-5 bg-[#e7ddcb]" />
+                <span className="flex-shrink-0 w-px h-5 bg-[#efe3c7]" />
               )}
 
               {/* Dish pills */}
@@ -377,9 +377,9 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                   className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors max-w-[140px] truncate ${
                     filterMode === 'dish' && selectedDishId === dish.id
                       ? 'text-white border-transparent'
-                      : 'border-[#e7ddcb] text-[#6b625a] bg-white'
+                      : 'border-[#efe3c7] text-[#4d5747] bg-white'
                   }`}
-                  style={filterMode === 'dish' && selectedDishId === dish.id ? { background: '#a64f20', borderColor: '#a64f20' } : {}}
+                  style={filterMode === 'dish' && selectedDishId === dish.id ? { background: '#c43a20', borderColor: '#c43a20' } : {}}
                 >
                   {dish.name}
                 </button>
@@ -392,22 +392,22 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
         <div className="flex-1 overflow-y-auto">
           {loading ? (
             <div className="flex flex-col items-center justify-center h-48 gap-3">
-              <Loader2 className="w-8 h-8 animate-spin" style={{ color: '#c1622d' }} />
-              <p className="text-sm" style={{ color: '#6b625a' }}>Loading grocery list...</p>
+              <Loader2 className="w-8 h-8 animate-spin" style={{ color: '#e2472b' }} />
+              <p className="text-sm" style={{ color: '#4d5747' }}>Loading grocery list...</p>
             </div>
           ) : !data ? null : (
             <div className="px-4 py-4 space-y-2">
 
               {/* Missing ingredients banner */}
               {dishesWithoutIngredients.length > 0 && (
-                <div className="rounded-xl p-3 mb-4 border" style={{ background: '#f7e9de', borderColor: '#e7ddcb' }}>
+                <div className="rounded-xl p-3 mb-4 border" style={{ background: '#fff1d6', borderColor: '#efe3c7' }}>
                   <div className="flex items-start gap-3">
-                    <Sparkles className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#a64f20' }} />
+                    <Sparkles className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#c43a20' }} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium" style={{ color: '#2a2420' }}>
+                      <p className="text-sm font-medium" style={{ color: '#12241b' }}>
                         {dishesWithoutIngredients.length} dish{dishesWithoutIngredients.length > 1 ? 'es' : ''} need ingredients
                       </p>
-                      <p className="text-xs mt-0.5" style={{ color: '#6b625a' }}>
+                      <p className="text-xs mt-0.5" style={{ color: '#4d5747' }}>
                         {dishesWithoutIngredients.map(d => d.name).join(', ')}
                       </p>
                     </div>
@@ -416,7 +416,7 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                       onClick={generateAll}
                       disabled={generatingFor !== null}
                       className="flex-shrink-0 text-white text-xs px-3 h-8"
-                      style={{ background: '#c1622d' }}
+                      style={{ background: '#e2472b' }}
                     >
                       {generatingFor !== null ? (
                         <Loader2 className="w-3 h-3 mr-1 animate-spin" />
@@ -435,12 +435,12 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                         onClick={() => generateForDish(dish)}
                         disabled={generatingFor !== null}
                         className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-lg border disabled:opacity-50"
-                        style={{ borderColor: '#e7ddcb', color: '#6b625a', background: 'white' }}
+                        style={{ borderColor: '#efe3c7', color: '#4d5747', background: 'white' }}
                       >
                         {generatingFor === dish.id ? (
                           <Loader2 className="w-3 h-3 animate-spin" />
                         ) : (
-                          <Sparkles className="w-3 h-3" style={{ color: '#a64f20' }} />
+                          <Sparkles className="w-3 h-3" style={{ color: '#c43a20' }} />
                         )}
                         {dish.name}
                       </button>
@@ -452,8 +452,8 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
               {/* Empty state */}
               {aggregated.length === 0 && dishesWithoutIngredients.length === 0 && (
                 <div className="text-center py-16">
-                  <ShoppingCart className="w-12 h-12 mx-auto mb-3 opacity-20" style={{ color: '#c1622d' }} />
-                  <p className="text-sm" style={{ color: '#6b625a' }}>
+                  <ShoppingCart className="w-12 h-12 mx-auto mb-3 opacity-20" style={{ color: '#e2472b' }} />
+                  <p className="text-sm" style={{ color: '#4d5747' }}>
                     {filterMode === 'week'
                       ? 'No items scheduled this week.'
                       : `No items for ${activeFilterLabel}.`}
@@ -464,16 +464,16 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
               {/* Progress bar */}
               {aggregated.length > 0 && (
                 <div className="mb-4">
-                  <div className="flex justify-between text-xs mb-1.5" style={{ color: '#6b625a' }}>
+                  <div className="flex justify-between text-xs mb-1.5" style={{ color: '#4d5747' }}>
                     <span>{checkedCount} of {aggregated.length} checked</span>
                     <span>{Math.round(checkedCount / aggregated.length * 100)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: '#e7ddcb' }}>
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: '#efe3c7' }}>
                     <div
                       className="h-full rounded-full transition-all"
                       style={{
                         width: `${Math.round(checkedCount / aggregated.length * 100)}%`,
-                        background: 'linear-gradient(90deg, #c1622d, #a64f20)',
+                        background: 'linear-gradient(90deg, #e2472b, #c43a20)',
                       }}
                     />
                   </div>
@@ -487,23 +487,23 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                 const catChecked = items.filter(i => checked[`${i.name.toLowerCase()}__${i.unit}`]).length
 
                 return (
-                  <div key={cat} className="rounded-xl overflow-hidden border" style={{ borderColor: '#e7ddcb' }}>
+                  <div key={cat} className="rounded-xl overflow-hidden border" style={{ borderColor: '#efe3c7' }}>
                     {/* Category header */}
                     <button
                       onClick={() => toggleCategory(cat)}
                       className="w-full flex items-center justify-between px-4 py-3"
-                      style={{ background: '#faf3e6' }}
+                      style={{ background: '#fff9ec' }}
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-base">{emoji}</span>
-                        <span className="font-medium text-sm" style={{ color: '#2a2420' }}>{label}</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#e7ddcb', color: '#6b625a' }}>
+                        <span className="font-medium text-sm" style={{ color: '#12241b' }}>{label}</span>
+                        <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#efe3c7', color: '#4d5747' }}>
                           {catChecked}/{items.length}
                         </span>
                       </div>
                       {isCollapsed
-                        ? <ChevronRight className="w-4 h-4" style={{ color: '#8a7a63' }} />
-                        : <ChevronDown className="w-4 h-4" style={{ color: '#8a7a63' }} />
+                        ? <ChevronRight className="w-4 h-4" style={{ color: '#6f7768' }} />
+                        : <ChevronDown className="w-4 h-4" style={{ color: '#6f7768' }} />
                       }
                     </button>
 
@@ -517,17 +517,17 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                             <button
                               key={key}
                               onClick={() => toggleCheck(ing)}
-                              className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors active:bg-[#f7e9de]"
+                              className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors active:bg-[#fff1d6]"
                               style={{
-                                borderTop: idx > 0 ? '1px solid #f1e9db' : undefined,
+                                borderTop: idx > 0 ? '1px solid #fbf3df' : undefined,
                               }}
                             >
                               {/* Checkbox */}
                               <div
                                 className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors"
                                 style={{
-                                  borderColor: isChecked ? '#c1622d' : '#d8cbb4',
-                                  background: isChecked ? '#c1622d' : 'white',
+                                  borderColor: isChecked ? '#e2472b' : '#e5d8b8',
+                                  background: isChecked ? '#e2472b' : 'white',
                                 }}
                               >
                                 {isChecked && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
@@ -537,7 +537,7 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                               <span
                                 className="flex-1 text-sm"
                                 style={{
-                                  color: isChecked ? '#8a7a63' : '#2a2420',
+                                  color: isChecked ? '#6f7768' : '#12241b',
                                   textDecoration: isChecked ? 'line-through' : 'none',
                                 }}
                               >
@@ -547,7 +547,7 @@ export function GroceryList({ menus, initialMenuId, open, onClose }: GroceryList
                               {/* Amount */}
                               <span
                                 className="text-sm font-medium flex-shrink-0"
-                                style={{ color: isChecked ? '#8a7a63' : '#6b625a' }}
+                                style={{ color: isChecked ? '#6f7768' : '#4d5747' }}
                               >
                                 {formatAmount(ing.amount, ing.unit)}
                               </span>

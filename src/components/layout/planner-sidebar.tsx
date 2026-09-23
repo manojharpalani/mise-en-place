@@ -20,8 +20,8 @@ export function PlannerSidebar() {
     <aside className="w-56 min-h-screen bg-muted border-r border-border flex flex-col">
       <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg text-foreground">
-          <img src="/logo-mark.svg" alt="" className="w-6 h-4" />
-          <span className="font-heading italic">mise en place</span>
+          <img src="/logo-mark.svg" alt="" className="w-6 h-6" />
+          <span className="font-heading font-extrabold tracking-tight">mise en <span className="text-[#E2472B]">place</span></span>
         </Link>
         <p className="text-xs text-muted-foreground mt-0.5">Meal Planner</p>
       </div>
@@ -36,7 +36,7 @@ export function PlannerSidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-[#F7E9DE] text-[#C1622D]'
+                  ? 'bg-[#FFF1D6] text-[#E2472B]'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               )}
             >

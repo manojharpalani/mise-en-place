@@ -66,7 +66,7 @@ export default async function SellerDashboardPage() {
               Pending Approval
             </Badge>
           )}
-          <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
+          <Button asChild className="bg-[#e2472b] hover:bg-[#c43a20]">
             <Link href={`/${seller.storeSlug}`}>View Store <ArrowRight className="w-4 h-4 ml-2" /></Link>
           </Button>
         </div>
@@ -87,7 +87,7 @@ export default async function SellerDashboardPage() {
         {[
           { label: "Today's Orders", value: todayOrders.length, icon: ShoppingBag, color: 'text-blue-600', bg: 'bg-blue-50' },
           { label: 'Pending Orders', value: pendingOrders.length, icon: TrendingUp, color: 'text-amber-600', bg: 'bg-amber-50' },
-          { label: 'Weekly Revenue', value: formatCurrency(weeklyRevenue), icon: DollarSign, color: 'text-[#c1622d]', bg: 'bg-[#f7e9de]' },
+          { label: 'Weekly Revenue', value: formatCurrency(weeklyRevenue), icon: DollarSign, color: 'text-[#e2472b]', bg: 'bg-[#fff1d6]' },
           { label: 'Subscribers', value: seller.subscribers.length, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
           { label: 'Avg Rating', value: seller.ratingAvg ? `${seller.ratingAvg.toFixed(1)} ★` : '—', icon: Star, color: 'text-amber-500', bg: 'bg-amber-50' },
           { label: 'Total Reviews', value: seller.reviewCount, icon: Star, color: 'text-amber-500', bg: 'bg-amber-50' },
@@ -118,7 +118,7 @@ export default async function SellerDashboardPage() {
           { href: '/seller/content', label: 'Write Article', icon: '✍️' },
         ].map((action) => (
           <Link key={action.href} href={action.href}>
-            <div className="bg-white border rounded-xl p-4 hover:border-[#e7ddcb] hover:shadow-sm transition-all text-center cursor-pointer">
+            <div className="bg-white border rounded-xl p-4 hover:border-[#efe3c7] hover:shadow-sm transition-all text-center cursor-pointer">
               <div className="text-2xl mb-1">{action.icon}</div>
               <p className="text-sm font-medium text-foreground">{action.label}</p>
             </div>
@@ -157,7 +157,7 @@ export default async function SellerDashboardPage() {
                       className={
                         order.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
                         order.status === 'PROCESSING' ? 'bg-blue-100 text-blue-700' :
-                        order.status === 'READY' ? 'bg-[#f7e9de] text-[#a64f20]' :
+                        order.status === 'READY' ? 'bg-[#fff1d6] text-[#c43a20]' :
                         order.status === 'CANCELLED' ? 'bg-red-100 text-red-700' :
                         'bg-muted text-foreground'
                       }

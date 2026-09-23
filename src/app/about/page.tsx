@@ -11,20 +11,20 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: '#FBF6EC' }}>
+    <div className="flex flex-col min-h-screen" style={{ background: '#FFFFFF' }}>
       <Navbar />
 
       {/* Hero */}
-      <section className="py-20 px-4" style={{ background: '#FBF6EC' }}>
+      <section className="py-20 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#F7E9DE', borderColor: '#E0B49A', color: '#8A4A26' }}>
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             Our Story
           </div>
-          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#2A2420' }}>
+          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#12241B' }}>
             Everything in its place —{' '}
-            <span style={{ fontStyle: 'italic', color: '#C1622D' }}>starting with who cooks it.</span>
+            <span style={{ color: '#E2472B' }}>starting with who cooks it.</span>
           </h1>
-          <p className="text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B625A' }}>
+          <p className="text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: '#4D5747' }}>
             Mise en Place exists because we believe a neighborhood is better fed by the people in it —
             and that the cooks, growers, and small business owners who show up for their communities
             deserve a real shot at building something of their own.
@@ -34,7 +34,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section className="py-16 px-4" style={{ background: '#ffffff' }}>
-        <div className="max-w-2xl mx-auto space-y-6 text-lg leading-relaxed" style={{ color: '#4A4239' }}>
+        <div className="max-w-2xl mx-auto space-y-6 text-lg leading-relaxed" style={{ color: '#2F3A2A' }}>
           <p>
             It started with a simple observation: some of the best food in any neighborhood never
             makes it past a home kitchen. A licensed home chef with a family recipe, a full-time job,
@@ -65,40 +65,40 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 px-4" style={{ background: '#FBF6EC' }}>
+      <section className="py-20 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="font-heading text-3xl md:text-4xl font-normal mb-3" style={{ color: '#2A2420' }}>
+            <h2 className="font-heading text-3xl md:text-4xl font-normal mb-3" style={{ color: '#12241B' }}>
               What we believe
             </h2>
-            <p className="text-lg max-w-xl mx-auto" style={{ color: '#6B625A' }}>
+            <p className="text-lg max-w-xl mx-auto" style={{ color: '#4D5747' }}>
               A few principles guide every decision we make about this platform.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <ChefHat className="w-7 h-7" style={{ color: '#C1622D' }} />,
+                icon: <ChefHat className="w-7 h-7" style={{ color: '#E2472B' }} />,
                 title: 'Chefs come first',
                 description: 'Every feature starts from the same question: does this make it easier for a local chef to run a real business?',
               },
               {
-                icon: <Handshake className="w-7 h-7" style={{ color: '#C1622D' }} />,
+                icon: <Handshake className="w-7 h-7" style={{ color: '#E2472B' }} />,
                 title: 'Fair, not extractive',
                 description: 'Small business owners keep the value they create. We’d rather grow slowly with people than take a bigger cut of them.',
               },
               {
-                icon: <MapPin className="w-7 h-7" style={{ color: '#C1622D' }} />,
+                icon: <MapPin className="w-7 h-7" style={{ color: '#E2472B' }} />,
                 title: 'Community over scale',
                 description: 'This is built neighborhood by neighborhood — real storefronts, real relationships, not an anonymous marketplace.',
               },
             ].map((v) => (
-              <div key={v.title} className="text-center p-8 rounded-2xl border transition-shadow hover:shadow-md" style={{ background: '#FAF3E6', borderColor: '#E7DDCB' }}>
-                <div className="flex justify-center mb-5 w-14 h-14 rounded-2xl mx-auto items-center" style={{ background: '#F7E9DE' }}>
+              <div key={v.title} className="text-center p-8 rounded-2xl border transition-shadow hover:shadow-md" style={{ background: '#FFF9EC', borderColor: '#EFE3C7' }}>
+                <div className="flex justify-center mb-5 w-14 h-14 rounded-2xl mx-auto items-center" style={{ background: '#FFF1D6' }}>
                   {v.icon}
                 </div>
-                <h3 className="font-heading text-xl font-normal mb-3" style={{ color: '#2A2420' }}>{v.title}</h3>
-                <p style={{ color: '#6B625A' }}>{v.description}</p>
+                <h3 className="font-heading text-xl font-normal mb-3" style={{ color: '#12241B' }}>{v.title}</h3>
+                <p style={{ color: '#4D5747' }}>{v.description}</p>
               </div>
             ))}
           </div>
@@ -108,27 +108,27 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-20 px-4" style={{ background: '#ffffff' }}>
         <div className="max-w-2xl mx-auto text-center">
-          <Sprout className="w-8 h-8 mx-auto mb-5" style={{ color: '#C1622D' }} />
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#2A2420' }}>
+          <Sprout className="w-8 h-8 mx-auto mb-5" style={{ color: '#E2472B' }} />
+          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>
             Be part of the neighborhood
           </h2>
-          <p className="text-lg mb-8" style={{ color: '#6B625A' }}>
+          <p className="text-lg mb-8" style={{ color: '#4D5747' }}>
             Whether you cook, plan, or just want a better meal tonight — there&apos;s a place for you here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#C1622D' }}>
+            <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#E2472B' }}>
               <Link href="/sellers">
                 <Heart className="w-5 h-5 mr-2" />
                 Find a Chef Near You
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#2A2420', color: '#2A2420' }}>
+            <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#12241B', color: '#12241B' }}>
               <Link href="/auth/signup?role=seller">
                 <ChefHat className="w-5 h-5 mr-2" />
                 Start Your Storefront
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#C9BBA3', color: '#6B625A' }}>
+            <Button asChild size="lg" variant="outline" className="px-8 font-medium" style={{ borderColor: '#D6CCAE', color: '#4D5747' }}>
               <Link href="/auth/signup?role=planner">
                 <CalendarDays className="w-5 h-5 mr-2" />
                 Plan Family Meals

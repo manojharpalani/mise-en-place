@@ -59,29 +59,29 @@ function FeatureSection({
   align?: 'left' | 'right'
 }) {
   return (
-    <section id={id} className="py-20 px-4 scroll-mt-16" style={{ background: align === 'left' ? '#ffffff' : '#FAF3E6' }}>
+    <section id={id} className="py-20 px-4 scroll-mt-16" style={{ background: align === 'left' ? '#ffffff' : '#FFF9EC' }}>
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium mb-5 border" style={{ background: '#F7E9DE', borderColor: '#E0B49A', color: '#8A4A26' }}>
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium mb-5 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             {eyebrow}
           </div>
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#2A2420' }}>{title}</h2>
-          <p className="text-lg leading-relaxed" style={{ color: '#6B625A' }}>{description}</p>
+          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>{title}</h2>
+          <p className="text-lg leading-relaxed" style={{ color: '#4D5747' }}>{description}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {features.map((f) => (
-            <div key={f.title} className="p-6 rounded-2xl border" style={{ background: '#FBF6EC', borderColor: '#E7DDCB' }}>
-              <div className="flex items-center justify-center w-10 h-10 rounded-xl mb-4" style={{ background: '#F7E9DE', color: '#C1622D' }}>
+            <div key={f.title} className="p-6 rounded-2xl border" style={{ background: '#FFFFFF', borderColor: '#EFE3C7' }}>
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl mb-4" style={{ background: '#FFF1D6', color: '#E2472B' }}>
                 {f.icon}
               </div>
-              <h3 className="font-semibold mb-1.5" style={{ color: '#2A2420' }}>{f.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#6B625A' }}>{f.description}</p>
+              <h3 className="font-semibold mb-1.5" style={{ color: '#12241B' }}>{f.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#4D5747' }}>{f.description}</p>
             </div>
           ))}
         </div>
 
-        <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#C1622D' }}>
+        <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#E2472B' }}>
           <Link href={ctaHref}>
             {ctaIcon}
             {ctaLabel}
@@ -94,20 +94,20 @@ function FeatureSection({
 
 export default function FeaturesPage() {
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: '#FBF6EC' }}>
+    <div className="flex flex-col min-h-screen" style={{ background: '#FFFFFF' }}>
       <Navbar />
 
       {/* Hero */}
-      <section className="py-20 px-4" style={{ background: '#FBF6EC' }}>
+      <section className="py-20 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#F7E9DE', borderColor: '#E0B49A', color: '#8A4A26' }}>
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 border" style={{ background: '#FFF1D6', borderColor: '#F3D08A', color: '#12402C' }}>
             Features
           </div>
-          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#2A2420' }}>
+          <h1 className="font-heading text-4xl md:text-6xl font-normal mb-6 leading-tight" style={{ color: '#12241B' }}>
             Built for three kinds of{' '}
-            <span style={{ fontStyle: 'italic', color: '#C1622D' }}>people at the table.</span>
+            <span style={{ color: '#E2472B' }}>people at the table.</span>
           </h1>
-          <p className="text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: '#6B625A' }}>
+          <p className="text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: '#4D5747' }}>
             Whether you&apos;re looking for tonight&apos;s dinner, turning your kitchen into a business,
             or just trying to get your own family fed well every week — here&apos;s everything
             Mise en Place gives you.
@@ -115,13 +115,13 @@ export default function FeaturesPage() {
 
           {/* Jump links */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
-            <a href="#buyers" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#E0B49A', color: '#8A4A26' }}>
+            <a href="#buyers" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#F3D08A', color: '#12402C' }}>
               🛍️ I want to find a chef
             </a>
-            <a href="#sellers" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#E0B49A', color: '#8A4A26' }}>
+            <a href="#sellers" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#F3D08A', color: '#12402C' }}>
               👩‍🍳 I want to start a storefront
             </a>
-            <a href="#planners" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#E0B49A', color: '#8A4A26' }}>
+            <a href="#planners" className="rounded-full px-4 py-2 text-sm font-medium border transition-colors hover:bg-white" style={{ borderColor: '#F3D08A', color: '#12402C' }}>
               📅 I want to plan family meals
             </a>
           </div>
@@ -165,15 +165,15 @@ export default function FeaturesPage() {
       />
 
       {/* Bottom CTA */}
-      <section className="py-20 px-4" style={{ background: '#FAF3E6' }}>
+      <section className="py-20 px-4" style={{ background: '#FFF9EC' }}>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#2A2420' }}>
+          <h2 className="font-heading text-3xl md:text-4xl font-normal mb-4" style={{ color: '#12241B' }}>
             Not sure where you fit?
           </h2>
-          <p className="text-lg mb-8" style={{ color: '#6B625A' }}>
+          <p className="text-lg mb-8" style={{ color: '#4D5747' }}>
             Sign up free and choose your path — buyer, chef, or planner. You can always add another role later.
           </p>
-          <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#2A2420' }}>
+          <Button asChild size="lg" className="text-white border-0 px-8" style={{ background: '#12241B' }}>
             <Link href="/auth/signup">Get Started Free</Link>
           </Button>
         </div>

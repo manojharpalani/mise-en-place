@@ -81,8 +81,8 @@ export default function OnboardingPage() {
   if (submitted) {
     return (
       <div className="max-w-lg mx-auto text-center py-16">
-        <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-9 h-9 text-[#c1622d]" />
+        <div className="w-16 h-16 bg-[#fff1d6] rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-9 h-9 text-[#e2472b]" />
         </div>
         <h2 className="text-2xl font-bold text-foreground mb-3">Store Created!</h2>
         <p className="text-muted-foreground mb-2">
@@ -91,7 +91,7 @@ export default function OnboardingPage() {
         <p className="text-muted-foreground text-sm mb-6">
           In the meantime, you can set up your menu, add items, and configure your settings.
         </p>
-        <Button onClick={() => router.push('/seller/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
+        <Button onClick={() => router.push('/seller/dashboard')} className="bg-[#e2472b] hover:bg-[#c43a20]">
           Go to Dashboard
         </Button>
       </div>
@@ -101,7 +101,7 @@ export default function OnboardingPage() {
   return (
     <div className="max-w-lg mx-auto">
       <div className="text-center mb-8">
-        <ChefHat className="w-12 h-12 text-[#c1622d] mx-auto mb-3" />
+        <ChefHat className="w-12 h-12 text-[#e2472b] mx-auto mb-3" />
         <h1 className="text-2xl font-bold text-foreground">Set Up Your Store</h1>
         <p className="text-muted-foreground mt-1">Let&apos;s get your kitchen on Mise en Place</p>
       </div>
@@ -110,7 +110,7 @@ export default function OnboardingPage() {
       <div className="mb-8">
         <div className="flex justify-between text-sm mb-2">
           {STEPS.map((s, i) => (
-            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-muted-foreground'}`}>
+            <span key={s.label} className={`font-medium ${i <= step ? 'text-[#e2472b]' : 'text-muted-foreground'}`}>
               {s.label}
             </span>
           ))}
@@ -199,11 +199,11 @@ export default function OnboardingPage() {
             </Button>
           )}
           {step < 2 ? (
-            <Button type="button" onClick={nextStep} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
+            <Button type="button" onClick={nextStep} className="ml-auto bg-[#e2472b] hover:bg-[#c43a20]">
               Next
             </Button>
           ) : (
-            <Button type="submit" disabled={loading} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
+            <Button type="submit" disabled={loading} className="ml-auto bg-[#e2472b] hover:bg-[#c43a20]">
               {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
               Submit for Review
             </Button>

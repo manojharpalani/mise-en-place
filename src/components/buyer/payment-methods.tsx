@@ -55,7 +55,7 @@ function SetupForm({ onSuccess }: { onSuccess: () => void }) {
         <Button
           type="submit"
           disabled={!stripe || saving}
-          className="flex-1 bg-[#c1622d] hover:bg-[#a64f20] text-white"
+          className="flex-1 bg-[#e2472b] hover:bg-[#c43a20] text-white"
         >
           {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
           Save Card
@@ -197,7 +197,7 @@ export function PaymentMethods() {
               stripe={stripePromise}
               options={{
                 clientSecret,
-                appearance: { theme: 'stripe', variables: { colorPrimary: '#c1622d' } },
+                appearance: { theme: 'stripe', variables: { colorPrimary: '#e2472b' } },
               }}
             >
               <SetupForm onSuccess={handleSetupSuccess} />

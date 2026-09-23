@@ -493,7 +493,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                 onClick={() => setActiveMenuIdx(i)}
                 className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   i === activeMenuIdx
-                    ? 'bg-[#c1622d] text-white'
+                    ? 'bg-[#e2472b] text-white'
                     : 'bg-white border border-border text-muted-foreground hover:border-border'
                 }`}
               >
@@ -537,7 +537,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                       {totalItems === 0 ? (
                         <button
                           onClick={() => setManageDayId(day.id)}
-                          className="w-full text-xs text-muted-foreground hover:text-[#c1622d] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-border rounded-lg hover:border-[#c1622d] transition-colors"
+                          className="w-full text-xs text-muted-foreground hover:text-[#e2472b] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-border rounded-lg hover:border-[#e2472b] transition-colors"
                         >
                           <Plus className="w-3.5 h-3.5" /> Add meals
                         </button>
@@ -577,7 +577,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
           <CalendarDays className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
           <p className="font-medium text-foreground">No meal plans yet</p>
           <p className="text-sm mt-1 mb-4">Create your first week to start planning</p>
-          <Button onClick={() => setShowNewWeek(true)} className="bg-[#c1622d] hover:bg-[#a64f20]">
+          <Button onClick={() => setShowNewWeek(true)} className="bg-[#e2472b] hover:bg-[#c43a20]">
             <Plus className="w-4 h-4 mr-1" /> Create First Week
           </Button>
         </div>
@@ -608,7 +608,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={() => setShowNewItem(false)}>Cancel</Button>
-              <Button onClick={saveNewItem} disabled={savingItem || !newItemName.trim()} className="bg-[#c1622d] hover:bg-[#a64f20]">
+              <Button onClick={saveNewItem} disabled={savingItem || !newItemName.trim()} className="bg-[#e2472b] hover:bg-[#c43a20]">
                 {savingItem ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Add Dish'}
               </Button>
             </div>
@@ -636,7 +636,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               <Button
                 onClick={createWeek}
                 disabled={creatingWeek || !newWeekStart}
-                className="bg-[#c1622d] hover:bg-[#a64f20]"
+                className="bg-[#e2472b] hover:bg-[#c43a20]"
               >
                 {creatingWeek ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Create Week'}
               </Button>
@@ -658,7 +658,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
               <p className="text-sm">No dishes in your library yet.</p>
               <Button
                 size="sm"
-                className="mt-3 bg-[#c1622d] hover:bg-[#a64f20]"
+                className="mt-3 bg-[#e2472b] hover:bg-[#c43a20]"
                 onClick={() => { setManageDayId(null); setShowNewItem(true) }}
               >
                 <Plus className="w-4 h-4 mr-1" /> Add a Dish
@@ -672,7 +672,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                   <div
                     key={item.id}
                     className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
-                      already ? 'bg-[#f7e9de] border-[#c1622d]' : 'bg-white border-border'
+                      already ? 'bg-[#fff1d6] border-[#e2472b]' : 'bg-white border-border'
                     }`}
                   >
                     <div>
@@ -684,7 +684,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                     <Button
                       size="sm"
                       variant={already ? 'outline' : 'default'}
-                      className={already ? '' : 'bg-[#c1622d] hover:bg-[#a64f20]'}
+                      className={already ? '' : 'bg-[#e2472b] hover:bg-[#c43a20]'}
                       disabled={addingItem}
                       onClick={() => {
                         if (already) {
@@ -753,7 +753,7 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={() => setShowAiPlan(false)}>Cancel</Button>
-              <Button onClick={generateAiPlan} disabled={aiGenerating} className="bg-[#c1622d] hover:bg-[#a64f20]">
+              <Button onClick={generateAiPlan} disabled={aiGenerating} className="bg-[#e2472b] hover:bg-[#c43a20]">
                 {aiGenerating ? <Loader2 className="w-4 h-4 animate-spin mr-1" /> : <Wand2 className="w-4 h-4 mr-1" />}
                 Generate Plan
               </Button>

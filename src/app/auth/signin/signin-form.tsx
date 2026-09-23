@@ -58,11 +58,11 @@ export function SignInForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
             Mise en Place
           </Link>
         </div>
@@ -86,14 +86,14 @@ export function SignInForm() {
                   <p className="text-sm text-red-600">{errors.email.message}</p>
                 )}
               </div>
-              <Button type="submit" className="w-full bg-[#c1622d] hover:bg-[#a64f20]" disabled={loading}>
+              <Button type="submit" className="w-full bg-[#e2472b] hover:bg-[#c43a20]" disabled={loading}>
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                 {loading ? 'Sending code...' : 'Send Login Code'}
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{' '}
-              <Link href="/auth/signup" className="text-[#c1622d] font-medium hover:underline">
+              <Link href="/auth/signup" className="text-[#e2472b] font-medium hover:underline">
                 Sign up
               </Link>
             </div>

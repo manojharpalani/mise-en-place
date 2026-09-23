@@ -80,7 +80,7 @@ export function ProfileClient({ user }: {
         <CardContent className="p-6 flex items-center gap-4">
           <Avatar className="w-16 h-16">
             <AvatarImage src={user.image ?? ''} />
-            <AvatarFallback className="text-xl bg-[#f7e9de] text-[#a64f20]">
+            <AvatarFallback className="text-xl bg-[#fff1d6] text-[#c43a20]">
               {user.name?.[0]?.toUpperCase() ?? 'U'}
             </AvatarFallback>
           </Avatar>
@@ -93,12 +93,12 @@ export function ProfileClient({ user }: {
 
       {/* Credit balance */}
       {user.creditBalance && user.creditBalance.balance > 0 && (
-        <Card className="border-[#e7ddcb] bg-[#f7e9de]">
+        <Card className="border-[#efe3c7] bg-[#fff1d6]">
           <CardContent className="p-4 flex items-center gap-3">
-            <Wallet className="w-8 h-8 text-[#c1622d]" />
+            <Wallet className="w-8 h-8 text-[#e2472b]" />
             <div>
-              <p className="font-bold text-[#a64f20] text-xl">{formatCurrency(user.creditBalance.balance)}</p>
-              <p className="text-sm text-[#c1622d]">Available store credit</p>
+              <p className="font-bold text-[#c43a20] text-xl">{formatCurrency(user.creditBalance.balance)}</p>
+              <p className="text-sm text-[#e2472b]">Available store credit</p>
             </div>
           </CardContent>
         </Card>
@@ -141,8 +141,8 @@ export function ProfileClient({ user }: {
                     onClick={() => setValue('notificationChannel', ch)}
                     className={`flex-1 py-2 px-3 rounded-lg border text-sm font-medium transition-colors ${
                       channel === ch
-                        ? 'bg-[#c1622d] text-white border-[#c1622d]'
-                        : 'bg-white text-muted-foreground border-border hover:border-[#e7ddcb]'
+                        ? 'bg-[#e2472b] text-white border-[#e2472b]'
+                        : 'bg-white text-muted-foreground border-border hover:border-[#efe3c7]'
                     }`}
                   >
                     {ch === 'whatsapp' ? '💬 WhatsApp' : '📱 SMS'}
@@ -167,7 +167,7 @@ export function ProfileClient({ user }: {
               </div>
             </div>
 
-            <Button type="submit" disabled={loading} className="bg-[#c1622d] hover:bg-[#a64f20]">
+            <Button type="submit" disabled={loading} className="bg-[#e2472b] hover:bg-[#c43a20]">
               {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
               Save Changes
             </Button>

@@ -6,32 +6,31 @@ import { Providers } from '@/components/providers'
 
 // Self-hosted (not next/font/google): these ship as local files so builds and
 // dev servers never depend on reaching fonts.googleapis.com over the network.
-const instrumentSerif = localFont({
+const bricolage = localFont({
   src: [
-    { path: '../fonts/instrument-serif/instrument-serif-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/instrument-serif/instrument-serif-400-italic.woff2', weight: '400', style: 'italic' },
+    // Variable font: weight 200–800 and optical size 12–96 in one file.
+    { path: '../fonts/bricolage-grotesque/bricolage-grotesque-latin-standard-normal.woff2', weight: '200 800', style: 'normal' },
   ],
   variable: '--font-heading',
   display: 'swap',
 })
 
-const workSans = localFont({
+const onest = localFont({
   src: [
-    { path: '../fonts/work-sans/work-sans-300.woff2', weight: '300', style: 'normal' },
-    { path: '../fonts/work-sans/work-sans-400.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/work-sans/work-sans-500.woff2', weight: '500', style: 'normal' },
-    { path: '../fonts/work-sans/work-sans-600.woff2', weight: '600', style: 'normal' },
-    { path: '../fonts/work-sans/work-sans-700.woff2', weight: '700', style: 'normal' },
+    { path: '../fonts/onest/onest-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/onest/onest-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/onest/onest-latin-600-normal.woff2', weight: '600', style: 'normal' },
+    { path: '../fonts/onest/onest-latin-700-normal.woff2', weight: '700', style: 'normal' },
   ],
   variable: '--font-sans',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Mise en Place | Local Chefs & Fresh Meals',
+  title: 'Mise en Place | Your AI-enabled chef operating system',
   description: 'Discover fresh, home-cooked meals from licensed local chefs in your neighborhood. Order daily or subscribe weekly — every dish prepped with care.',
   openGraph: {
-    title: 'Mise en Place',
+    title: 'Mise en Place | Your AI-enabled chef operating system',
     description: 'Fresh meals from local chefs, prepped with care.',
     type: 'website',
   },
@@ -43,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${workSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${bricolage.variable} ${onest.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers>
           {children}

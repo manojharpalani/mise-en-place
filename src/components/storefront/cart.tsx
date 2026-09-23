@@ -22,7 +22,7 @@ export function CartSheet() {
         <button className="relative p-2 rounded-lg hover:bg-muted transition-colors">
           <ShoppingCart className="w-6 h-6 text-foreground" />
           {count > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#c1622d] text-white text-xs rounded-full flex items-center justify-center font-bold">
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#e2472b] text-white text-xs rounded-full flex items-center justify-center font-bold">
               {count}
             </span>
           )}
@@ -102,7 +102,7 @@ export function CartSheet() {
                 <span className="font-semibold">{formatCurrency(getTotal())}</span>
               </div>
               <p className="text-xs text-muted-foreground">Delivery fees calculated at checkout</p>
-              <Button onClick={handleCheckout} className="w-full bg-[#c1622d] hover:bg-[#a64f20] text-white">
+              <Button onClick={handleCheckout} className="w-full bg-[#e2472b] hover:bg-[#c43a20] text-white">
                 Proceed to Checkout
               </Button>
             </div>

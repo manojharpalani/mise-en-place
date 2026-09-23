@@ -147,7 +147,7 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                   {/* Week header */}
                   <div className="px-5 py-4 border-b border-gray-50">
                     <div className="flex items-center gap-2">
-                      <CalendarDays className="w-4 h-4 text-[#c1622d]" />
+                      <CalendarDays className="w-4 h-4 text-[#e2472b]" />
                       <h2 className="font-semibold text-foreground">{label}</h2>
                     </div>
                   </div>
@@ -165,11 +165,11 @@ export default async function PublicPlannerPage({ params }: PageProps) {
                             {day.menuItems.map((di) => (
                               <span
                                 key={di.id}
-                                className="inline-flex items-center gap-1.5 text-sm bg-[#f7e9de] text-foreground rounded-full px-3 py-1"
+                                className="inline-flex items-center gap-1.5 text-sm bg-[#fff1d6] text-foreground rounded-full px-3 py-1"
                               >
                                 {di.menuItem.name}
                                 {di.servings > 1 && (
-                                  <span className="text-xs text-[#c1622d]">×{di.servings}</span>
+                                  <span className="text-xs text-[#e2472b]">×{di.servings}</span>
                                 )}
                               </span>
                             ))}

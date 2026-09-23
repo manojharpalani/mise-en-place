@@ -59,10 +59,10 @@ export function SubscribeForm({ sellerId }: { sellerId: string }) {
 
   if (subscribed) {
     return (
-      <div className="bg-[#f7e9de] border border-[#e7ddcb] rounded-xl p-4 text-center">
-        <MessageCircle className="w-8 h-8 text-[#c1622d] mx-auto mb-2" />
-        <p className="font-medium text-[#a64f20]">You&apos;re subscribed!</p>
-        <p className="text-sm text-[#c1622d] mt-1">You&apos;ll receive updates from this seller.</p>
+      <div className="bg-[#fff1d6] border border-[#efe3c7] rounded-xl p-4 text-center">
+        <MessageCircle className="w-8 h-8 text-[#e2472b] mx-auto mb-2" />
+        <p className="font-medium text-[#c43a20]">You&apos;re subscribed!</p>
+        <p className="text-sm text-[#e2472b] mt-1">You&apos;ll receive updates from this seller.</p>
       </div>
     )
   }
@@ -70,7 +70,7 @@ export function SubscribeForm({ sellerId }: { sellerId: string }) {
   return (
     <div className="bg-white rounded-xl border p-4">
       <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-        <MessageCircle className="w-4 h-4 text-[#c1622d]" /> Get Updates
+        <MessageCircle className="w-4 h-4 text-[#e2472b]" /> Get Updates
       </h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <div className="space-y-1">
@@ -99,7 +99,7 @@ export function SubscribeForm({ sellerId }: { sellerId: string }) {
           {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
         </div>
 
-        <Button type="submit" size="sm" className="w-full bg-[#c1622d] hover:bg-[#a64f20]" disabled={loading}>
+        <Button type="submit" size="sm" className="w-full bg-[#e2472b] hover:bg-[#c43a20]" disabled={loading}>
           {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
           Subscribe for Updates
         </Button>

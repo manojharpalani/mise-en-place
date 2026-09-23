@@ -20,39 +20,46 @@ export function Navbar() {
   const role = (session?.user as { role?: string } | undefined)?.role
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#FBF6EC]/90 backdrop-blur border-b border-[#E7DDCB]">
+    <nav className="sticky top-0 z-50 bg-[#FFFFFF]/90 backdrop-blur border-b border-[#EFE3C7]">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <img src="/logo-mark.svg" alt="" width={40} height={24} className="h-6 w-auto" />
-          <span className="font-heading italic text-xl text-[#2A2420]">mise en place</span>
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 mr-3" aria-label="Mise en Place home">
+          <img src="/logo-mark.svg" alt="" width={34} height={34} className="h-[28px] w-[28px] sm:h-[34px] sm:w-[34px]" />
+          <span className="flex flex-col">
+            <span className="font-heading font-extrabold text-[19px] sm:text-[22px] leading-none tracking-[-0.03em] whitespace-nowrap text-[#12402C]">
+              mise en <span className="text-[#E2472B]">place</span>
+            </span>
+            <span className="hidden sm:block mt-1 text-[10.5px] leading-none font-semibold uppercase tracking-[0.08em] whitespace-nowrap text-[#4D5747]">
+              Your AI-enabled chef operating system
+            </span>
+          </span>
         </Link>
 
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-          <Link href="/sellers" className="hover:text-[#C1622D] transition-colors font-medium">
+          <Link href="/sellers" className="hover:text-[#E2472B] transition-colors font-medium">
             Find Chefs
           </Link>
-          <Link href="/features" className="hover:text-[#C1622D] transition-colors font-medium">
+          <Link href="/features" className="hover:text-[#E2472B] transition-colors font-medium">
             Features
           </Link>
           {role === 'SELLER' && (
-            <Link href="/seller/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/seller/dashboard" className="hover:text-[#E2472B] transition-colors flex items-center gap-1 font-medium">
               <ChefHat className="w-4 h-4" /> Dashboard
             </Link>
           )}
           {role === 'BUYER' && (
-            <Link href="/buyer/orders" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/buyer/orders" className="hover:text-[#E2472B] transition-colors flex items-center gap-1 font-medium">
               <ShoppingBag className="w-4 h-4" /> My Orders
             </Link>
           )}
           {role === 'PLANNER' && (
-            <Link href="/planner/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/planner/dashboard" className="hover:text-[#E2472B] transition-colors flex items-center gap-1 font-medium">
               <CalendarDays className="w-4 h-4" /> Meal Planner
             </Link>
           )}
           {role === 'ADMIN' && (
-            <Link href="/admin/dashboard" className="hover:text-[#C1622D] transition-colors flex items-center gap-1 font-medium">
+            <Link href="/admin/dashboard" className="hover:text-[#E2472B] transition-colors flex items-center gap-1 font-medium">
               <Shield className="w-4 h-4" /> Admin
             </Link>
           )}
@@ -66,7 +73,7 @@ export function Navbar() {
                 <button className="flex items-center gap-2 focus:outline-none">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={session.user?.image ?? ''} />
-                    <AvatarFallback className="bg-[#E7DDCB] text-[#6B625A] text-xs font-semibold">
+                    <AvatarFallback className="bg-[#EFE3C7] text-[#4D5747] text-xs font-semibold">
                       {session.user?.name?.[0]?.toUpperCase() ?? session.user?.email?.[0]?.toUpperCase() ?? 'U'}
                     </AvatarFallback>
                   </Avatar>
@@ -122,10 +129,10 @@ export function Navbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-[#C1622D]">
+              <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-[#E2472B]">
                 <Link href="/auth/signin">Sign In</Link>
               </Button>
-              <Button asChild size="sm" className="bg-[#C1622D] hover:bg-[#A64F20] text-white border-0 shadow-none">
+              <Button asChild size="sm" className="bg-[#E2472B] hover:bg-[#C43A20] text-white border-0 shadow-none">
                 <Link href="/auth/signup">Get Started</Link>
               </Button>
             </>

@@ -14,7 +14,7 @@ import { CancelOrderButton } from './cancel-order-button'
 export function SellerNameButton({ storeSlug, storeName }: { storeSlug: string; storeName: string }) {
   return (
     <span
-      className="font-semibold text-foreground hover:text-[#c1622d] cursor-pointer"
+      className="font-semibold text-foreground hover:text-[#e2472b] cursor-pointer"
       onClick={(e) => {
         e.preventDefault()
         e.stopPropagation()

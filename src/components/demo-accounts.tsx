@@ -23,8 +23,8 @@ export const DEMO_ACCOUNTS: DemoAccount[] = [
  */
 export function DemoAccountsCallout({ onSelect }: { onSelect: (email: string) => void }) {
   return (
-    <div className="mt-6 rounded-xl border border-[#E7DDCB] bg-[#FBF6EC] p-4">
-      <div className="flex items-center gap-2 text-sm font-medium text-[#8a5a2e]">
+    <div className="mt-6 rounded-xl border border-[#EFE3C7] bg-[#FFFFFF] p-4">
+      <div className="flex items-center gap-2 text-sm font-medium text-[#7a5a12]">
         <Sparkles className="w-4 h-4" />
         Try a demo account
       </div>
@@ -37,7 +37,7 @@ export function DemoAccountsCallout({ onSelect }: { onSelect: (email: string) =>
             key={acct.email}
             type="button"
             onClick={() => onSelect(acct.email)}
-            className="text-left rounded-lg border border-[#E7DDCB] bg-white px-3 py-2 hover:border-[#C1622D] hover:bg-[#f7e9de] transition-colors"
+            className="text-left rounded-lg border border-[#EFE3C7] bg-white px-3 py-2 hover:border-[#E2472B] hover:bg-[#fff1d6] transition-colors"
           >
             <div className="text-xs font-semibold text-foreground">{acct.role}</div>
             <div className="text-[11px] text-muted-foreground truncate">{acct.email}</div>

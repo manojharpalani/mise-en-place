@@ -25,7 +25,7 @@ async function getBuyerOrders(userId: string) {
 const STATUS_COLORS: Record<string, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
-  READY: 'bg-[#f7e9de] text-[#a64f20]',
+  READY: 'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED: 'bg-muted text-muted-foreground',
   PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
@@ -47,7 +47,7 @@ export default async function BuyerOrdersPage() {
           <ShoppingBag className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p className="text-lg">No orders yet</p>
           <p className="text-sm mt-2 mb-6">Discover local chefs and place your first order!</p>
-          <Button asChild className="bg-[#c1622d] hover:bg-[#a64f20]">
+          <Button asChild className="bg-[#e2472b] hover:bg-[#c43a20]">
             <Link href="/sellers">Find Sellers</Link>
           </Button>
         </div>
@@ -82,7 +82,7 @@ export default async function BuyerOrdersPage() {
                     </div>
 
                     <div className="text-right flex-shrink-0">
-                      <p className="font-bold text-[#c1622d] text-lg">{formatCurrency(order.total)}</p>
+                      <p className="font-bold text-[#e2472b] text-lg">{formatCurrency(order.total)}</p>
                       <Badge variant="outline" className="text-xs">{order.fulfillmentType}</Badge>
                     </div>
                   </div>

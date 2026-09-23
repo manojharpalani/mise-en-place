@@ -74,7 +74,7 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
             <h3 className="font-semibold text-foreground">{seller.storeName}</h3>
             <Badge
               className={
-                seller.permitStatus === 'APPROVED' ? 'bg-[#f7e9de] text-[#a64f20]' :
+                seller.permitStatus === 'APPROVED' ? 'bg-[#fff1d6] text-[#c43a20]' :
                 seller.permitStatus === 'REJECTED' ? 'bg-red-100 text-red-600' :
                 'bg-amber-100 text-amber-700'
               }
@@ -103,7 +103,7 @@ export function ApprovalCard({ seller, onUpdate }: ApprovalCardProps) {
         <div className="flex flex-col gap-2 shrink-0">
           {seller.permitStatus === 'PENDING' && (
             <>
-              <Button size="sm" onClick={approve} className="bg-[#c1622d] hover:bg-[#a64f20] text-xs">
+              <Button size="sm" onClick={approve} className="bg-[#e2472b] hover:bg-[#c43a20] text-xs">
                 <CheckCircle className="w-3 h-3 mr-1" /> Approve
               </Button>
               <Button size="sm" variant="destructive" onClick={reject} className="text-xs">

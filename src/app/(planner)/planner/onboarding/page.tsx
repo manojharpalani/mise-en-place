@@ -101,16 +101,16 @@ export default function PlannerOnboardingPage() {
 
   if (done) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4">
         <div className="max-w-md text-center">
-          <div className="w-16 h-16 bg-[#f7e9de] rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-9 h-9 text-[#c1622d]" />
+          <div className="w-16 h-16 bg-[#fff1d6] rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-9 h-9 text-[#e2472b]" />
           </div>
           <h2 className="text-2xl font-bold text-foreground mb-3">You&apos;re all set!</h2>
           <p className="text-muted-foreground mb-6">
             Your meal planning profile is ready. Start planning your week.
           </p>
-          <Button onClick={() => router.push('/planner/dashboard')} className="bg-[#c1622d] hover:bg-[#a64f20]">
+          <Button onClick={() => router.push('/planner/dashboard')} className="bg-[#e2472b] hover:bg-[#c43a20]">
             Go to Dashboard
           </Button>
         </div>
@@ -119,15 +119,15 @@ export default function PlannerOnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f7e9de] to-white px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fff1d6] to-white px-4 py-10">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-foreground">
-            <Heart className="w-7 h-7 text-[#c1622d] fill-[#c1622d]" />
+            <Heart className="w-7 h-7 text-[#e2472b] fill-[#e2472b]" />
             Mise en Place
           </Link>
           <div className="mt-4">
-            <CalendarDays className="w-10 h-10 text-[#c1622d] mx-auto mb-2" />
+            <CalendarDays className="w-10 h-10 text-[#e2472b] mx-auto mb-2" />
             <h1 className="text-2xl font-bold text-foreground">Set Up Your Meal Planner</h1>
             <p className="text-muted-foreground mt-1">Plan your week, build your grocery list</p>
           </div>
@@ -137,7 +137,7 @@ export default function PlannerOnboardingPage() {
         <div className="mb-8">
           <div className="flex justify-between text-sm mb-2">
             {STEPS.map((s, i) => (
-              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#c1622d]' : 'text-muted-foreground'}`}>
+              <span key={s.label} className={`font-medium ${i <= step ? 'text-[#e2472b]' : 'text-muted-foreground'}`}>
                 {s.label}
               </span>
             ))}
@@ -257,11 +257,11 @@ export default function PlannerOnboardingPage() {
               </Button>
             )}
             {step < 2 ? (
-              <Button type="button" onClick={nextStep} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
+              <Button type="button" onClick={nextStep} className="ml-auto bg-[#e2472b] hover:bg-[#c43a20]">
                 Next
               </Button>
             ) : (
-              <Button type="submit" disabled={loading} className="ml-auto bg-[#c1622d] hover:bg-[#a64f20]">
+              <Button type="submit" disabled={loading} className="ml-auto bg-[#e2472b] hover:bg-[#c43a20]">
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                 Finish Setup
               </Button>

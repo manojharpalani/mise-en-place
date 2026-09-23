@@ -19,7 +19,7 @@ async function getAllOrders() {
 const STATUS_COLORS: Record<string, string> = {
   PENDING: 'bg-amber-100 text-amber-700',
   PROCESSING: 'bg-blue-100 text-blue-700',
-  READY: 'bg-[#f7e9de] text-[#a64f20]',
+  READY: 'bg-[#fff1d6] text-[#c43a20]',
   DELIVERED: 'bg-muted text-muted-foreground',
   PICKED_UP: 'bg-muted text-muted-foreground',
   CANCELLED: 'bg-red-100 text-red-600',
@@ -47,7 +47,7 @@ export default async function AdminOrdersPage() {
                   <p className="text-sm text-muted-foreground mt-1">{order.items.length} items</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-[#c1622d]">{formatCurrency(order.total)}</p>
+                  <p className="font-bold text-[#e2472b]">{formatCurrency(order.total)}</p>
                   <Badge variant="outline" className="text-xs">{order.fulfillmentType}</Badge>
                 </div>
               </div>

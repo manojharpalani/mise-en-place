@@ -56,7 +56,7 @@ export function InspiredBy({ dishNames, className }: Props) {
   return (
     <div className={className}>
       <div className="flex items-center gap-2 mb-3">
-        <ChefHat className="w-4 h-4 text-[#c1622d]" />
+        <ChefHat className="w-4 h-4 text-[#e2472b]" />
         <h3 className="text-sm font-semibold text-foreground">Order from local chefs</h3>
       </div>
       <div className="space-y-3">
@@ -68,7 +68,7 @@ export function InspiredBy({ dishNames, className }: Props) {
                 <Link
                   key={`${m.storeSlug}-${m.menuItemName}`}
                   href={`/s/${m.storeSlug}`}
-                  className="flex items-center justify-between p-2.5 bg-white rounded-lg border border-border hover:border-[#c1622d] hover:shadow-sm transition-all group"
+                  className="flex items-center justify-between p-2.5 bg-white rounded-lg border border-border hover:border-[#e2472b] hover:shadow-sm transition-all group"
                 >
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-foreground truncate">{m.storeName}</p>
@@ -83,7 +83,7 @@ export function InspiredBy({ dishNames, className }: Props) {
                     <span className="text-sm font-semibold text-foreground">
                       ${(m.salePrice ?? m.price).toFixed(2)}
                     </span>
-                    <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-[#c1622d]" />
+                    <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-[#e2472b]" />
                   </div>
                 </Link>
               ))}
