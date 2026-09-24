@@ -12,6 +12,18 @@ import { Switch } from '@/components/ui/switch'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Loader2, Save, ExternalLink, Info } from 'lucide-react'
 import { toast } from 'sonner'
+import { normaliseWindows, parseTime, formatTime, type PickupWindow } from '@/lib/pickup'
+
+const PICKUP_DAY_OPTIONS = [
+  { value: 'DAILY', label: 'Every day' },
+  { value: 'MON-FRI', label: 'Weekdays (Mon–Fri)' },
+  { value: 'MON-SAT', label: 'Mon–Sat' },
+  { value: 'SAT-SUN', label: 'Weekends' },
+  { value: 'MON', label: 'Monday' }, { value: 'TUE', label: 'Tuesday' }, { value: 'WED', label: 'Wednesday' },
+  { value: 'THU', label: 'Thursday' }, { value: 'FRI', label: 'Friday' }, { value: 'SAT', label: 'Saturday' }, { value: 'SUN', label: 'Sunday' },
+]
+// 6:00 AM – 10:00 PM in 30-minute steps
+const TIME_OPTIONS = Array.from({ length: 33 }, (_, i) => formatTime(6 * 60 + i * 30))
 
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{1,48}[a-z0-9]$/
 
@@ -57,6 +69,7 @@ export function SettingsClient({ seller }: {
     deliveryRadiusMiles?: number | null
     deliveryFee?: number | null
     pickupEnabled: boolean
+    pickupWindows?: unknown
     whatsappGroupLink?: string | null
     waPhoneNumberId?: string | null
     waAccessToken?: string | null
@@ -71,6 +84,12 @@ export function SettingsClient({ seller }: {
 }) {
   const [loading, setLoading] = useState(false)
   const [showWAToken, setShowWAToken] = useState(false)
+  const [pickupWindows, setPickupWindows] = useState<PickupWindow[]>(() => {
+    const w = normaliseWindows(seller.pickupWindows)
+    return w.length > 0 ? w : [{ day: 'MON-SAT', startTime: '5:00 PM', endTime: '7:00 PM' }]
+  })
+  const updateWindow = (i: number, patch: Partial<PickupWindow>) =>
+    setPickupWindows((ws) => ws.map((w, idx) => (idx === i ? { ...w, ...patch } : w)))
   const socialLinks = seller.socialLinks as Record<string, string> | null
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
 
@@ -125,6 +144,9 @@ export function SettingsClient({ seller }: {
           deliveryRadiusMiles: data.deliveryRadiusMiles || null,
           deliveryFee: data.deliveryFee || null,
           pickupEnabled: data.pickupEnabled,
+          pickupWindows: data.pickupEnabled
+            ? pickupWindows.filter((w) => (parseTime(w.endTime) ?? 0) > (parseTime(w.startTime) ?? 0))
+            : pickupWindows,
           whatsappGroupLink: data.whatsappGroupLink || null,
           socialLinks: Object.keys(socialLinksData).length > 0 ? socialLinksData : null,
           neighborhood: data.neighborhood || null,
@@ -238,6 +260,55 @@ export function SettingsClient({ seller }: {
               onCheckedChange={(v) => setValue('pickupEnabled', v)}
             />
           </div>
+
+          {pickupEnabled && (
+            <div className="space-y-2 rounded-xl border border-[#EFE3C7] bg-[#FFF9EC] p-3">
+              <Label>Pickup windows</Label>
+              <p className="text-xs text-muted-foreground">Buyers pick a 30-minute slot inside these windows at checkout.</p>
+              {pickupWindows.map((w, i) => (
+                <div key={i} className="flex flex-wrap items-center gap-2">
+                  <select
+                    aria-label="Days"
+                    value={w.day}
+                    onChange={(e) => updateWindow(i, { day: e.target.value })}
+                    className="h-9 rounded-lg border border-input bg-white px-2 text-sm"
+                  >
+                    {PICKUP_DAY_OPTIONS.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
+                    {!PICKUP_DAY_OPTIONS.some((d) => d.value === w.day) && <option value={w.day}>{w.day}</option>}
+                  </select>
+                  <select
+                    aria-label="From"
+                    value={w.startTime}
+                    onChange={(e) => updateWindow(i, { startTime: e.target.value })}
+                    className="h-9 rounded-lg border border-input bg-white px-2 text-sm"
+                  >
+                    {TIME_OPTIONS.map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                  <span className="text-sm text-muted-foreground">to</span>
+                  <select
+                    aria-label="Until"
+                    value={w.endTime}
+                    onChange={(e) => updateWindow(i, { endTime: e.target.value })}
+                    className="h-9 rounded-lg border border-input bg-white px-2 text-sm"
+                  >
+                    {TIME_OPTIONS.filter((t) => (parseTime(t) ?? 0) > (parseTime(w.startTime) ?? 0)).map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                  {pickupWindows.length > 1 && (
+                    <button type="button" onClick={() => setPickupWindows((ws) => ws.filter((_, idx) => idx !== i))} className="text-xs text-muted-foreground hover:text-[#E2472B]">
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => setPickupWindows((ws) => [...ws, { day: 'SAT-SUN', startTime: '11:00 AM', endTime: '1:00 PM' }])}
+                className="text-sm font-semibold text-[#12402C] hover:underline"
+              >
+                + Add another window
+              </button>
+            </div>
+          )}
 
           <div className="flex items-center justify-between">
             <div>

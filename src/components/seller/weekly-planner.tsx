@@ -785,40 +785,46 @@ export function WeeklyMenuPlanner({
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-2">
                   {dayData.menuItems.map(mi => (
-                    <div key={mi.menuItem.id} className="bg-[#fff1d6] rounded-lg px-2 py-1.5 text-sm space-y-1">
-                      <div className="flex items-center justify-between">
+                    <div key={mi.menuItem.id} className="bg-[#FFF9EC] border border-[#EFE3C7] rounded-xl px-3 py-2 text-sm space-y-1.5">
+                      <div className="flex items-start justify-between gap-2">
                         <button
                           onClick={() => setInspiredItem({ id: mi.menuItem.id, name: mi.menuItem.name })}
-                          className="flex items-center gap-1.5 min-w-0 text-left flex-1 hover:opacity-80 active:scale-95 transition-transform"
+                          className="min-w-0 text-left flex-1 hover:text-[#12402C] transition-colors"
                           title="Get recipe inspiration"
                         >
-                          <span className="font-medium truncate">{mi.menuItem.name}</span>
-                          <span className="text-[10px] flex-shrink-0" style={{ color: '#e2472b' }}>✦</span>
-                          {!mi.menuItem.ingredients && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: '#fff1d6', color: '#c43a20', border: '1px solid #efe3c7' }}>
-                              No ingredients
-                            </span>
-                          )}
+                          <span className="font-semibold leading-snug line-clamp-2">{mi.menuItem.name}</span>
                         </button>
-                        <div className="flex items-center gap-1 ml-2 flex-shrink-0">
-                          <span className="text-muted-foreground text-xs">{formatCurrency(mi.menuItem.salePrice ?? mi.menuItem.price)}</span>
-                          <button onClick={() => removeItemFromDay(dayData.id, mi.menuItem.id, null)} className="text-muted-foreground hover:text-red-400 ml-1">
-                            <Trash2 className="w-3 h-3" />
+                        <span className="text-xs font-semibold tabular-nums text-foreground shrink-0 pt-0.5">{formatCurrency(mi.menuItem.salePrice ?? mi.menuItem.price)}</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="inline-flex items-center rounded-full border border-[#12402C]/20 bg-white">
+                          <button
+                            onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity - 1)}
+                            className="w-6 h-6 rounded-full text-[#12402C] hover:bg-[#FFF1D6] flex items-center justify-center text-xs disabled:opacity-30"
+                            disabled={mi.quantity <= 1}
+                            aria-label="Decrease quantity"
+                          >−</button>
+                          <span className="text-xs font-semibold w-6 text-center tabular-nums">{mi.quantity}</span>
+                          <button
+                            onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity + 1)}
+                            className="w-6 h-6 rounded-full text-[#12402C] hover:bg-[#FFF1D6] flex items-center justify-center text-xs"
+                            aria-label="Increase quantity"
+                          >+</button>
+                        </div>
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          {!mi.menuItem.ingredients && (
+                            <button
+                              onClick={() => setInspiredItem({ id: mi.menuItem.id, name: mi.menuItem.name })}
+                              className="text-[10px] px-1.5 py-0.5 rounded-full truncate bg-white text-[#C43A20] border border-[#F3D08A] hover:bg-[#FFF1D6]"
+                              title="Recipe ideas &amp; ingredients"
+                            >
+                              ✦ No ingredients
+                            </button>
+                          )}
+                          <button onClick={() => removeItemFromDay(dayData.id, mi.menuItem.id, null)} className="text-muted-foreground hover:text-[#E2472B] shrink-0" aria-label="Remove from day">
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="text-[10px] text-muted-foreground">Qty:</span>
-                        <button
-                          onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity - 1)}
-                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
-                          disabled={mi.quantity <= 1}
-                        >−</button>
-                        <span className="text-xs font-medium w-6 text-center">{mi.quantity}</span>
-                        <button
-                          onClick={() => updateItemQuantity(dayData.id, mi.menuItem.id, null, mi.quantity + 1)}
-                          className="w-5 h-5 rounded text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center text-xs"
-                        >+</button>
                       </div>
                     </div>
                   ))}

@@ -16,7 +16,7 @@ export default async function PlannerLayout({ children }: { children: React.Reac
   return (
     <div className="flex min-h-screen">
       <PlannerSidebar />
-      <main className="flex-1 overflow-auto bg-muted">
+      <main className="flex-1 overflow-auto bg-white">
         <div className="max-w-5xl mx-auto p-6">{children}</div>
       </main>
     </div>

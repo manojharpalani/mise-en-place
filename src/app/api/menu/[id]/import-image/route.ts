@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { getAnthropic } from '@/lib/anthropic'
+import { createClaudeMessage, describeAIError } from '@/lib/anthropic'
 
 export interface ExtractedItem {
   name: string
@@ -116,10 +116,8 @@ Rules:
 - For combos: comboComponents lists the individual dish names that make up the combo`
 
     try {
-      const anthropic = getAnthropic()
-      const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
-        max_tokens: 2000,
+      const response = await createClaudeMessage({
+        max_tokens: 4000,
         system: systemPrompt,
         messages: [{
           role: 'user',
@@ -147,7 +145,7 @@ Rules:
       return NextResponse.json({ plan })
     } catch (err) {
       console.error('Import analyze error:', err)
-      return NextResponse.json({ error: 'Failed to analyze image' }, { status: 500 })
+      return NextResponse.json({ error: describeAIError(err) }, { status: 500 })
     }
   }
 

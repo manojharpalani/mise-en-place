@@ -42,7 +42,7 @@ export default async function PlannerDashboardPage() {
       <div className="flex items-start justify-between">
         <div>
         <h1 className="text-[28px] leading-tight font-extrabold tracking-[-0.03em] text-[#12402C]">
-          Welcome back, {profile.displayName.split(' ')[0]}
+          Welcome back, {/^the\s/i.test(profile.displayName) ? profile.displayName : profile.displayName.split(' ')[0]}
         </h1>
         <p className="text-muted-foreground mt-1">
           {currentMenu

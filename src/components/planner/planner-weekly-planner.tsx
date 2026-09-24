@@ -392,15 +392,16 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      if (!res.ok) throw new Error('Failed to generate plan')
-      const { menu: updated, summary } = await res.json()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error || 'Failed to generate plan')
+      const { menu: updated, summary } = data
       setWeeklyMenus((prev) => prev.map((m) => (m.id !== activeMenu.id ? m : updated)))
       setShowAiPlan(false)
       setAiPrompt('')
       setAiImage(null)
       toast.success(`AI plan applied — ${summary.newItemsCreated} new dishes created, ${summary.daysPlanned} days planned`)
-    } catch {
-      toast.error('Failed to generate plan')
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to generate plan')
     } finally {
       setAiGenerating(false)
     }
@@ -537,30 +538,38 @@ export function PlannerWeeklyPlanner({ planner, initialMenuItems, initialWeeklyM
                       {totalItems === 0 ? (
                         <button
                           onClick={() => setManageDayId(day.id)}
-                          className="w-full text-xs text-muted-foreground hover:text-[#e2472b] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-border rounded-lg hover:border-[#e2472b] transition-colors"
+                          className="w-full text-sm font-medium text-[#12402C]/70 hover:text-[#E2472B] flex items-center justify-center gap-1 py-3 border-2 border-dashed border-[#F3D08A] rounded-xl hover:border-[#E2472B] hover:bg-[#FFF9EC] transition-colors"
                         >
                           <Plus className="w-3.5 h-3.5" /> Add meals
                         </button>
                       ) : (
                         day.menuItems.map((di) => (
-                          <div key={di.id} className="flex items-center gap-1.5 bg-muted rounded-lg px-2 py-1.5 group">
-                            <span className="flex-1 text-xs font-medium text-foreground truncate">{di.menuItem.name}</span>
-                            <div className="flex items-center gap-1 shrink-0">
-                              <button
-                                onClick={() => updateServings(day.id, di.id, di.servings - 1)}
-                                className="w-5 h-5 rounded text-xs bg-white border border-border hover:bg-muted"
-                              >−</button>
-                              <span className="text-xs w-5 text-center font-medium">{di.servings}</span>
-                              <button
-                                onClick={() => updateServings(day.id, di.id, di.servings + 1)}
-                                className="w-5 h-5 rounded text-xs bg-white border border-border hover:bg-muted"
-                              >+</button>
+                          <div key={di.id} className="bg-[#FFF9EC] border border-[#EFE3C7] rounded-xl px-3 py-2 space-y-1.5">
+                            <div className="flex items-start justify-between gap-2">
+                              <span className="text-sm font-semibold text-foreground leading-snug line-clamp-2">{di.menuItem.name}</span>
                               <button
                                 onClick={() => removeItemFromDay(day.id, di.id)}
-                                className="ml-0.5 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-red-500"
+                                className="text-muted-foreground hover:text-[#E2472B] shrink-0 pt-0.5"
+                                aria-label={`Remove ${di.menuItem.name}`}
                               >
                                 <X className="w-3.5 h-3.5" />
                               </button>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="inline-flex items-center rounded-full border border-[#12402C]/20 bg-white">
+                                <button
+                                  onClick={() => updateServings(day.id, di.id, di.servings - 1)}
+                                  className="w-6 h-6 rounded-full text-xs text-[#12402C] hover:bg-[#FFF1D6]"
+                                  aria-label="Fewer servings"
+                                >−</button>
+                                <span className="text-xs w-6 text-center font-semibold tabular-nums">{di.servings}</span>
+                                <button
+                                  onClick={() => updateServings(day.id, di.id, di.servings + 1)}
+                                  className="w-6 h-6 rounded-full text-xs text-[#12402C] hover:bg-[#FFF1D6]"
+                                  aria-label="More servings"
+                                >+</button>
+                              </div>
+                              <span className="text-[11px] text-muted-foreground">servings</span>
                             </div>
                           </div>
                         ))

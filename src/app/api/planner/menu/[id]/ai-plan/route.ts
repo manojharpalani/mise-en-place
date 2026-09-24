@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { getAnthropic } from '@/lib/anthropic'
+import { createClaudeMessage, describeAIError } from '@/lib/anthropic'
+import type { MessageParam } from '@anthropic-ai/sdk/resources/messages'
 import { subWeeks } from 'date-fns'
 
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'] as const
@@ -93,7 +94,7 @@ Rules:
     ? (imageMimeType as AllowedMime)
     : 'image/jpeg'
 
-  const userContent: Parameters<ReturnType<typeof getAnthropic>['messages']['create']>[0]['messages'][0]['content'] =
+  const userContent: MessageParam['content'] =
     imageBase64
       ? [
           { type: 'image', source: { type: 'base64', media_type: resolvedMime, data: imageBase64 } },
@@ -102,10 +103,8 @@ Rules:
       : userText
 
   try {
-    const anthropic = getAnthropic()
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5',
-      max_tokens: 2000,
+    const response = await createClaudeMessage({
+      max_tokens: 4000,
       system: systemPrompt,
       messages: [{ role: 'user', content: userContent }],
     })
@@ -195,6 +194,6 @@ Rules:
     return NextResponse.json({ menu: updated, summary: { newItemsCreated, daysPlanned } })
   } catch (err) {
     console.error('Planner AI plan error:', err)
-    return NextResponse.json({ error: 'Failed to generate plan' }, { status: 500 })
+    return NextResponse.json({ error: describeAIError(err) }, { status: 500 })
   }
 }

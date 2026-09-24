@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { getAnthropic } from '@/lib/anthropic'
+import { createClaudeMessage, describeAIError } from '@/lib/anthropic'
 import { subWeeks } from 'date-fns'
 
 export async function POST(
@@ -142,8 +142,6 @@ Notes:
 - Only include "newMenuItems" and "newCombos" keys if there are new items/combos to create`
 
   try {
-    const anthropic = getAnthropic()
-
     // Build message content — include image if provided
     const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'] as const
     type AllowedMime = typeof ALLOWED_MIME[number]
@@ -167,9 +165,8 @@ Notes:
       userContent.push({ type: 'text', text: userPrompt })
     }
 
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5',
-      max_tokens: 2000,
+    const response = await createClaudeMessage({
+      max_tokens: 4000,
       system: systemPrompt,
       messages: [{ role: 'user', content: userContent }],
     })
@@ -313,6 +310,6 @@ Notes:
     })
   } catch (err) {
     console.error('AI plan error:', err)
-    return NextResponse.json({ error: 'Failed to generate plan' }, { status: 500 })
+    return NextResponse.json({ error: describeAIError(err) }, { status: 500 })
   }
 }

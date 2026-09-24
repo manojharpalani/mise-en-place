@@ -118,19 +118,16 @@ export function StorefrontTabs({ seller, session, isFavorited }: StorefrontTabsP
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <CartSheet />
-        </div>
+      <div className="flex items-center justify-end gap-2 mb-4">
         <Button
           variant="outline"
-          size="sm"
           onClick={toggleFavorite}
-          className={favorited ? 'border-red-300 text-red-500' : ''}
+          className={`h-10 ${favorited ? 'border-[#E2472B]/40 text-[#E2472B]' : ''}`}
         >
-          <Heart className={`w-4 h-4 mr-2 ${favorited ? 'fill-red-500 text-red-500' : ''}`} />
+          <Heart className={`w-4 h-4 mr-1 ${favorited ? 'fill-[#E2472B] text-[#E2472B]' : ''}`} />
           {favorited ? 'Saved' : 'Save'}
         </Button>
+        <CartSheet />
       </div>
 
       <Tabs defaultValue="latest">

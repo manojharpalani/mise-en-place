@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { LayoutDashboard, ChefHat, ShoppingBag, Users, FileText, Shield } from 'lucide-react'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -17,13 +18,10 @@ export function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-56 min-h-screen bg-[#12402C] text-[#FFF9EC] flex flex-col">
-      <div className="p-4 border-b border-[#0D3223]">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <img src="/logo-mark-light.svg" alt="" className="w-6 h-6" />
-          <span className="font-heading font-extrabold tracking-tight">mise en <span className="text-[#F5B82E]">place</span></span>
-        </Link>
-        <p className="text-xs text-[#A9C2B1] mt-0.5 flex items-center gap-1">
+    <aside className="w-60 min-h-screen bg-[#12402C] text-[#FFF9EC] flex flex-col shrink-0">
+      <div className="px-4 py-5 border-b border-[#0D3223]">
+        <BrandLogo tone="dark" tagline={false} />
+        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F5B82E] mt-2 flex items-center gap-1">
           <Shield className="w-3 h-3" /> Admin Panel
         </p>
       </div>
@@ -36,9 +34,9 @@ export function AdminSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-[#FFF1D6] text-[#E2472B]'
+                  ? 'bg-[#F5B82E] text-[#12241B] font-semibold'
                   : 'text-[#CFE0D4] hover:bg-[#0D3223] hover:text-white'
               )}
             >

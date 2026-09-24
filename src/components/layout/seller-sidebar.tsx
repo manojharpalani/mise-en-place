@@ -13,6 +13,7 @@ import {
   DollarSign,
   Settings,
 } from 'lucide-react'
+import { BrandLogo } from '@/components/layout/brand-logo'
 
 const navItems = [
   { href: '/seller/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -29,13 +30,10 @@ export function SellerSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-56 min-h-screen bg-muted border-r border-border flex flex-col">
-      <div className="p-4 border-b border-border">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg text-foreground">
-          <img src="/logo-mark.svg" alt="" className="w-6 h-6" />
-          <span className="font-heading font-extrabold tracking-tight">mise en <span className="text-[#E2472B]">place</span></span>
-        </Link>
-        <p className="text-xs text-muted-foreground mt-0.5">Seller Dashboard</p>
+    <aside className="w-60 min-h-screen bg-[#12402C] text-[#FFF9EC] flex flex-col shrink-0">
+      <div className="px-4 py-5 border-b border-[#0D3223]">
+        <BrandLogo tone="dark" tagline={false} />
+        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#F5B82E] mt-2">Seller Dashboard</p>
       </div>
       <nav className="flex-1 p-3 space-y-1">
         {navItems.map((item) => {
@@ -46,10 +44,10 @@ export function SellerSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-[#FFF1D6] text-[#E2472B]'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  ? 'bg-[#F5B82E] text-[#12241B] font-semibold'
+                  : 'text-[#CFE0D4] hover:bg-[#0D3223] hover:text-white'
               )}
             >
               <Icon className="w-4 h-4 flex-shrink-0" />

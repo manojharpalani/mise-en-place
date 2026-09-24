@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { getAnthropic } from '@/lib/anthropic'
+import { createClaudeMessage } from '@/lib/anthropic'
 
 export interface VideoResult {
   videoId: string
@@ -118,7 +118,6 @@ async function searchYouTube(query: string): Promise<VideoResult[]> {
 }
 
 async function generateRecipeCard(name: string, description?: string | null): Promise<RecipeCard> {
-  const anthropic = getAnthropic()
   const prompt = `You are an enthusiastic culinary writer. For the dish "${name}"${description ? ` (${description})` : ''}, write a brief recipe inspiration card.
 
 Return ONLY valid JSON matching this structure exactly:
@@ -129,8 +128,7 @@ Return ONLY valid JSON matching this structure exactly:
   "servingSuggestions": "one sentence on how to serve and plate it beautifully"
 }`
 
-  const msg = await anthropic.messages.create({
-    model: 'claude-sonnet-4-5',
+  const msg = await createClaudeMessage({
     max_tokens: 512,
     messages: [{ role: 'user', content: prompt }],
   })

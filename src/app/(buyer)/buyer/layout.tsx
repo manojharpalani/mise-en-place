@@ -10,7 +10,7 @@ export default async function BuyerLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main className="max-w-4xl mx-auto px-4 py-8">{children}</main>
     </div>

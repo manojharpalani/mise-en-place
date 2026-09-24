@@ -65,7 +65,7 @@ export default async function StorefrontPage({ params }: PageProps) {
     : false
 
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       {/* Store Header */}

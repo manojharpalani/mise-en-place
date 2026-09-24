@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { getAnthropic } from '@/lib/anthropic'
+import { createClaudeMessage, describeAIError } from '@/lib/anthropic'
 
 export interface IngredientItem {
   name: string
@@ -37,9 +37,7 @@ Units should be practical cooking units (cup, tbsp, tsp, oz, lb, g, ml, piece, c
 List 5-12 ingredients. Be specific (e.g. "basmati rice" not "rice").`
 
   try {
-    const anthropic = getAnthropic()
-    const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5',
+    const message = await createClaudeMessage({
       max_tokens: 1024,
       messages: [{ role: 'user', content: prompt }],
     })
@@ -58,7 +56,7 @@ List 5-12 ingredients. Be specific (e.g. "basmati rice" not "rice").`
     return NextResponse.json({ ingredients, updatedAt: updated.ingredientsUpdatedAt })
   } catch (err) {
     console.error('Ingredient generation error:', err)
-    return NextResponse.json({ error: 'Failed to generate ingredients' }, { status: 500 })
+    return NextResponse.json({ error: describeAIError(err) }, { status: 500 })
   }
 }
 

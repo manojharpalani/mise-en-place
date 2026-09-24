@@ -22,7 +22,7 @@ export default async function SellersPage() {
   const sellers = await getSellers()
 
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 py-10">
         <div className="mb-8">

@@ -1,14 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import type { Prisma } from '@prisma/client'
 
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{1,48}[a-z0-9]$/
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+  // Public endpoint: return storefront-safe fields only. It used to return the
+  // whole row, including the seller's WhatsApp access token, permit document
+  // URL and email address, to anyone who knew a seller id.
   const seller = await prisma.sellerProfile.findUnique({
     where: { id },
-    include: { user: { select: { name: true, email: true, neighborhood: true } } },
+    select: {
+      id: true,
+      storeSlug: true,
+      storeName: true,
+      bio: true,
+      cuisineType: true,
+      kitchenPhotos: true,
+      deliveryEnabled: true,
+      deliveryRadiusMiles: true,
+      deliveryFee: true,
+      pickupEnabled: true,
+      pickupWindows: true,
+      ratingAvg: true,
+      reviewCount: true,
+      user: { select: { name: true, neighborhood: true } },
+    },
   })
   if (!seller) return NextResponse.json({ error: 'Not found' }, { status: 404 })
   return NextResponse.json(seller)
@@ -29,7 +48,24 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const { neighborhood, zip, storeSlug, ...sellerData } = body
+    const { neighborhood, zip, storeSlug } = body
+
+    // Only these fields can be edited here. Previously the whole request body
+    // went straight into the update, so a seller could set their own
+    // permitStatus, rating or review count. isActive stays admin-only.
+    const SELLER_EDITABLE = [
+      'storeName', 'bio', 'story', 'cuisineType', 'kitchenPhotos',
+      'deliveryEnabled', 'deliveryRadiusMiles', 'deliveryFee',
+      'pickupEnabled', 'pickupWindows', 'whatsappGroupId', 'whatsappGroupLink', 'socialLinks',
+      'waPhoneNumberId', 'waAccessToken', 'waTemplateLanguage', 'waMenuTemplate',
+      'waArticleTemplate', 'waMarketingTemplate', 'waOrderTemplate',
+    ] as const
+    const ADMIN_EDITABLE = ['isActive'] as const
+    const allowed: readonly string[] = session.user.role === 'ADMIN' ? [...SELLER_EDITABLE, ...ADMIN_EDITABLE] : SELLER_EDITABLE
+    const sellerData: Record<string, unknown> = {}
+    for (const key of allowed) {
+      if (key in body) sellerData[key] = body[key]
+    }
 
     // Validate + check uniqueness of new storeSlug
     if (storeSlug !== undefined && storeSlug !== seller.storeSlug) {
@@ -58,7 +94,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
     const updated = await prisma.sellerProfile.update({
       where: { id },
-      data: sellerData,
+      data: sellerData as Prisma.SellerProfileUpdateInput,
     })
 
     return NextResponse.json(updated)
